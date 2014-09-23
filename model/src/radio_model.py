@@ -31,68 +31,104 @@ def spec_plot(x, fs, fig, sub_plot = (1,1,1), plt_title = 'No_Title'):
   return
 
 #--------------------------------------------------------------------------------
-def modulate_fm(x, fsx, fsrf, fc, del_f = 75000, BW = 200000, A = 1):
+def modulate_fm(x, fsBB, fsRF, fc, del_f = 75000, BW = 200000, A = 1, 
+                debug = False):
   '''
   Modulates some signal x with del_f maximum frequency deviation.  The maximum
   message value mp is extracted from x.
 
   x: The signal to modulate, a 1D np array
-  fsx: The sample rate of the signal x
-  fsrf: The sample rate for the modulation
+  fsBB: The sample rate of the signal x
+  fsRF: The sample rate for the modulation
   del_f: delta f, the maximum frequency deviation
   fc: The centre frequency for the modulation
   BW: The final maximum bandwidth of the signal
   A: The amplitude of the output fm modulated signal
   '''
   #Convert everything to float...
-  fsx = float(fsx)
-  fsrf = float(fsrf)
+  fsBB = float(fsBB)
+  fsIF = 3.*BW
+  fsRF = float(fsRF)
   fc = float(fc)
   del_f = float(del_f)
   BW = float(BW)
   A = float(A)
 
-  #Perform the modulation, as well as upsampling
-  T = len(x)/fsx #The period of time x exists for
-  N = fsrf*T #The number of samples for the RF modulation
-  assert(fsrf > 2*fc), 'The sample rate must be at least twice the RF frequency'
-  assert(fsrf >= fsx), 'The RF sample rate must be higher than the BB sample rate'
+  #Perform the modulation, as well as upsampling to fsIF
+  T = len(x)/fsBB #The period of time x exists for
+  N = fsIF*T #The number of samples for the RF modulation
   m = resample(x, N)
   mp = max(x)
   kf = (2.*pi*del_f)/mp
   t = linspace(0, T, N)
   m_integral = cumtrapz(m, t, initial = 0.)
-  fm_mod = A*cos(2.*pi*fc*t + kf*m_integral)
+  fm_modIF = A*cos(kf*m_integral) #Keep the signal at BB
 
-  #---------------------------------------------
-  #I DON'T KNOW IF THIS IS CORRECT CHECK WORK
-  #I used freqz to plot response, it is questionable
-  #Preemphasis
-  prd = 1/fsrf #T is already taken
-  #f1 and f2 are standard values for FM preemphasis
-  f1 = 2100
-  f2 = 30000
-  #a and b derived from bilinear transform
-  b = [f2*2*(pi*f1*prd + 1), f2*2*(pi*f1*prd - 1)]
-  a = [f1*2*(pi*f1*prd + 1), f1*2*(pi*f2*prd - 1)]
-  fm_mod = lfilter(b, a, fm_mod)
-  #---------------------------------------------
+  if debug == True:
+    fig = plt.figure()
+    spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,1), plt_title = 'IF')
 
-  #Bandwidth limiting
-  left_edge = (fc - (BW/2))/fsrf
-  right_edge = (fc + (BW/2))/fsrf
+  #Preemphasis filtering
+
   taps = 65
-  b = remez(taps, [0, left_edge*1.03, left_edge*1.05, 
-                   right_edge*.95, right_edge*.97, 0.5], 
-            [0, 1, 0], type = 'bandpass', maxiter = 100, 
+  f1 = 2100.
+  f2 = 30000.
+  G = f2/f1
+  b = remez(taps, [0, f1/fsIF, f2/fsIF, 0.5], [1, G], type = 'bandpass',
+            maxiter = 100, grid_density = 32)
+  a = 1
+  fm_modIF = lfilter(b, a, fm_modIF)
+
+  if debug == True:
+    spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,2),
+              plt_title = 'IF preemph')
+  
+  #Bandwidth limiting
+  
+  right_edge = (BW/2)/fsIF
+  b = remez(taps, [0, right_edge*.95, right_edge*.97, 0.5], 
+            [1, 0], type = 'bandpass', maxiter = 100, 
             grid_density = 32)
   a = 1
-  fm_mod = lfilter(b, a, fm_mod)
+  fm_modIF = lfilter(b, a, fm_modIF)
 
-  return fm_mod
+  if debug == True:
+    spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,3),
+              plt_title = 'IF bandlimit')
+
+  #Up sampling and modulating up to fc
+  T = len(fm_modIF)/fsIF #The period of time x exists for
+  N = fsRF*T #The number of samples for the RF modulation
+  t = linspace(0, T*N, N)
+  fm_modRF = resample(fm_modIF, N)
+
+  mixer = cos(2*pi*fc*t)
+  fm_modRF = mixer*fm_modRF
+
+  if debug == True:
+    spec_plot(fm_modRF, fsRF, fig, sub_plot = (2,2,4),
+              plt_title = 'RF')
+    plt.show()
+
+  return fm_modRF
 
 #--------------------------------------------------------------------------------
+def demodulate_fm(fm_modRF, fc, fsRF, fsBB, BW = 200000, debug = False):
+  '''
+  '''
+  fig = plt.figure()
+  if debug == True:
+    spec_plot(fm_modBB, fsBB, fig, sub_plot = (2,2,4),
+              plt_title = 'RF')
+    plt.show()
 
+  T = len(fm_modRF)/fsRF #The period of time x exists for
+  N = fsBB*T #The number of samples for the RF modulation
+  fm_modBB = resample(fm_modRF, N)
+
+  
+  
+  return
 
 #--------------------------------------------------------------------------------
 def main():
@@ -100,17 +136,12 @@ def main():
   '''
   fsx = 44100.0
   fsrf = 2000000.0
-  fc = 400000.0
+  fc = 800000.0
   T = 1
   t = linspace(0.0, T, T*fsx)
 #  x = (t - sqrt(t))*cos(2*pi*fsx*t)
   x = cos(2*pi*4000*t)
-  x_fm = modulate_fm(x, fsx, fsrf, fc)
-
-  fig = plt.figure()
-  spec_plot(x, fsx, fig, sub_plot = (1,2,1), plt_title = 'Base Band')
-  spec_plot(x_fm, fsrf, fig, sub_plot = (1,2,2), plt_title = 'FM Modulation')
-  plt.show()
+  x_fm = modulate_fm(x, fsx, fsrf, fc, debug = True)
 
   return
 
