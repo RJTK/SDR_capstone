@@ -35,7 +35,7 @@ def spec_plot(x, fs, fig, sub_plot = (1,1,1), plt_title = 'No_Title'):
 
 #--------------------------------------------------------------------------------
 def modulate_fm(x, fsBB, fsRF, fc, del_f = 75000, BB_BW = 15000, BW = 200000, 
-                A = 1, debug = False):
+                A = 1, debug = False, preemph = True):
   '''
   SEEMS TO WORK ALRIGHT
 
@@ -49,6 +49,7 @@ def modulate_fm(x, fsBB, fsRF, fc, del_f = 75000, BB_BW = 15000, BW = 200000,
   fc: The centre frequency for the modulation
   BW: The final maximum bandwidth of the signal
   A: The amplitude of the output fm modulated signal
+  Returns: An fm modulated signal
   '''
   #Convert everything to float...
   fsBB = float(fsBB)
@@ -93,21 +94,22 @@ def modulate_fm(x, fsBB, fsRF, fc, del_f = 75000, BB_BW = 15000, BW = 200000,
 
   #Preemphasis filtering
 
-  print 'Performing Preemphasis Filtering...'
+  if preemph is True:
+   print 'Performing Preemphasis Filtering...'
 
-  taps = 65
-  f1 = 2100.
-  f2 = 30000.
-  G = f2/f1
-  b = remez(taps, [0, f1/fsIF, f2/fsIF, 0.5], [1, G], type = 'bandpass',
-            maxiter = 100, grid_density = 32)
-  a = 1
-  fm_modIF = lfilter(b, a, fm_modIF)
+   taps = 65
+   f1 = 2100.
+   f2 = 30000.
+   G = f2/f1
+   b = remez(taps, [0, f1/fsIF, f2/fsIF, 0.5], [1, G], type = 'bandpass',
+             maxiter = 100, grid_density = 32)
+   a = 1
+   fm_modIF = lfilter(b, a, fm_modIF)
 
-  if debug == True:
-    spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,2),
-              plt_title = 'IF preemph')
-  
+   if debug == True:
+     spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,2),
+               plt_title = 'IF preemph')
+
   #Bandwidth limiting
 
   print 'Performing Modulated Bandwidth Limiting...'
@@ -123,7 +125,7 @@ def modulate_fm(x, fsBB, fsRF, fc, del_f = 75000, BB_BW = 15000, BW = 200000,
     spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,3),
               plt_title = 'IF bandlimit')
 
-  print 'Upsampling...'
+  print 'Upsampling to RF...'
 
   #Up sampling and modulating up to fc
   T = len(fm_modIF)/fsIF #The period of time x exists for
@@ -131,7 +133,7 @@ def modulate_fm(x, fsBB, fsRF, fc, del_f = 75000, BB_BW = 15000, BW = 200000,
   t = linspace(0, T*N, N)
   fm_modRF = resample(fm_modIF, N)
 
-  print 'Modulating to IF...'
+  print 'Modulating to RF...'
 
   mixer = cos(2*pi*fc*t)
   fm_modRF = mixer*fm_modRF
@@ -144,14 +146,21 @@ def modulate_fm(x, fsBB, fsRF, fc, del_f = 75000, BB_BW = 15000, BW = 200000,
   return fm_modRF
 
 #--------------------------------------------------------------------------------
-def demodulate_fm(fm_modRF, fc, fsRF, fsBB, BW = 200000, debug = False):
+def demodulate_fm(fm_modRF, fc, fsRF, fsBB, BW = 200000,
+                  debug = False, deemph = True):
   '''
   DOCUMENT THIS
   CURRENTLY ONLY EXPERIMENTAL
   '''
-  fig = plt.figure()
+  fc = float(fc)
+  fsRF = float(fsRF)
+  fsBB = float(fsBB)
+  BW = float(BW)
+
+  print 'Downsampling to BB...'
 
   if debug == True:
+    fig = plt.figure()
     spec_plot(fm_modRF, fsRF, fig, sub_plot = (1,2,1),
               plt_title = 'RF')
 
@@ -159,11 +168,37 @@ def demodulate_fm(fm_modRF, fc, fsRF, fsBB, BW = 200000, debug = False):
   N = fsBB*T #The number of samples for the RF modulation
   fm_modBB = resample(fm_modRF, N)
 
+  if deemph is True:
+   print 'Performing deemphasis Filtering...'
+
+   taps = 65
+   f1 = 2100.
+   f2 = 30000.
+   G = f2/f1
+   b = remez(taps, [0, f1/fsIF, f2/fsIF, 0.5], [1, G], type = 'bandpass',
+             maxiter = 100, grid_density = 32)
+   a = 1
+   fm_modIF = lfilter(b, a, fm_modIF)
+
+   if debug == True:
+     spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,2),
+               plt_title = 'IF preemph')
+
   if debug == True:
     spec_plot(fm_modBB, fsBB, fig, sub_plot = (1,2,2),
               plt_title = 'BB')
     plt.show()
-  
+
+  print 'Differentiating...'
+
+  fm_derivative = np.gradient(fm_modBB, 1/fsBB)
+
+  if debug == True:
+    fig = plt.figure()
+    t = linspace(0, len(fm_derivative)/fsBB, len(fm_derivative))
+    plt.plot(t, fm_derivative)
+    plt.show()
+
   return
 
 #--------------------------------------------------------------------------------
@@ -172,6 +207,22 @@ def play_wav(file_name):
   '''
   
   return
+
+#--------------------------------------------------------------------------------
+def get_zero_crossings(x):
+  '''
+  Returns a vector of boolean values at every zero crossing of the vector x.
+  
+  x: The input vector
+  Returns: A vector of zero crossings...
+  '''
+  N = len(x)
+  x_neg = np.greater(x, np.zeros(N))
+  x_pos = np.less(x, np.zeros(N))
+  x_pos = x_pos[1:] #Throw out the first sample
+  x_neg = x_neg[0:-1]
+  x_zero_crossings = np.equal(x_pos, x_neg)
+  return x_zero_crossings
 
 #--------------------------------------------------------------------------------
 def main():
@@ -190,12 +241,14 @@ def main():
   musicR = music.T[1]
   musicRL = musicL + musicR #merge the two channels
 
-  fsrf = 2000000.0
-  fc = 800000.0
-  fm_rf = modulate_fm(musicRL, fs, fsrf, fc, debug = True)
-  BB = demodulate_fm(fm_rf, fc, fsrf, 400000, debug = True)
+  fsRF = 2000000.0 #2MHz
+  fc = 1200000.0 #1.2MHz
+  fm_modRF = modulate_fm(musicRL, fs, fsRF, fc, debug = False, preemph = False)
+  fsBB = 500000.0 #500KHz
+  BB = demodulate_fm(fm_modRF, fc, fsRF, fsBB, debug = True)
   return
 
 #Program entry point
 #===============================================================================
-main()
+if __name__ == '__main__':
+  main()
