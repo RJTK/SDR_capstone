@@ -237,6 +237,30 @@ def plot_filter(b, a):
   return
 
 #-------------------------------------------------------------------------------
+def AWGN_channel(x, SNR, debug = False):
+  '''
+  x: The signal to add noise to
+  SNR: The signal to noise ratio in dB
+  '''
+  SNR = float(SNR)
+  Px = sum(x**2)/len(x) #Energy of x
+  PN = Px/(10**(SNR/10))
+  var = sqrt(PN)
+  AWGN = np.random.normal(0, var, len(x))
+  if debug == True:
+    print 'len x = %d' % len(x)
+    EPx = Px
+    EPN = sum(AWGN**2)/len(AWGN)
+    SNR = EPx/EPN
+    SNRdB = 10*np.log10(SNR)
+    print 'AWGN Channel...'
+    print 'Signal power: %f' % EPx
+    print 'Noise power: %f' % EPN
+    print 'SNR (not dB): %f' % SNR
+    print 'SNR: %fdB' % SNRdB
+  return x + AWGN
+
+#-------------------------------------------------------------------------------
 def main():
   '''
   '''
@@ -257,9 +281,11 @@ def main():
   fsIF = 800000. #600KHz
   fc = 100000
   fm_mod, kf = modulate_fm(musicRL, fsBB, fsIF, debug = False, 
-                           preemph = False, fc = fc)
+                           preemph = True, fc = fc)
 
-  BB = demodulate_fm(fm_mod, fsIF, debug = False, deemph = False, fc = fc)
+  fm_mod = AWGN_channel(fm_mod, 20, debug = True)
+
+  BB = demodulate_fm(fm_mod, fsIF, debug = False, deemph = True, fc = fc)
 
   DC = np.average(BB)
   BB = BB - DC
@@ -271,24 +297,16 @@ def main():
   E_music = sum(abs(musicRL)**2)
   E_demod = sum(abs(BB)**2)
   
-  print 'DC demod value = %f' % DC
-  print 'minimum musicRL = %f' % min(musicRL)
-  print 'maximum musicRL = %f' % max(musicRL)
-  print 'music energy = %f' % E_music
-  print 'minimum demod = %f' % min(BB)
-  print 'maximum demod = %f' % max(BB)
-  print 'BB energy = %f' % E_demod
-
   #  G = sqrt(E_music/E_demod)
   #  print 'Gain: %f' % G
   #How to make volume the same?
   #equating the maximum values does not work
   #Nor does equating the signal energy.
-  #The value 90000 is determined experimentally
+  #The value of G is determined experimentally
   #Also, where in the signal chain is the loss of amplitude even comming from?
   #As far as I can tell, resampling does not effect amplitude.
 
-  G = 90000
+  G = 80000
   BB = G*BB
 
   print 'energy after gain %f' % sum(abs(BB)**2)
