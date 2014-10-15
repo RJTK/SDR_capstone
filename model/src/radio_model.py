@@ -1,13 +1,13 @@
 from scipy.io import wavfile as wav
-from scipy.signal import resample, remez, lfilter
+from scipy.signal import resample, remez, lfilter, hilbert, freqz
 import numpy as np
-from numpy import linspace, pi, sqrt, cos, fft
+from numpy import linspace, pi, sqrt, cos, sin, fft
 from scipy.integrate import cumtrapz
 from matplotlib import pyplot as plt
 import sys
 import os
 
-#--------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 def spec_plot(x, fs, fig, sub_plot = (1,1,1), plt_title = 'No_Title'):
   '''
   FAIRLY WELL TESTED
@@ -19,7 +19,6 @@ def spec_plot(x, fs, fig, sub_plot = (1,1,1), plt_title = 'No_Title'):
   plt_title: (optional) Title of the plot
   '''
   N = len(x)
-  T = N/float(fs)
   f_analog = linspace(-fs/2., fs/2., N)
   
   x_spec = abs(fft.fft(x))
@@ -33,9 +32,10 @@ def spec_plot(x, fs, fig, sub_plot = (1,1,1), plt_title = 'No_Title'):
   ax.set_title(plt_title)
   return
 
-#--------------------------------------------------------------------------------
-def modulate_fm(x, fsBB, fsRF, fc, del_f = 75000, BB_BW = 15000, BW = 200000, 
-                A = 1, debug = False, preemph = True):
+#-------------------------------------------------------------------------------
+def modulate_fm(x, fsBB, fsIF, del_f = 75000, BB_BW = 15000, 
+                BW = 200000, A = 10, debug = False, 
+                preemph = True, fc = 0):
   '''
   SEEMS TO WORK ALRIGHT
 
@@ -53,178 +53,190 @@ def modulate_fm(x, fsBB, fsRF, fc, del_f = 75000, BB_BW = 15000, BW = 200000,
   '''
   #Convert everything to float...
   fsBB = float(fsBB)
-  fsIF = 3.*BW
-  fsRF = float(fsRF)
-  fc = float(fc)
+  fsIF = float(fsIF)
   del_f = float(del_f)
   BW = float(BW)
   A = float(A)
 
-  print 'Performing BaseBand Bandwidth Limiting...'
-  
+  print 'Performing Baseband Bandwidth Limiting...'
   taps = 65
   right_edge = BB_BW/fsBB
   b = remez(taps, [0, right_edge*.95, right_edge*.97, 0.5], 
             [1, 0], type = 'bandpass', maxiter = 100, 
             grid_density = 32)
   a = 1
-  fm_modIF = lfilter(b, a, x)
-
-  print 'Starting FM modulation...'
-
-  #Perform the modulation, as well as upsampling to fsIF
-  T = len(x)/fsBB #The period of time x exists for
-  N = fsIF*T #The number of samples for the RF modulation
-  
-  print 'upsampling to IF...'
-
-  m = resample(x, N)
-  mp = max(x)
-  kf = (2.*pi*del_f)/mp
-  t = linspace(0, T, N)
-  
-  print 'FM Modulating...'
-
-  m_integral = cumtrapz(m, t, initial = 0.)
-  fm_modIF = A*cos(kf*m_integral) #Keep the signal at BB
+  BB = lfilter(b, a, x)
 
   if debug == True:
     fig = plt.figure()
-    spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,1), plt_title = 'IF')
+    spec_plot(BB, fsBB, fig, sub_plot = (2,2,1), plt_title = 'BB')
+
+  #Perform the modulation, as well as upsampling to fsIF
+  print 'upsampling to IF...'
+  T = len(BB)/fsBB #The period of time x exists for
+  N = fsIF*T #The number of samples for the RF modulation
+  BB = resample(BB, N)
+  mp = max(BB)
+  kf = (2.*pi*del_f)/mp
 
   #Preemphasis filtering
-
   if preemph is True:
-   print 'Performing Preemphasis Filtering...'
+    print 'Performing Preemphasis Filtering...'
 
-   taps = 65
-   f1 = 2100.
-   f2 = 30000.
-   G = f2/f1
-   b = remez(taps, [0, f1/fsIF, f2/fsIF, 0.5], [1, G], type = 'bandpass',
-             maxiter = 100, grid_density = 32)
-   a = 1
-   fm_modIF = lfilter(b, a, fm_modIF)
+    taps = 65
+    f1 = 2100.
+    f2 = 30000.
+    G = f2/f1
+    b = remez(taps, [0, f1/fsIF, f2/fsIF, 0.5], [1, G], type = 'bandpass',
+              maxiter = 100, grid_density = 32)
+    a = 1
+    BB = lfilter(b, a, BB)
 
-   if debug == True:
-     spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,2),
-               plt_title = 'IF preemph')
+    if debug == True:
+      spec_plot(BB, fsIF, fig, sub_plot = (2,2,2),
+                plt_title = 'Preemphasized BB')
+  
+  #FM modulation
+  print 'FM Modulating...'
+
+  t = linspace(0, T, len(BB))
+  BB_integral = cumtrapz(BB, dx = 1./len(BB), initial = 0.)
+  fm_modIF = A*cos(2*pi*fc*t + kf*BB_integral)
+
+  DC = np.average(fm_modIF)
+  fm_modIF = fm_modIF - DC
+
+  if debug == True:
+    spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,3), plt_title = 'Modulated')
 
   #Bandwidth limiting
 
   print 'Performing Modulated Bandwidth Limiting...'
-  
-  right_edge = (BW/2)/fsIF
-  b = remez(taps, [0, right_edge*.95, right_edge*.97, 0.5], 
-            [1, 0], type = 'bandpass', maxiter = 100, 
+
+  left_edge = (fc - (BW/2.))/fsIF
+  right_edge = (fc + (BW/2.))/fsIF
+  taps = 165
+  if left_edge == 0:
+    if right_edge == 0.5:
+      bands = [0,0.5]
+      gains = [1]
+    bands = [0, right_edge*.97, right_edge*.99, 0.5]
+    gains = [1, 0]
+  elif right_edge == 0.5:
+    bands = [0, left_edge*1.01, left_edge*1.03, 0.5]
+    gains = [0, 1]
+  else:
+    bands = [0, left_edge*1.01, left_edge*1.05,
+             right_edge*.95, right_edge*.99, 0.5]
+    gains = [0, 1, 0]
+
+  b = remez(taps, bands, gains, type = 'bandpass', maxiter = 1000, 
             grid_density = 32)
   a = 1
   fm_modIF = lfilter(b, a, fm_modIF)
 
   if debug == True:
-    spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,3),
-              plt_title = 'IF bandlimit')
+    spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,4),
+              plt_title = 'Transmitted')
+    fig.show()
 
-  print 'Upsampling to RF...'
+  return fm_modIF, kf
 
-  #Up sampling and modulating up to fc
-  T = len(fm_modIF)/fsIF #The period of time x exists for
-  N = fsRF*T #The number of samples for the RF modulation
-  t = linspace(0, T*N, N)
-  fm_modRF = resample(fm_modIF, N)
-
-  print 'Modulating to RF...'
-
-  mixer = cos(2*pi*fc*t)
-  fm_modRF = mixer*fm_modRF
-
-  if debug == True:
-    spec_plot(fm_modRF, fsRF, fig, sub_plot = (2,2,4),
-              plt_title = 'RF')
-    plt.show()
-
-  return fm_modRF
-
-#--------------------------------------------------------------------------------
-def demodulate_fm(fm_modRF, fc, fsRF, fsBB, BW = 200000,
-                  debug = False, deemph = True):
+#-------------------------------------------------------------------------------
+def demodulate_fm(fm_mod, fs, BW = 200000,
+                  debug = False, deemph = True, fc = 0):
   '''
   DOCUMENT THIS
   CURRENTLY ONLY EXPERIMENTAL
   '''
-  fc = float(fc)
-  fsRF = float(fsRF)
-  fsBB = float(fsBB)
+  fs = float(fs)
   BW = float(BW)
 
-  print 'Downsampling to BB...'
-
   if debug == True:
     fig = plt.figure()
-    spec_plot(fm_modRF, fsRF, fig, sub_plot = (1,2,1),
-              plt_title = 'RF')
+    spec_plot(fm_mod, fs, fig, sub_plot = (2,2,1), plt_title = 'RF')
 
-  T = len(fm_modRF)/fsRF #The period of time x exists for
-  N = fsBB*T #The number of samples for the RF modulation
-  fm_modBB = resample(fm_modRF, N)
+  T = len(fm_mod)/fs
+  t = linspace(0, T, len(fm_mod))
+  I = fm_mod*cos(2*pi*fc*t)
+  Q = fm_mod*sin(2*pi*fc*t)
+
+  taps = 265
+  edge = (BW/2)/fs
+  bands = [0, edge*1.01, edge*1.05, 0.5]
+  gains = [1, 0]
+  b = remez(taps, bands, gains, type = 'bandpass', maxiter = 1000, 
+            grid_density = 32)
+  a = 1
+  I = lfilter(b, 1, I)
+  Q = lfilter(b, 1, Q)
+
+  if debug == True:
+    spec_plot(I, fs, fig, sub_plot = (2,2,2), plt_title = 'I')
+    spec_plot(Q, fs, fig, sub_plot = (2,2,3), plt_title = 'Q')
+
+  b = [-1, 1]
+  a = 1
+  dIdt = lfilter(b, a, I)
+  dQdt = lfilter(b, a, Q)
+  BB = (I*dQdt - Q*dIdt)/(I**2 + Q**2)
 
   if deemph is True:
-   print 'Performing deemphasis Filtering...'
+    print 'Performing deemphasis Filtering...'
 
-   taps = 65
-   f1 = 2100.
-   f2 = 30000.
-   G = f2/f1
-   b = remez(taps, [0, f1/fsIF, f2/fsIF, 0.5], [1, G], type = 'bandpass',
-             maxiter = 100, grid_density = 32)
-   a = 1
-   fm_modIF = lfilter(b, a, fm_modIF)
-
-   if debug == True:
-     spec_plot(fm_modIF, fsIF, fig, sub_plot = (2,2,2),
-               plt_title = 'IF preemph')
+    taps = 65
+    f1 = 2100.
+    f2 = 30000.
+    G = f2/f1
+    b = remez(taps, [0, f1/fs, f2/fs, 0.5], [1, 1./G], type = 'bandpass',
+              maxiter = 100, grid_density = 32)
+    a = 1
+    fm_mod = lfilter(b, a, fm_mod)
 
   if debug == True:
-    spec_plot(fm_modBB, fsBB, fig, sub_plot = (1,2,2),
-              plt_title = 'BB')
+    spec_plot(BB, fs, fig, sub_plot = (2,2,4), plt_title = 'BB')
     plt.show()
+    
+  return BB
 
-  print 'Differentiating...'
-
-  fm_derivative = np.gradient(fm_modBB, 1/fsBB)
-
-  if debug == True:
-    fig = plt.figure()
-    t = linspace(0, len(fm_derivative)/fsBB, len(fm_derivative))
-    plt.plot(t, fm_derivative)
-    plt.show()
-
-  return
-
-#--------------------------------------------------------------------------------
-def play_wav(file_name):
+#-------------------------------------------------------------------------------
+def get_pzero_crossings(x):
   '''
-  '''
-  
-  return
-
-#--------------------------------------------------------------------------------
-def get_zero_crossings(x):
-  '''
-  Returns a vector of boolean values at every zero crossing of the vector x.
+  Returns a vector of boolean values at every positive going zero crossing 
+  of the vector x.
   
   x: The input vector
   Returns: A vector of zero crossings...
   '''
   N = len(x)
-  x_neg = np.greater(x, np.zeros(N))
-  x_pos = np.less(x, np.zeros(N))
-  x_pos = x_pos[1:] #Throw out the first sample
-  x_neg = x_neg[0:-1]
-  x_zero_crossings = np.equal(x_pos, x_neg)
-  return x_zero_crossings
+  x_pos = x > 0
+  x_zx = (x_pos[:-1] & ~x_pos[1:])
+  x_zx = np.append(x_zx, 0)
+  return x_zx
 
-#--------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+def plot_filter(b, a):
+  '''
+  Plots a filter's response
+  '''
+  w, h = freqz(b, a)
+  fig = plt.figure()
+  plt.title('frequency response')
+  ax1 = fig.add_subplot(1,1,1)
+
+  plt.plot(w, abs(h), 'b')
+  plt.ylabel('|H|', color = 'b')
+  plt.xlabel('frequency [Rad/Sample]')
+
+  ax2 = ax1.twinx()
+  angles = np.unwrap(np.angle(h))
+  plt.plot(w, angles, 'g')
+  plt.ylabel('Angle (radians)', color = 'g')
+  plt.grid()
+  plt.show()
+  return
+
+#-------------------------------------------------------------------------------
 def main():
   '''
   '''
@@ -235,20 +247,63 @@ def main():
     print 'Note, running as root sets this script to a higher priority'
 
   print 'Reading file...'
-  fs, music = wav.read('classical1.wav')
-  music = music[0:2*fs] #Truncate to 2 seconds
+  fsBB, music = wav.read('classical1.wav')
+  music = music[0:2*fsBB] #Truncate to 2 seconds
   musicL = music.T[0] #Separate out the left/right channels
   musicR = music.T[1]
   musicRL = musicL + musicR #merge the two channels
 
-  fsRF = 2000000.0 #2MHz
-  fc = 1200000.0 #1.2MHz
-  fm_modRF = modulate_fm(musicRL, fs, fsRF, fc, debug = False, preemph = False)
-  fsBB = 500000.0 #500KHz
-  BB = demodulate_fm(fm_modRF, fc, fsRF, fsBB, debug = True)
+
+  fsIF = 800000. #600KHz
+  fc = 100000
+  fm_mod, kf = modulate_fm(musicRL, fsBB, fsIF, debug = False, 
+                           preemph = False, fc = fc)
+
+  BB = demodulate_fm(fm_mod, fsIF, debug = False, deemph = False, fc = fc)
+
+  DC = np.average(BB)
+  BB = BB - DC
+
+  T = len(BB)/fsIF
+  N = fsBB*T
+  BB = resample(BB, N)
+
+  E_music = sum(abs(musicRL)**2)
+  E_demod = sum(abs(BB)**2)
+  
+  print 'DC demod value = %f' % DC
+  print 'minimum musicRL = %f' % min(musicRL)
+  print 'maximum musicRL = %f' % max(musicRL)
+  print 'music energy = %f' % E_music
+  print 'minimum demod = %f' % min(BB)
+  print 'maximum demod = %f' % max(BB)
+  print 'BB energy = %f' % E_demod
+
+  #  G = sqrt(E_music/E_demod)
+  #  print 'Gain: %f' % G
+  #How to make volume the same?
+  #equating the maximum values does not work
+  #Nor does equating the signal energy.
+  #The value 90000 is determined experimentally
+  #Also, where in the signal chain is the loss of amplitude even comming from?
+  #As far as I can tell, resampling does not effect amplitude.
+
+  G = 90000
+  BB = G*BB
+
+  print 'energy after gain %f' % sum(abs(BB)**2)
+
+  musicRL = np.array(musicRL, dtype = 'int16')
+  BB = np.array(BB, dtype = 'int16')
+  wav.write('radio_broadcast.wav', fsBB, musicRL)
+  wav.write('radio_received.wav', fsBB, BB)
+
+  os.system('aplay radio_broadcast.wav')
+  os.system('aplay radio_received.wav')
+
   return
 
 #Program entry point
-#===============================================================================
+#==============================================================================
 if __name__ == '__main__':
   main()
