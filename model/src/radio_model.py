@@ -153,7 +153,8 @@ def demodulate_fm(fm_mod, fs, BW = 200000,
   fs = float(fs)
   BW = float(BW)
 
-  fm_mod = bandpass_limiter(fm_mod, BW, fc, fs, debug)
+  if BPL == True:
+    fm_mod = bandpass_limiter(fm_mod, BW, fc, fs, debug)
 
   if debug == True:
     fig = plt.figure()
@@ -333,8 +334,8 @@ def main():
   musicRL = musicRL/int16_max
 
   fsIF = 800000. 
-  fc = 182100
-  BPL = True #Bandpass limit
+  fc = 181200
+  BPL = True #Bandpass limiter
   predeemph = True #Preemphasis and deemphasis filtering
   fm_mod, kf = modulate_fm(musicRL, fsBB, fsIF, debug = False, 
                            preemph = predeemph, fc = fc)
