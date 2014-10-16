@@ -144,7 +144,8 @@ def modulate_fm(x, fsBB, fsIF, del_f = 75000, BB_BW = 15000,
 
 #-------------------------------------------------------------------------------
 def demodulate_fm(fm_mod, fs, BW = 200000,
-                  debug = False, deemph = True, fc = 0):
+                  debug = False, deemph = True, fc = 0,
+                  BPL = True):
   '''
   DOCUMENT THIS
   CURRENTLY ONLY EXPERIMENTAL
@@ -200,7 +201,7 @@ def demodulate_fm(fm_mod, fs, BW = 200000,
     b = remez(taps, [0, f1/fs, f2/fs, 0.5], [1, 1./G], type = 'bandpass',
               maxiter = 100, grid_density = 32)
     a = 1
-    fm_mod = lfilter(b, a, fm_mod)
+    BB = lfilter(b, a, BB)
 
   if debug == True:
     spec_plot(BB, fs, fig, sub_plot = (2,2,4), plt_title = 'BB')
@@ -252,7 +253,9 @@ def bandpass_limiter(x, BW, fc, fs, debug = False):
   b = remez(taps, bands, gains, type = 'bandpass', maxiter = 1000, 
             grid_density = 32)
   a = 1
-  const_amplx = lfilter(b, a, limited)
+  const_amplx = (pi/4)*lfilter(b, a, limited)
+  mx = max(max(const_amplx), abs(min(const_amplx)))
+  const_amplx = const_amplx/mx #normalize to 1
 
   if debug == True:
     fig = plt.figure()
@@ -261,7 +264,7 @@ def bandpass_limiter(x, BW, fc, fs, debug = False):
     spec_plot(const_amplx, fs, fig, sub_plot = (2,2,3), plt_title = 'BPL')
     fig.show()
 
-  return const_amplx*100
+  return const_amplx
 
 #-------------------------------------------------------------------------------
 def plot_filter(b, a):
@@ -330,11 +333,14 @@ def main():
   musicRL = musicRL/int16_max
 
   fsIF = 800000. 
-  fc = 100000
+  fc = 182100
+  BPL = True #Bandpass limit
+  predeemph = True #Preemphasis and deemphasis filtering
   fm_mod, kf = modulate_fm(musicRL, fsBB, fsIF, debug = False, 
-                           preemph = True, fc = fc)
+                           preemph = predeemph, fc = fc)
   fm_mod = AWGN_channel(fm_mod, 5, debug = False)
-  BB = demodulate_fm(fm_mod, fsIF, debug = False, deemph = True, fc = fc)
+  BB = demodulate_fm(fm_mod, fsIF, debug = False, deemph = predeemph, fc = fc,
+                     BPL = BPL)
 
   DC = np.average(BB)
   BB = BB - DC
