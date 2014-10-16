@@ -116,7 +116,7 @@ def modulate_fm(x, fsBB, fsIF, del_f = 75000, BB_BW = 15000,
   left_edge = (fc - (BW/2.))/fsIF
   right_edge = (fc + (BW/2.))/fsIF
   taps = 165
-  if left_edge == 0:
+  if left_edge <= 0:
     if right_edge == 0.5:
       bands = [0,0.5]
       gains = [1]
@@ -152,34 +152,43 @@ def demodulate_fm(fm_mod, fs, BW = 200000,
   fs = float(fs)
   BW = float(BW)
 
+  fm_mod = bandpass_limiter(fm_mod, BW, fc, fs, debug)
+
   if debug == True:
     fig = plt.figure()
     spec_plot(fm_mod, fs, fig, sub_plot = (2,2,1), plt_title = 'RF')
 
-  T = len(fm_mod)/fs
-  t = linspace(0, T, len(fm_mod))
-  I = fm_mod*cos(2*pi*fc*t)
-  Q = fm_mod*sin(2*pi*fc*t)
+  if fc != 0:
+    T = len(fm_mod)/fs
+    t = linspace(0, T, len(fm_mod))
+    I = fm_mod*cos(2*pi*fc*t)
+    Q = fm_mod*sin(2*pi*fc*t)
 
-  taps = 265
-  edge = (BW/2)/fs
-  bands = [0, edge*1.01, edge*1.05, 0.5]
-  gains = [1, 0]
-  b = remez(taps, bands, gains, type = 'bandpass', maxiter = 1000, 
-            grid_density = 32)
-  a = 1
-  I = lfilter(b, 1, I)
-  Q = lfilter(b, 1, Q)
+    taps = 265
+    edge = (BW/2)/fs
+    bands = [0, edge*1.01, edge*1.05, 0.5]
+    gains = [1, 0]
+    b = remez(taps, bands, gains, type = 'bandpass', maxiter = 1000, 
+              grid_density = 32)
+    a = 1
+    I = lfilter(b, 1, I)
+    Q = lfilter(b, 1, Q)
 
-  if debug == True:
-    spec_plot(I, fs, fig, sub_plot = (2,2,2), plt_title = 'I')
-    spec_plot(Q, fs, fig, sub_plot = (2,2,3), plt_title = 'Q')
+    if debug == True:
+      spec_plot(I, fs, fig, sub_plot = (2,2,2), plt_title = 'I')
+      spec_plot(Q, fs, fig, sub_plot = (2,2,3), plt_title = 'Q')
 
-  b = [-1, 1]
-  a = 1
-  dIdt = lfilter(b, a, I)
-  dQdt = lfilter(b, a, Q)
-  BB = (I*dQdt - Q*dIdt)/(I**2 + Q**2)
+    b = [-1, 1]
+    a = 1
+    dIdt = lfilter(b, a, I)
+    dQdt = lfilter(b, a, Q)
+    BB = (I*dQdt - Q*dIdt)/(I**2 + Q**2)
+
+  else: #fc == 0
+    integral_msg = np.arccos(fm_mod)
+    b = [-1, 1]
+    a = 1
+    BB = lfilter(b, a, integral_msg)
 
   if deemph is True:
     print 'Performing deemphasis Filtering...'
@@ -213,6 +222,46 @@ def get_pzero_crossings(x):
   x_zx = (x_pos[:-1] & ~x_pos[1:])
   x_zx = np.append(x_zx, 0)
   return x_zx
+
+#-------------------------------------------------------------------------------
+def bandpass_limiter(x, BW, fc, fs, debug = False):
+  '''
+  '''
+  limited = [1 if i > 0 else -1 for i in x]
+  
+  DC = np.average(limited)
+  limited = limited - DC
+
+  left_edge = (fc - (BW/2.))/fs
+  right_edge = (fc + (BW/2.))/fs
+  taps = 165
+  if left_edge <= 0:
+    if right_edge == 0.5:
+      bands = [0,0.5]
+      gains = [1]
+    bands = [0, right_edge*.97, right_edge*.99, 0.5]
+    gains = [1, 0]
+  elif right_edge == 0.5:
+    bands = [0, left_edge*1.01, left_edge*1.03, 0.5]
+    gains = [0, 1]
+  else:
+    bands = [0, left_edge*1.01, left_edge*1.05,
+             right_edge*.95, right_edge*.99, 0.5]
+    gains = [0, 1, 0]
+
+  b = remez(taps, bands, gains, type = 'bandpass', maxiter = 1000, 
+            grid_density = 32)
+  a = 1
+  const_amplx = lfilter(b, a, limited)
+
+  if debug == True:
+    fig = plt.figure()
+    spec_plot(x, fs, fig, sub_plot = (2,2,1), plt_title = 'original')
+    spec_plot(limited, fs, fig, sub_plot = (2,2,2), plt_title = 'limited')
+    spec_plot(const_amplx, fs, fig, sub_plot = (2,2,3), plt_title = 'BPL')
+    fig.show()
+
+  return const_amplx*100
 
 #-------------------------------------------------------------------------------
 def plot_filter(b, a):
@@ -276,15 +325,15 @@ def main():
   musicL = music.T[0] #Separate out the left/right channels
   musicR = music.T[1]
   musicRL = musicL + musicR #merge the two channels
+  
+  int16_max = float(2**15 - 1)
+  musicRL = musicRL/int16_max
 
-
-  fsIF = 800000. #600KHz
+  fsIF = 800000. 
   fc = 100000
   fm_mod, kf = modulate_fm(musicRL, fsBB, fsIF, debug = False, 
                            preemph = True, fc = fc)
-
-  fm_mod = AWGN_channel(fm_mod, 20, debug = True)
-
+  fm_mod = AWGN_channel(fm_mod, 5, debug = False)
   BB = demodulate_fm(fm_mod, fsIF, debug = False, deemph = True, fc = fc)
 
   DC = np.average(BB)
@@ -306,17 +355,15 @@ def main():
   #Also, where in the signal chain is the loss of amplitude even comming from?
   #As far as I can tell, resampling does not effect amplitude.
 
-  G = 80000
-  BB = G*BB
+  musicRL = np.array(musicRL*int16_max, dtype = 'int16')
+  BB = np.array(BB*int16_max, dtype = 'int16')
+#  musicRL = np.array(musicRL, dtype = 'int16')
+#  BB = np.array(BB, dtype = 'int16')
 
-  print 'energy after gain %f' % sum(abs(BB)**2)
-
-  musicRL = np.array(musicRL, dtype = 'int16')
-  BB = np.array(BB, dtype = 'int16')
   wav.write('radio_broadcast.wav', fsBB, musicRL)
   wav.write('radio_received.wav', fsBB, BB)
 
-  os.system('aplay radio_broadcast.wav')
+#  os.system('aplay radio_broadcast.wav')
   os.system('aplay radio_received.wav')
 
   return
