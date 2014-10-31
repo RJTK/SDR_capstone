@@ -1,9 +1,10 @@
 from scipy.io import wavfile as wav
-from scipy.signal import resample, remez, lfilter, hilbert, freqz
+from scipy.signal import resample, remez, lfilter, hilbert, freqz, ellip
 import numpy as np
 from numpy import linspace, pi, sqrt, cos, sin, fft
 from scipy.integrate import cumtrapz
 from matplotlib import pyplot as plt
+import random
 import sys
 import os
 
@@ -34,7 +35,7 @@ def spec_plot(x, fs, fig, sub_plot = (1,1,1), plt_title = 'No_Title'):
 
 #-------------------------------------------------------------------------------
 def modulate_fm(x, fsBB, fsIF, del_f = 75000, BB_BW = 15000, 
-                BW = 200000, A = 10, debug = False, 
+                BW = 200000, A = 1, debug = False, 
                 preemph = True, fc = 0):
   '''
   SEEMS TO WORK ALRIGHT
@@ -140,6 +141,9 @@ def modulate_fm(x, fsBB, fsIF, del_f = 75000, BB_BW = 15000,
               plt_title = 'Transmitted')
     fig.show()
 
+  mx = max(max(fm_modIF), abs(min(fm_modIF)))
+  fm_modIF = fm_modIF/mx #normalize to 1
+
   return fm_modIF, kf
 
 #-------------------------------------------------------------------------------
@@ -187,10 +191,16 @@ def demodulate_fm(fm_mod, fs, BW = 200000,
     BB = (I*dQdt - Q*dIdt)/(I**2 + Q**2)
 
   else: #fc == 0
+    b = [-1, 1]
+    a = 1
+    deriv_fm = lfilter(b, a, fm_mod)
+    BB = deriv_fm/sqrt(1 + fm_mod**2)
+    """
     integral_msg = np.arccos(fm_mod)
     b = [-1, 1]
     a = 1
     BB = lfilter(b, a, integral_msg)
+    """
 
   if deemph is True:
     print 'Performing deemphasis Filtering...'
@@ -208,6 +218,10 @@ def demodulate_fm(fm_mod, fs, BW = 200000,
     spec_plot(BB, fs, fig, sub_plot = (2,2,4), plt_title = 'BB')
     plt.show()
     
+  mx = max(max(BB), abs(min(BB)))
+  BB = BB/mx
+  DC = np.average(BB)
+  BB = BB - DC
   return BB
 
 #-------------------------------------------------------------------------------
@@ -292,6 +306,10 @@ def plot_filter(b, a):
 #-------------------------------------------------------------------------------
 def AWGN_channel(x, SNR, debug = False):
   '''
+  Adds additive white Gaussian noise to the signal contained in x.  Calculations
+  are preformed to ensure the resulting signal to noise ratio is specified
+  by the parameter 'SNR'
+
   x: The signal to add noise to
   SNR: The signal to noise ratio in dB
   '''
@@ -311,8 +329,51 @@ def AWGN_channel(x, SNR, debug = False):
     print 'Noise power: %f' % EPN
     print 'SNR (not dB): %f' % SNR
     print 'SNR: %fdB' % SNRdB
-  return x + AWGN
+  mx = max(max(x + AWGN), abs(min(x + AWGN)))
+  noisy_signal = (x + AWGN)/mx
+  return noisy_signal
 
+#-------------------------------------------------------------------------------
+def distortion_channel(x, tap_magnitude = 1, taps = 5, debug = False):
+  '''
+  Adds extreme distortion to the signal x.  This is not a realistic channel,
+  but serves for a 'worst case scenario' test.  Applies an FIR filter with
+  random taps.  Note that using an IIR filter with random taps will be
+  unstable.
+  
+  x: The signal to be distorted
+  tap_magnitude: The maximum magnitude (+/-) of the taps
+  taps: The number of FIR filter taps
+  '''
+  b = map(random.uniform, [-1*tap_magnitude]*taps,
+          [tap_magnitude]*taps) #generates a random array
+  a = 1
+  distorted = lfilter(b, a, x)
+  mx = max(max(distorted), -1*min(distorted))
+  distorted = distorted/mx #re-normalize to unity magnitude
+  if debug == True:
+    plot_filter(b,a)
+    fig = plt.figure()
+    spec_plot(x, 800000, fig, sub_plot = (1,2,1), plt_title = 'Original')
+    spec_plot(distorted, 800000, fig, sub_plot = (1,2,2), plt_title = 'Distorted')
+    fig.show()
+  return distorted
+
+#-------------------------------------------------------------------------------
+def multipath_channel(x, delay_time, G, fs, debug = False):
+  '''
+  Models a multipath channel.  This function creates a delayed version of the 
+  signal 'x' by disgarding samples, multiplies by a gain factor G, and adds
+  to the original signal.  delay_time & G may both be iterables, this will
+  add multiple copies.
+
+  x: The original signal
+  delay_time: A delay time in seconds.  That is, the multipath propagation delay.
+  G: A gain factor for the multipath.
+  fs: The sample rate (used to calculate time in seconds)
+  '''
+  
+  return
 #-------------------------------------------------------------------------------
 def main():
   '''
@@ -331,28 +392,23 @@ def main():
   musicRL = musicL + musicR #merge the two channels
   
   int16_max = float(2**15 - 1)
-  musicRL = musicRL/int16_max
+  musicRL = musicRL/int16_max #normalize to 1
 
   fsIF = 800000. 
-  fc = 181200
+  fc = 100000
   BPL = True #Bandpass limiter
   predeemph = True #Preemphasis and deemphasis filtering
   fm_mod, kf = modulate_fm(musicRL, fsBB, fsIF, debug = False, 
                            preemph = predeemph, fc = fc)
+  fm_mod = distortion_channel(fm_mod, taps = 50, debug = False)
   fm_mod = AWGN_channel(fm_mod, 5, debug = False)
   BB = demodulate_fm(fm_mod, fsIF, debug = False, deemph = predeemph, fc = fc,
                      BPL = BPL)
-
-  DC = np.average(BB)
-  BB = BB - DC
 
   T = len(BB)/fsIF
   N = fsBB*T
   BB = resample(BB, N)
 
-  E_music = sum(abs(musicRL)**2)
-  E_demod = sum(abs(BB)**2)
-  
   #  G = sqrt(E_music/E_demod)
   #  print 'Gain: %f' % G
   #How to make volume the same?
@@ -362,8 +418,15 @@ def main():
   #Also, where in the signal chain is the loss of amplitude even comming from?
   #As far as I can tell, resampling does not effect amplitude.
 
+  E_music = sum(abs(musicRL)**2)
+  E_demod = sum(abs(BB)**2)
+
+  G = sqrt(E_music/E_demod)
+  BB = G*BB
+
   musicRL = np.array(musicRL*int16_max, dtype = 'int16')
   BB = np.array(BB*int16_max, dtype = 'int16')
+  
 #  musicRL = np.array(musicRL, dtype = 'int16')
 #  BB = np.array(BB, dtype = 'int16')
 
