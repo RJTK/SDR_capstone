@@ -1,0 +1,13 @@
+         1000nH,  2, 535-10554-1-ND,"L6, L7", 2.92mm x 2.79mm
+           20pF,  2, 399-1196-1-ND ,"C2, C3", 3.20mm x 1.60mm
+          390pF,  2, 399-9355-1-ND ,"C1, C4", 3.20mm x 1.60mm
+          470uH,  4, 495-5662-1-ND ,"L1, L2, L4, L5", 6.30mm x 6.30mm
+           51nH,  2, 732-1764-1-ND ,"L3, L8", 1.65mm x 1.15mm
+            BNC,  2, A97581-ND     ,"P1, P2, P4, P5"
+  CONN_1_FEMALE,  1, 929974E-01-01-ND ,"P1"
+    CONN_1_MALE,  2, A105161CT-ND  ,"P6, P7"
+         CONN_3,  4,"K1, K2, K3, K4"
+           open, 12, NEED NOTHING  ,"R1, R2, R3, R6, R7, R8, R9, R12, R15, R16, R17, R18"
+            SAW,  1, IN POSSESSION ,"P3"
+          short, 10, 1276-3514-1-ND,"R4, R5, R10, R11, R13, R14, R19, R20, R21, R22", 3.20mm x 1.60mm
+       TRANSFO4,  2, 553-1499-ND   ,"T1, T2, T3, T4"
