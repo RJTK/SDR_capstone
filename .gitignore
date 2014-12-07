@@ -1,7 +1,15 @@
-*.~
-#*
+*~
+\#*
 *.pyc
 *.o
 *.out
 *.pdf
 *.ps
+*.stf
+*.log
+*.jpg
+*.png
+*.zip
+*.aux
+*.blg
+*.out
