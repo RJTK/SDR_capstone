@@ -560,9 +560,9 @@ def analog_to_digital(x, bits = 12, rnge = [-1,1], file_out = None,
   if progress:
     bar = Bar('%d bit ADC...' % bits, max = 4)
     bar.next()
-  FSR = float(rnge[1] - rnge[0])
-  inc = FSR/(2**bits - 1)
-  bins = np.array([rnge[0] + i*inc for i in range(2**bits - 1)])
+  FSR = float(rnge[1] - rnge[0]) #Full Scale Range
+  inc = FSR/(2**bits - 1) #Increment size
+  bins = np.array([rnge[0] + i*inc for i in range(2**bits - 1)]) #Bin boundaries
   if progress:
     bar.next()
   quantizedb = digitize(x, bins) - 2**(bits - 1)
@@ -619,14 +619,20 @@ def main():
   fm_mod, kf = modulate_fm(musicRL, fsBB, fsIF, debug = False, 
                            preemph = predeemph, fc = fc, progress = show_progress)
 
-  #  fm_mod = AWGN_channel(fm_mod, 5, debug = False, progress = show_progress)
-  #  fm_mod = distortion_channel(fm_mod, taps = 50, progress = show_progress)
+  fm_mod = AWGN_channel(fm_mod, 5, debug = False, progress = show_progress)
+  #fm_mod = distortion_channel(fm_mod, taps = 50, progress = show_progress)
+
   #  fm_mod = multipath_channel(fm_mod, [1.1e-6, 3e-5, 2.6e-5, 2.4e-5, 1e-3],
   #                             [1,1,1,1,1],
   #                             fsIF, debug = True)
   #  fm_mod = nonlinearphase_channel(fm_mod, taps = 12, debug = True)
   #  fm_mod = AWGN_channel(fm_mod, 5, debug = False, progress = show_progress)
 
+  #The analog_to_digital function is only really useful for generating an
+  #output file, since the following arithmetic is still done with float64.
+  #To model the effects of quantization just add gaussian noise...
+  #fm_mod =  analog_to_digital(fm_mod, bits = 4, rnge = [-1,1], file_out = None, 
+  #                            progress = show_progress)
   BB = demodulate_fm(fm_mod, fsIF, debug = False, deemph = predeemph, fc = fc,
                      BPL = BPL, progress = show_progress)
 

@@ -13,3 +13,7 @@
 *.aux
 *.blg
 *.out
+*.cmp
+*.lib
+*.bak
+*.sig

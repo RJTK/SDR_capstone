@@ -1,0 +1,28 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{fullpage}
+\usepackage{cite}
+\usepackage{hyperref}
+
+\author{Ryan Kinnear - 200273748 \\ Raza Rauf}
+\title{Implementation of Software Defined Radio}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+\section{Introduction}
+Modern wireless communication systems are a ubiquitous part of society.  There billions of people accessing the internet, many of them wirelessly.  This includes through home, office, or public wifi networks, as well as through cellular networks.  The increasing need to service
+
+A software defined radio (SDR) is essentially a digital radio.  An analog front end device such as a DVB-T USB dongle \cite{usb_dongle}, HackRF \cite{hackrf}, or the USRP \cite{usrp} receives and digitizes a radio frequency signal and sends the samples to a computer.  The ideal software defined radio consists of an analog to digital convert with one end connected directly to an antenna, and the other end connected to a computer.  A realistic implementation requires a significant analog component to digitize RF signals, as well as significant preprocessing on the digital signal (usually accomplished by an FPGA or DSP).
+
+\clearpage
+\bibliography{../refs/fourth_year.bib}
+\bibliographystyle{IEEEtran}
+
+\end{document}
