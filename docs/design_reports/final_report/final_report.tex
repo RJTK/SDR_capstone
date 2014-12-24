@@ -110,7 +110,7 @@ Historically, the main problem was with the speed of the data converters.  Howev
 
 On the transmission side, it isn't possible to connect a DAC directly to an antenna.  There needs to be at least some analog components to provide power and filtering.
 
-Another issue is the data rate.  A sample rate at 5GSPs might be able to effectively digitize an RF signal, but the torrent of data (40+ Gbps) is far beyond the capability of any GPP or DSP.  This is where FPGAs and \textit{downsampling} (section \ref{sec:downsampling}) come in.
+Another issue is the data rate.  A sample rate of 5GSPs might be able to effectively digitize an RF signal, but the torrent of data (40+ Gbps) is far beyond the capability of any GPP or DSP.  This is where FPGAs and \textit{downsampling} (section \ref{sec:downsampling}) come in.
 
 \subsection{Undersampling}
 \label{sec:undersampling}
@@ -118,7 +118,7 @@ The Nyquist-Shannon Sampling Theorem is the most important theorem in digital si
 
 \begin{thm:NSST}
 \label{thm:NSST}
-  If a function $f(t)$ is bandlimited to B hertz \footnote{A function is bandlimited to B hertz if it's it's Fourier transform has compact support [$-B/2, B/2$]} then $f(t)$ can be completely reconstructed from discrete samples of $f(t)$ at intervals $\frac{1}{2B}$.
+  If a function $f(t)$ is bandlimited to B hertz then $f(t)$ can be completely reconstructed from discrete samples of $f(t)$ at intervals $\frac{1}{2B}$.
 \end{thm:NSST}
 
 If we let $T = \frac{1}{2B}$ be the sampling interval, The specific formula for reconstruction is given by the sinc interpolator:
@@ -128,12 +128,12 @@ If we let $T = \frac{1}{2B}$ be the sampling interval, The specific formula for 
 f(t) = \Big[\sum_{n=-\infty}^{\infty}{f(nT)\delta(t - nT)\Big]}*sinc(\frac{\pi t}{T}) = \sum_{n=-\infty}^{\infty}{f(nT)sinc(\pi\frac{t - nT}{T})}
 \end{equation}
 
-A critical piece of this theorem that seems to be frequently misunderstood is that the signal must be \textit{bandlimited} to B hertz.  This does \textit{not} mean that the highest frequency component needs to be below B hertz.  If the highest frequency component of the signal is below B hertz, then the assumptions of the theorem still hold.  It is a sufficient condition, however it is \textit{not necessary}.
+A critical piece of this theorem that seems to be frequently misunderstood is that the signal must be \textit{band limited} to B hertz.  This does \textit{not} mean that the highest frequency component needs to be below B hertz.  If the highest frequency component of the signal is below B hertz, then the assumptions of the theorem still hold.  It is a sufficient condition, however it is \textit{not necessary}.
 
-If the signal is bandlimited to B hertz, but has spectral components greater than B (that is, is it a bandpass signal, see figure \ref{fig:bandpass_signal}), it is still possible to sample the signal without losing any information.  However, the effects of \textit{aliasing} will still be present.  But, aliasing is really not a big problem, as will be seen shortly.
+If the signal is band limited to B hertz, but has spectral components greater than B (that is, is it a band pass signal, see figure \ref{fig:bandpass_signal}), it is still possible to sample the signal without losing any information.  However, the effects of \textit{aliasing} will still be present.  But, aliasing is really not a big problem, as will be seen shortly.
 
 \begin{figure}[ht]
-\caption{A bandpass signal limited to B hertz}
+\caption{A band pass signal with bandwidth B}
 \label{fig:bandpass_signal}
 \centering
 \includegraphics[width=11cm]{images/bandpass_signal.eps}
@@ -148,7 +148,7 @@ The effect of sampling is to break up the frequency spectrum into ranges of widt
 \includegraphics[width=13cm]{images/bandpass_sampling.eps}
 \end{figure}
 
-It should now be clear that analog to digital converters can be used to effectively digitize signals, even if they are at a very high frequency.  The only requirement is on the \textit{bandwidth} of the signal.  Naturally, a bandpass filter is needed to cut out the out of band signals.  In undersampling a bandpass filter is used for anti-aliasing, it seems to be commonly assumed that lowpass filters are always used for anti-aliasing.  This is only the case when sampling a signal that falls entirely in $N_1$.
+It should now be clear that analog to digital converters can be used to effectively digitize signals, even if they are at a very high frequency.  The only requirement is on the \textit{bandwidth} of the signal.  Naturally, a band pass filter is needed to cut out the out of band signals.  In undersampling a band pass filter is used for anti-aliasing. It seems to be commonly assumed that lowpass filters are always used for anti-aliasing, but this is only the case when sampling a signal that falls entirely in $N_1$.
 
 There is another question to be looked at here, which is how to actually choose the sample rate?  If the spectrum of the signal you wish to digitize doesn't conveniently fall into one of the Nyquist zones, then some of the spectrum will be mirrored, and the other part won't be.  This will lead to a loss of information.  Also, it is convenient to ensure that the signal falls into an odd Nyquist zone, so that it doesn't get mirrored.  The criteria for the sampling rate can then be easily written down mathematically, where $f_c$ is the center frequency.
 
@@ -161,14 +161,74 @@ There is another question to be looked at here, which is how to actually choose 
 \end{aligned}
 \end{equation}
 
-If for a given sample rate $f_s$, $\exists n \in \mathbb{N}$ satisfying the equations in (\ref{eq:sample_rate}) then that sample rate can be used to bandpass sample the signal.  Moreover, $n+1$ gives the nyquist zone the signal falls into.
+If for a given sample rate $f_s$, $\exists n \in \mathbb{N}$ satisfying the equations in (\ref{eq:sample_rate}) then that sample rate can be used to band pass sample the signal.  Moreover, $n+1$ gives the nyquist zone the signal falls into.
 
-\subsection{Downsampling}
+In practice, it is important to keep $n$ low.  There are practical problems associated with undersampling.  When the signal falls into a higher Nyquist zone the jitter on the ADC clock has a larger affect on the quality of the conversion.  The bandwidth of the input and any external components must also be high enough to pass the high frequency signal without adding too much distortion.
+
+The ultimate reason that undersampling is often used in software defined radio is that it takes burden off of the analog to digital converter.
+
+\subsection{A Note on Oversampling}
+%Oversampling doesn't actually help that much.
+Why oversample when undersampling can do the job\cite{why_oversample}?  This is a good question.  There are some advantages of oversampling.  For example, if a signal is sampled $4n$ times it's bandwidth, and the samples are averaged \footnote{4 samples are averaged together to produce a single sample.  An example of downsampling, section \ref{sec:downsampling}}, the effective resolution of the conversion will be increased by $n$ bits \cite{oversample_extra_bits}.  So, to gain 1 extra bit of resolution (which would provide a theoretical maximum increase in SNR by about 6dB) the bit rate must increase by 400\%, 4 floating point operations need to be performed to produce 1 data sample (3 adds and a divide), the power consumption increases, and digital signal integrity issues get more complex.
+
+The other main advantage of oversampling is that it reduces the stress on the anti-aliasing filter.  However in RF systems, a Surface Accoustic Wave (SAW) filter is used for filtering, and these filters have extremely sharp cutoffs.
+
+When sampling lower bandwidth signals, or when high quality filters are not available, the tradeoffs may be worth it.  For low bandwidth signals even if the sample rate is 20x higher than necessary, it still isnt ``high''.  But in the RF frequency domain, where sample rates already need to be quite high, the trade offs are usually not worth it.
+
+\subsection{Downsampling and Multirate Signal Processing}
 \label{sec:downsampling}
+Changing the sample rate in a digital signal processing chain is a fundamental operation.  For example, CDs are recorded at 44.1KSPs but recording studios use much higher sample rates.  How do they change the sample rate from the studio recording to the sample rate required for CDs?  The answer is multirate digital signal processing \cite{multirate1} \cite{multirate2}.
+
+To downsample a signal by a factor $M$, you simply throw away every $M^{th}$ sample (equation \ref{eq:downsampling}).  And, to upsample a signal by a factor $L$, you insert $L - 1$ 0's between every sample (equation \ref{eq:upsampling}).
+
+\begin{equation}
+\label{eq:downsampling}
+y_D[n] = x[Mn] \qquad \text{Downsampling}
+\end{equation}
+
+\begin{equation}
+\label{eq:upsampling}
+y_U[n] = 
+  \begin{cases}
+    x[k] & \text{if } n = kL, k \in \mathbb{Z} \\
+    0 & \text{otherwise}
+  \end{cases}
+  \qquad \text{Upsampling}
+\end{equation}
+
+By applying the properties of the Z-transform \cite{multirate2}, it can be shown that downsampling has the effect of ``compressing'' the frequency domain (equation \ref{eq:downsample_freq}), and upsampling has the effect of ``expanding'' it (equation \ref{eq:upsample_freq}).  Also remember that in the digital domain, there is an infinite number of copies of the spectrum placed at multiples of the sample rate.  These copies are still present in $X(\omega)$ and one needs to be very careful when visualizing equations \ref{eq:downsample_freq} \& \ref{eq:upsample_freq}.
+
+\begin{equation}
+\label{eq:downsample_freq}
+Y_D(e^{j\omega}) = \frac{1}{M}\sum_{k=0}^{M-1}X(e^{j(\omega - 2\pi k)/M}) \qquad \text{Downsampling}
+\end{equation}
+
+\begin{equation}
+\label{eq:upsample_freq}
+Y_U(e^{j\omega}) = X(e^{j\omega L}) \qquad \text{Upsampling}
+\end{equation}
+
+Figure \ref{fig:multirate_freq} shows these effects visually in the frequency domaina.
+
+\begin{figure}[h]
+\caption{Multirate in the Frequency Domain}
+\label{fig:multirate_freq}
+\centering
+\includegraphics[width = 14cm]{images/multirate_freq.eps}
+\end{figure}
+
+Notice that downsampling causes aliasing.  In order to downsample, the signal first needs to be lowpass filtered to have a bandwidth less than $\frac{\pi}{M}$.  Likewise, when upsampling there are extra unwanted copies of the original signal that need to be filtered out.  For this reason, downsampling is usually preceeded by a lowpass filter, and upsampling is proceeded by a lowpass filter.
+
+So, what is the point of downsampling?  The reason is that processing high speed digital data requires very fast hardware.  If the ADC is running at a modest 30MSPs with 12bits of width, then this is 360Mb/s.  And, if the entire signal processing chain requires a mere 20 operations per sample, then a processor capable of 600 million operations per second is required.  Considering that most embedded processors have a maximum clock speed well below 600MHz, this is a fairly tall order.
+
+Downsampling a signal can significantly reduce the data rate without losing any information.  This is the reason that FPGAs are so commonly used in software defined radio.  FPGAs are capable of massive parallelism and extremely high speeds.  FPGAs are ideal for implementing filters and up/down samplers (resampling) \footnote{resampling is the processes of either downsampling, upsampling, or a combination thereof.  Fractional resampling is acheived by cascading downsamplers and upsamplers.}.
+
+FPGAs can be used to implement portions of the signal processing chain that require the fastest processing.  For example, FFTs, filters, channel selection, resampling, quadrature sampling (section \ref{sec:quadrature_sampling}), etc...  The downsampled signal can then be sent on to the main processor.
 
 %A software defined radio (SDR) is essentially a digital radio.  An analog front end device such as a DVB-T USB dongle \cite{usb_dongle}, HackRF \cite{hackrf}, or the USRP \cite{usrp} receives and digitizes a radio frequency signal and sends the samples to a computer.  The ideal software defined radio consists of an analog to digital convert with one end connected directly to an antenna, and the other end connected to a computer.  A realistic implementation requires a significant analog component to digitize RF signals, as well as significant preprocessing on the digital signal (usually accomplished by an FPGA or DSP).
 
-\section{}
+\subsection{Quadrature Sampling}
+\label{sec:quadrature_sampling}
 
 \clearpage
 \bibliography{../refs/fourth_year.bib}
