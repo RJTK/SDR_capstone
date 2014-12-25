@@ -229,6 +229,66 @@ FPGAs can be used to implement portions of the signal processing chain that requ
 
 \subsection{Quadrature Sampling}
 \label{sec:quadrature_sampling}
+A complex (as in complex numbers) representation of digital data is the last fundamentally important concept for SDR, and DSP in general.  A general sinusoid can be represented by the following formula \ref{eq:quadrature_sampling}.
+
+\begin{equation}
+\label{eq:quadrature_sampling}
+A(t)cos(\omega t + \phi (t))
+\end{equation}
+
+Now, how can the phase $\phi(t)$ be discerned though regular samples of this signal?  And, how do you determine if $\omega$ is positive or negative?  Most importantly, how can these things be represented by discrete samples?  The answer is I/Q sampling.  The I stands for ``In phase'' and the Q stands for ``Quadrature''.  Formula \ref{eq:quadrature_sampling} can also be written as follows, by using some simple trigonometric identities.
+
+\begin{equation}
+\label{eq:trig_ident}
+\begin{aligned}
+  cos(\alpha)&cos(\beta) = \frac{1}{2}[cos(\alpha - \beta) + cos(\alpha + \beta)]\\
+  sin(\alpha)&sin(\beta) = \frac{1}{2}[cos(\alpha - \beta) - cos(\alpha + \beta)]\\
+\end{aligned}
+\qquad \text{Product to Sum}
+\end{equation}
+
+It is then clear that
+
+\begin{equation}
+\label{eq:quadrature_sampling2}
+A(t)cos(\omega t + \phi (t)) = A(t)cos(\omega t)cos(\phi (t)) - 
+A(t)sin(\omega t)sin(\phi(t))
+\end{equation}
+
+Then we define $I(t) = A(t)cos(\phi (t))$ and $Q(t) = A(t)sin(\phi (t))$ to arrive at
+
+\begin{equation}
+\label{eq:quadrature_sampling3}
+A(t)cos(\omega t + \phi (t)) = I(t)cos(\omega t) + Q(t)sin(\omega t)
+\end{equation}
+
+To be clear, this gives us a way to represent the general sinusoid in equation \ref{eq:quadrature_sampling} by using a sum of a sine and a cosine.  This is called the I and Q components.  To recover the original representation, simply apply the definitions of $I$ and $Q$.
+
+\begin{equation}
+\label{eq:quadrature_sampling4}
+\begin{aligned}
+A(t) &= \sqrt{I^2(t) + Q^2(t})\\
+\phi(t) &= \tan^{-1}{\frac{Q(t)}{I(t)}}
+\end{aligned}
+\end{equation}
+
+Finally, formula \label{eq:quadrature_sampling4} can be interpreted geometrically (fiure \ref{fig:quadrature_sampling}, and it becomes very convenient to use complex numbers to represent I/Q components.  That is, write the separate IQ components as a single complex number $I(t) + jQ(t)$.
+
+\begin{figure}[h]
+\caption{Geometric interpretation of formula \ref{eq:quadrature_sampling4}, and a complex number representation}
+\label{fig:quadrature_sampling}
+\centering
+\includegraphics[width=9cm]{images/IQ_sample.eps}
+\end{figure}
+
+Since all of these quantities ($A, I, Q, \phi$) are time varying, they can be visualized as a helix in 3 dimensions.  This representation is far more enlightening than the typical 2D plots most of us are used to seeing.  For example, AM modulation can be seen with an IQ representation in figure \ref{fig:am_iq}
+
+\begin{figure}[h]
+\caption{AM modulation visualized in IQ space}
+\label{fig:am_iq}
+\centering
+\includegraphics[width=9cm]{images/AM_IQ.png}
+\end{figure}
 
 \clearpage
 \bibliography{../refs/fourth_year.bib}
