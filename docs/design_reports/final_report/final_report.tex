@@ -45,6 +45,9 @@ A further advantage of SDR is that both analog systems and integrated circuits a
 %Uses of SDR
 %Cognitive Radio
 
+\section{Project Overview}
+
+
 \section{Fundamentals of SDR}
 \label{sec:sdr_funadamentals}
 \subsection{The Ideal SDR}
@@ -227,7 +230,7 @@ FPGAs can be used to implement portions of the signal processing chain that requ
 
 %A software defined radio (SDR) is essentially a digital radio.  An analog front end device such as a DVB-T USB dongle \cite{usb_dongle}, HackRF \cite{hackrf}, or the USRP \cite{usrp} receives and digitizes a radio frequency signal and sends the samples to a computer.  The ideal software defined radio consists of an analog to digital convert with one end connected directly to an antenna, and the other end connected to a computer.  A realistic implementation requires a significant analog component to digitize RF signals, as well as significant preprocessing on the digital signal (usually accomplished by an FPGA or DSP).
 
-\subsection{Quadrature Sampling}
+\subsection{Quadrature Demodulation}
 \label{sec:quadrature_sampling}
 A complex (as in complex numbers) representation of digital data is the last fundamentally important concept for SDR, and DSP in general.  A general sinusoid can be represented by the following formula \ref{eq:quadrature_sampling}.
 
@@ -249,20 +252,29 @@ Now, how can the phase $\phi(t)$ be discerned though regular samples of this sig
 
 It is then clear that
 
-\begin{equation}
-\label{eq:quadrature_sampling2}
+\begin{equation*} %* disables numbering
 A(t)cos(\omega t + \phi (t)) = A(t)cos(\omega t)cos(\phi (t)) - 
 A(t)sin(\omega t)sin(\phi(t))
+\end{equation*}
+
+Then we define
+
+\begin{equation}
+\label{eq:iq_defn}
+\begin{aligned}
+  &I(t) = A(t)cos(\phi (t))\\
+  &Q(t) = -A(t)sin(\phi (t))\\
+\end{aligned}
 \end{equation}
 
-Then we define $I(t) = A(t)cos(\phi (t))$ and $Q(t) = A(t)sin(\phi (t))$ to arrive at
+to arrive at  
 
 \begin{equation}
 \label{eq:quadrature_sampling3}
 A(t)cos(\omega t + \phi (t)) = I(t)cos(\omega t) + Q(t)sin(\omega t)
 \end{equation}
 
-To be clear, this gives us a way to represent the general sinusoid in equation \ref{eq:quadrature_sampling} by using a sum of a sine and a cosine.  This is called the I and Q components.  To recover the original representation, simply apply the definitions of $I$ and $Q$.
+To be clear, this gives us a way to represent the general sinusoid in equation \ref{eq:quadrature_sampling} by using a sum of a sine and a cosine.  To recover the original representation, simply apply the definitions of $I$ and $Q$.
 
 \begin{equation}
 \label{eq:quadrature_sampling4}
@@ -272,16 +284,16 @@ A(t) &= \sqrt{I^2(t) + Q^2(t})\\
 \end{aligned}
 \end{equation}
 
-Finally, formula \label{eq:quadrature_sampling4} can be interpreted geometrically (fiure \ref{fig:quadrature_sampling}, and it becomes very convenient to use complex numbers to represent I/Q components.  That is, write the separate IQ components as a single complex number $I(t) + jQ(t)$.
+Finally, formula \ref{eq:quadrature_sampling4} can be interpreted geometrically (figure \ref{fig:quadrature_sampling}), and it becomes very convenient to use complex numbers to represent I/Q components.  That is, write the separate IQ components as a single complex number $I(t) + jQ(t)$.  This one complex number is a single IQ sample.
 
 \begin{figure}[h]
 \caption{Geometric interpretation of formula \ref{eq:quadrature_sampling4}, and a complex number representation}
 \label{fig:quadrature_sampling}
 \centering
-\includegraphics[width=9cm]{images/IQ_sample.eps}
+\includegraphics[width=8cm]{images/IQ_sample.eps}
 \end{figure}
 
-Since all of these quantities ($A, I, Q, \phi$) are time varying, they can be visualized as a helix in 3 dimensions.  This representation is far more enlightening than the typical 2D plots most of us are used to seeing.  For example, AM modulation can be seen with an IQ representation in figure \ref{fig:am_iq}
+Since all of these quantities ($A, I, Q, \phi$) are time varying, they can be visualized as a helix in 3 dimensions.  This representation is far more enlightening than the typical 2D plots most of us are used to seeing.  For example, AM modulation can be seen with an IQ representation in figure \ref{fig:am_iq}, and PSK in figure \ref{fig:psk_iq}.
 
 \begin{figure}[h]
 \caption{AM modulation visualized in IQ space}
@@ -289,6 +301,27 @@ Since all of these quantities ($A, I, Q, \phi$) are time varying, they can be vi
 \centering
 \includegraphics[width=9cm]{images/AM_IQ.png}
 \end{figure}
+
+\begin{figure}[h]
+\caption{PSK modulation visualized in IQ space}
+\label{fig:psk_iq}
+\centering
+\includegraphics[width=9cm]{images/PSK_IQ.png}
+\end{figure}
+
+The IQ representation is very powerful for digital processing because phase information is easily extracted.  The question remains, how to actually obtain the IQ samples?  The answer is by multiplying the signal separately by a cosine and a sine, both at the carrier frequency, then applying a low pass filter.
+
+\begin{equation*}
+\label{eq:quadrature_sampling4}
+\begin{aligned}
+  &A(t)cos(\omega t + \phi(t))cos(\omega t) = \frac{1}{2}A(t)cos(\phi(t)) + \frac{1}{2}A(t)cos(2\omega t + \phi (t))\\
+  &A(t)cos(\omega t + \phi(t))sin(\omega t) = \frac{1}{2}A(t)sin(2\omega t + \phi(t)) - \frac{1}{2}A(t)sin(\phi(t))
+\end{aligned}
+\end{equation*}
+
+Applying a lowpass filter (with a gain of 2) to these two quantities yields what should be recognized as the IQ components from equation \ref{eq:iq_defn}.
+
+For a more general exposition of the effects of IQ demodulation in the frequency domain, see \cite{iq_sampling}.  However, our project is primarily related to demodulating FM broadcast radio and the preceeding information is enough.
 
 \clearpage
 \bibliography{../refs/fourth_year.bib}
