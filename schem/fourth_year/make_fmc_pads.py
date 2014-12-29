@@ -45,6 +45,8 @@ def main():
     y_extra_inc = 2.55
     radius = 0.64
 
+    clearance = 0.15 #Solder mask clearance
+
     row_letter = 'C'
     row_letter_extra = 2
     col_start = 40
@@ -60,11 +62,12 @@ def main():
                 '(size %f %f)\n'
                 
                 '    (layers F.Cu B.Adhes F.Paste F.Mask)\n'
-                '    (solder_mask_margin 0.2)\n'
-                '    (solder_paste_margin 0.2)\n'
-                '    (clearance 0.2)\n'
+                '    (solder_mask_margin %f)\n'
+                '    (solder_paste_margin %f)\n'
+                '    (clearance %f)\n'
                 '  )\n'
-                %(pad_name, x_coord, y_coord, radius, radius)
+                %(pad_name, x_coord, y_coord, radius, radius,
+                  clearance, clearance, clearance)
                 )
         x_coord += x_inc
         col_number -= 1
