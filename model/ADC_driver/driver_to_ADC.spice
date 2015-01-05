@@ -164,14 +164,14 @@ Eref 98 0 poly(2) 99 0 50 0 0 0.5 0.5
 
 ************************BANDSTOP FILTER****************************
 
-* Bandstop filter
+* Bandstop filter, Order 5
 * Node assignments
 *                        Positive Input
 *                        |   Negative Input
 *                        |   |   Positive Output
 *                        |   |   |    Negative Output
 *                        |   |   |    |
-.SUBCKT bandstop_filter inP inN outP outN
+.SUBCKT bandstop_filter5 inP inN outP outN
 
 L1 inP N1 180n
 L2 inP N2P 2700n
@@ -188,6 +188,29 @@ C4 N2N outN 150p
 C5 N3 outN 2200p
 C6 inP N2P 150p
 C7 N2P outP 150p
+
+.ENDS
+
+************************BANDSTOP FILTER****************************
+
+* Bandstop filter, Order 3
+* Node assignments
+*                        Positive Input
+*                        |   Negative Input
+*                        |   |   Positive Output
+*                        |   |   |    Negative Output
+*                        |   |   |    |
+.SUBCKT bandstop_filter3 inP inN outP outN
+
+L1 inP N1 395n
+L2 inP outP 6969n
+L3 outP N2 395n
+L4 inN outN 6960n
+
+C1 inN N1 2784p
+C2 inP outP 158p
+C3 outN N2 2784p
+C4 inN outN 158p
 
 .ENDS
 
@@ -302,15 +325,22 @@ Cin out 0 7p
 ************************MAIN CIRCUIT****************************
 
 Xamp inP inN amp_outP amp_outN Vocm unity_gain_amp
-*RL amp_outP amp_outN 100
-RLP amp_outP load_outP 100
-RLN amp_outN load_outN 100
+RL amp_outP amp_outN 3
+RLP amp_outP load_outP 25
+RLN amp_outN load_outN 25
 
-*Xbsf load_outP load_outN filt_outP filt_outN bandstop_filter
-*Xlpf load_outP load_outN filt_outP filt_outN lowpass_filter3
+** GOOD RESISTOR VALUES **
+* no filters: RL = 100, RLP & RLN = 120
+* lpf only: RL = 3, RLP & RLN = 25
+* both filters: RL = 3, RLP & RLN = 25
+*  Using both filters is significantly worse
+** 
 
-XpinP load_outP outP ADC_pin
-XpinN load_outN outN ADC_pin
+Xbsf load_outP load_outN filt1_outP filt1_outN bandstop_filter3
+Xlpf filt1_outP filt1_outN filt_outP filt_outN lowpass_filter3
+
+XpinP filt_outP outP ADC_pin
+XpinN filt_outN outN ADC_pin
 
 ************************INPUTS****************************
 Vocm Vocm 0 dc 1.5
@@ -342,12 +372,10 @@ EtestN inN 0 in 0 -1
 .control
 ac dec 10 1MEG 500MEG
 plot vdb(outP) xlog
+*plot phase(outP)
 
 *tran .01ns 50ns
 *plot inP inN
-*plot amp_outP amp_outN
-*plot bsf_outP bsf_outN
-*plot lpf_outP lpf_outN
 *plot outP outN
 .endc
 
