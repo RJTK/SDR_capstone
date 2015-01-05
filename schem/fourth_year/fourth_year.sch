@@ -1222,28 +1222,6 @@ F 3 "" H 1550 6750 60  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR052
-U 1 1 542CB667
-P 800 7250
-F 0 "#PWR052" H 800 7250 30  0001 C CNN
-F 1 "GND" H 800 7180 30  0001 C CNN
-F 2 "" H 800 7250 60  0001 C CNN
-F 3 "" H 800 7250 60  0001 C CNN
-	1    800  7250
-	1    0    0    -1  
-$EndComp
-$Comp
-L INDUCTOR L1
-U 1 1 542CB61E
-P 1100 7150
-F 0 "L1" V 1050 7150 40  0000 C CNN
-F 1 "270nH" V 1200 7150 40  0000 C CNN
-F 2 "1.60mm x 0.80mm" H 1100 7150 60  0001 C CNN
-F 3 "" H 1100 7150 60  0001 C CNN
-	1    1100 7150
-	0    -1   -1   0   
-$EndComp
-$Comp
 L GND #PWR053
 U 1 1 542CB5CA
 P 1150 7750
@@ -2271,8 +2249,6 @@ Wire Wire Line
 Wire Wire Line
 	1550 6450 1550 6200
 Wire Wire Line
-	800  7250 800  7150
-Wire Wire Line
 	1150 7750 1150 7600
 Wire Wire Line
 	2050 6450 2050 6600
@@ -3007,8 +2983,6 @@ Connection ~ 18850 1350
 Connection ~ 6350 12550
 Text Label 1550 7350 0    60   ~ 0
 RF_IN
-Wire Wire Line
-	1400 7150 1550 7150
 Text Notes 2100 7150 0    60   ~ 0
 The high frequency\nside has been\neliminated
 $Comp
