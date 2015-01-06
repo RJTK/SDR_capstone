@@ -1,0 +1,375 @@
+# EESchema Netlist Version 1.1 created  Thu 04 Dec 2014 17:34:54 CST
+(
+ ( /546CEADE 3.20mmx1.60mm C1 390pF
+  ( 1 N-000005 )
+  ( 2 N-000022 )
+ )
+ ( /546CE78F 3.20mmx1.60mm C2 20pF
+  ( 1 N-000019 )
+  ( 2 N-000028 )
+ )
+ ( /546CE792 3.20mmx1.60mm C3 20pF
+  ( 1 N-000020 )
+  ( 2 N-000024 )
+ )
+ ( /546CE823 3.20mmx1.60mm C4 390pF
+  ( 1 N-000004 )
+  ( 2 N-000010 )
+ )
+ ( /5470D9BE PINHEAD1-3 K1 CONN_3
+  ( 1 N-000009 )
+  ( 2 N-000013 )
+  ( 3 N-000016 )
+ )
+ ( /5470D9EB PINHEAD1-3 K2 CONN_3
+  ( 1 N-000017 )
+  ( 2 N-000008 )
+  ( 3 N-000031 )
+ )
+ ( /5470DA4B PINHEAD1-3 K3 CONN_3
+  ( 1 N-000018 )
+  ( 2 N-000001 )
+  ( 3 N-000011 )
+ )
+ ( /5470DA5C PINHEAD1-3 K4 CONN_3
+  ( 1 N-000004 )
+  ( 2 N-000006 )
+  ( 3 N-000007 )
+ )
+ ( /546E01AC 6.3mmx6.3mm L1 470uH
+  ( 1 N-000030 )
+  ( 2 N-000009 )
+ )
+ ( /546E01B9 6.3mmx6.3mm L2 470uH
+  ( 1 N-000030 )
+  ( 2 N-000031 )
+ )
+ ( /546CEAF1 SM0603 L3 51nH
+  ( 1 N-000032 )
+  ( 2 N-000023 )
+ )
+ ( /546E01C2 6.3mmx6.3mm L4 470uH
+  ( 1 N-000009 )
+  ( 2 N-000011 )
+ )
+ ( /546E01BD 6.3mmx6.3mm L5 470uH
+  ( 1 N-000031 )
+  ( 2 N-000004 )
+ )
+ ( /546CEB25 2.92mmx2.79 L6 1000nH
+  ( 1 N-000032 )
+  ( 2 N-000019 )
+ )
+ ( /546CEB36 2.92mmx2.79 L7 1000nH
+  ( 1 N-000005 )
+  ( 2 N-000020 )
+ )
+ ( /546CE815 SM0603 L8 51nH
+  ( 1 N-000011 )
+  ( 2 N-000012 )
+ )
+ ( /546CF013 PIN_ARRAY_1 P1 CONN_1_FEMALE
+  ( 1 N-000030 )
+ )
+ ( /546CE6A2 BNCconn_round P2 BNC
+  ( 1 N-000015 )
+  ( 2 GND )
+ )
+ ( /5468EDBA SIL-5 P7 SAW
+  ( 1 N-000016 )
+  ( 2 N-000017 )
+  ( 3 GND )
+  ( 4 N-000007 )
+  ( 5 N-000018 )
+ )
+ ( /546CF03C PIN_ARRAY_1 P12 CONN_1_MALE
+  ( 1 N-000011 )
+ )
+ ( /546CF03F PIN_ARRAY_1 P13 CONN_1_MALE
+  ( 1 N-000004 )
+ )
+ ( /546CEBAC BNCconn_round P14 BNC
+  ( 1 N-000003 )
+  ( 2 GND )
+ )
+ ( /546CE8B0 3.20mmx1.60mm R1 open
+  ( 1 N-000014 )
+  ( 2 N-000009 )
+ )
+ ( /546CEA82 3.20mmx1.60mm R2 open
+  ( 1 N-000031 )
+  ( 2 N-000014 )
+ )
+ ( /546CE862 3.20mmx1.60mm R3 open
+  ( 1 N-000009 )
+  ( 2 N-000029 )
+ )
+ ( /546CEAB0 3.20mmx1.60mm R4 short
+  ( 1 N-000009 )
+  ( 2 N-000029 )
+ )
+ ( /546CEABC 3.20mmx1.60mm R5 short
+  ( 1 N-000031 )
+  ( 2 N-000026 )
+ )
+ ( /546CE98E 3.20mmx1.60mm R6 open
+  ( 1 N-000031 )
+  ( 2 N-000026 )
+ )
+ ( /546CE8C1 3.20mmx1.60mm R7 open
+  ( 1 N-000027 )
+  ( 2 N-000029 )
+ )
+ ( /546CE8C5 3.20mmx1.60mm R8 open
+  ( 1 N-000026 )
+  ( 2 N-000027 )
+ )
+ ( /546CE943 3.20mmx1.60mm R9 open
+  ( 1 N-000029 )
+  ( 2 N-000032 )
+ )
+ ( /546CE940 3.20mmx1.60mm R10 short
+  ( 1 N-000029 )
+  ( 2 N-000032 )
+ )
+ ( /546CE986 3.20mmx1.60mm R11 short
+  ( 1 N-000026 )
+  ( 2 N-000005 )
+ )
+ ( /546CE987 3.20mmx1.60mm R12 open
+  ( 1 N-000026 )
+  ( 2 N-000005 )
+ )
+ ( /546CE9BF 3.20mmx1.60mm R13 short
+  ( 1 N-000005 )
+  ( 2 N-000023 )
+ )
+ ( /546CE9DD 3.20mmx1.60mm R14 short
+  ( 1 N-000022 )
+  ( 2 N-000032 )
+ )
+ ( /546CEA1E 3.20mmx1.60mm R15 open
+  ( 1 N-000021 )
+  ( 2 N-000019 )
+ )
+ ( /546CEA1D 3.20mmx1.60mm R16 open
+  ( 1 N-000020 )
+  ( 2 N-000021 )
+ )
+ ( /546CE8DD 3.20mmx1.60mm R17 open
+  ( 1 N-000025 )
+  ( 2 N-000028 )
+ )
+ ( /546CE8DC 3.20mmx1.60mm R18 open
+  ( 1 N-000024 )
+  ( 2 N-000025 )
+ )
+ ( /546CE913 3.20mmx1.60mm R19 short
+  ( 1 N-000004 )
+  ( 2 N-000024 )
+ )
+ ( /546CE8FB 3.20mmx1.60mm R20 short
+  ( 1 N-000011 )
+  ( 2 N-000028 )
+ )
+ ( /546CEB80 3.20mmx1.60mm R21 short
+  ( 1 N-000004 )
+  ( 2 N-000012 )
+ )
+ ( /546CEB95 3.20mmx1.60mm R22 short
+  ( 1 N-000010 )
+  ( 2 N-000011 )
+ )
+ ( /546CE6A1 Transformer1 T1 TRANSFO4
+  ( 1 N-000013 )
+  ( 2 GND )
+  ( 3 N-000008 )
+  ( 4 GND )
+  ( 5 N-000015 )
+ )
+ ( /546CEBAE Transformer1 T2 TRANSFO4
+  ( 1 N-000001 )
+  ( 2 GND )
+  ( 3 N-000006 )
+  ( 4 GND )
+  ( 5 N-000003 )
+ )
+)
+*
+{ Allowed footprints by component:
+$component C1
+ SM*
+ C?
+ C1-1
+$endlist
+$component C2
+ SM*
+ C?
+ C1-1
+$endlist
+$component C3
+ SM*
+ C?
+ C1-1
+$endlist
+$component C4
+ SM*
+ C?
+ C1-1
+$endlist
+$component R1
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R2
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R3
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R4
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R5
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R6
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R7
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R8
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R9
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R10
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R11
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R12
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R13
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R14
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R15
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R16
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R17
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R18
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R19
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R20
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R21
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R22
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$endfootprintlist
+}
