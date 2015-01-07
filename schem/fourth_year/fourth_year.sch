@@ -1503,7 +1503,7 @@ F 1 ".1uF" H 16700 1450 50  0000 L CNN
 F 2 "3.20mm x 1.60mm" H 16650 1550 60  0001 C CNN
 F 3 "" H 16650 1550 60  0001 C CNN
 	1    16650 1550
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L C C48
@@ -2636,10 +2636,6 @@ Wire Wire Line
 Wire Wire Line
 	8100 5600 8100 5450
 Connection ~ 8100 5450
-Wire Wire Line
-	16650 1750 16650 1800
-Wire Wire Line
-	16650 1800 16900 1800
 Connection ~ 16900 1800
 Wire Wire Line
 	17900 1750 17900 1850
@@ -3136,4 +3132,11 @@ Wire Wire Line
 	2650 8650 2650 8500
 Wire Wire Line
 	2900 8500 2900 8650
+Wire Wire Line
+	16650 1750 16650 1800
+Wire Wire Line
+	16650 1800 16900 1800
+Wire Wire Line
+	16550 1350 16650 1350
+Connection ~ 16650 1350
 $EndSCHEMATC
