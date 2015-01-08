@@ -36,7 +36,7 @@ $Descr C 22000 17000
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "6 jan 2015"
+Date "8 jan 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -2977,7 +2977,7 @@ Connection ~ 18850 1350
 Connection ~ 6350 12550
 Text Label 1550 7350 0    60   ~ 0
 RF_IN
-Text Notes 2100 7150 0    60   ~ 0
+Text Notes 2300 6300 0    60   ~ 0
 The high frequency\nside has been\neliminated
 $Comp
 L GND #PWR079
