@@ -43,12 +43,11 @@ Figure \ref{fig:system_diagram} is the design for the RF front end.  The FPGA el
 
 An antenna (1) is fed into a MAX3543 (6) television tuner/receiver.  This chip handles the main RF processing.  It filters out a roughly 8MHz band (primarily through the IF filter (7) which will be either a SAW filter or a LC ladder), anywhere between roughly 60MHz to 800MHz.  See figure \ref{fig:transfer_function}.  This is then downconverted to an apparently standard centre frequency of 36MHz.  The output is an analog differential signal.  This differential signal is fed into a fully differential operational amplifier (an ADC driver), and into the analog to digital converter.  The ADC is controlled by the FPGA.  Digital data is shifted 12 parallel bits at a time to the FPGA through an FPGA Mezzanine card (FMC \cite{fmc}).  This connector is conveniently present on the FPGA boards provided in the lab.
 
-\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{wrapfigure}{L}{0.5\textwidth}
 \includegraphics[width=.48\textwidth]{../../../transfer_function.png}
 \caption{MAX3543 Transfer Function}
 \label{fig:transfer_function}
 \end{wrapfigure}
-
 
 The MAX chip requires an I$^2$C interface to control various parameters such as the gain and the centre frequency of the RF filter.  This will be controlled by either the STM32 microcontroller, or a beaglebone black.  This is probably far easier than using the FPGA for control.
 
@@ -57,15 +56,11 @@ Finally, a digital stream of data will be shifted out of the FPGA into a plain t
 \section{FPGA (Raza)}
 FPGA’s are usually only used to down convert the incoming signal to a lower sampling rate that is then pushed to be processed on the computer. But we decided to do the processing right on the FPGA and then down convert the signal and send to the computer. After looking at many FM demodulation schemes, we decided on using the quadrature scheme due its good noise immunity and simplicity. First, the incoming signal is multiplied by cosine and sine to get the in-phase and quadrature components, respectively. Then, both the in-phase and quadrature are low pass filtered to attain the base band FM modulated signal. Then both signals are differentiated. The in-phase signal is multiplied by the differentiated quadrature and quadrature signal is multiplied by the differentiated in-phase. Both multiplications are summed together and scaled down. Now the FM signal is effectively demodulated. Because the sample rate is very high, 29 MSPS, we will need to down convert by a scale of 100. This new signal is then sent to the computer via UART. Ideally, a playable MP3 file is created on the computer and sent to the Echo Nest server to be identified and/or played on the computer.
 
-As of now, we are strictly focusing on the heart of the project, which is RF front end, FMC input to the FPGA and then demodulation on the FPGA. Later, depending on time constraints, we will narrow down our specifications for for the later stages of the project.
-
+As of now, we are strictly focusing on the heart of the project, which is RF front end, FMC input to the FPGA and then demodulation on the FPGA. Later, depending on time constraints, we will narrow down our specifications for for the later stages of the project. 
 \section{Additional Concerns}
 
-\begin{wrapfigure}{r}{0.5\textwidth}
-\begin{center}
-  \includegraphics[width=.48\textwidth]{QFN40.jpg}
-\end{center}
-
+\begin{wrapfigure}{R}{0.5\textwidth}
+\includegraphics[width=.48\textwidth]{QFN40.jpg}
 \caption{MAX3543}
 \label{fig:qfn40}
 \end{wrapfigure}
