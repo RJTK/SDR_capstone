@@ -6,8 +6,10 @@
 \usepackage{cite}
 \usepackage{hyperref}
 \usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \author{Ryan J. Kinnear - 200273748 \\ Raza Rauf - 200300599}
-\title{ENEL 400 - FPGA Based Software Defined Radio Peripheral}
+\title{ENEL 417 - FPGA Based Software Defined Radio Peripheral}
 \date{\today}
 
 \begin{document}
@@ -54,7 +56,37 @@ The MAX chip requires an I$^2$C interface to control various parameters such as 
 Finally, a digital stream of data will be shifted out of the FPGA into a plain text file on a computer.  The audio in this text file will be played with software on the computer.  Conveniently, the FPGA board has a UART to USB converter that can be used for this purpose.
 
 \section{FPGA (Raza)}
-FPGA’s are usually only used to down convert the incoming signal to a lower sampling rate that is then pushed to be processed on the computer. But we decided to do the processing right on the FPGA and then down convert the signal and send to the computer. After looking at many FM demodulation schemes, we decided on using the quadrature scheme due its good noise immunity and simplicity. First, the incoming signal is multiplied by cosine and sine to get the in-phase and quadrature components, respectively. Then, both the in-phase and quadrature are low pass filtered to attain the base band FM modulated signal. Then both signals are differentiated. The in-phase signal is multiplied by the differentiated quadrature and quadrature signal is multiplied by the differentiated in-phase. Both multiplications are summed together and scaled down. Now the FM signal is effectively demodulated. Because the sample rate is very high, 29 MSPS, we will need to down convert by a scale of 100. This new signal is then sent to the computer via UART. Ideally, a playable MP3 file is created on the computer and sent to the Echo Nest server to be identified and/or played on the computer.
+FPGA’s are usually only used to down convert the incoming signal to a lower sampling rate that is then pushed to be processed on the computer. But we decided to do the processing right on the FPGA and then down convert the signal and send to the computer. After looking at many FM demodulation schemes, we decided on using the quadrature scheme due its good noise immunity and simplicity. First, the incoming signal is multiplied by cosine and sine to get the in-phase and quadrature components, respectively. Then, both the in-phase and quadrature are low pass filtered to attain the base band FM modulated signal. Then both signals are differentiated. The in-phase signal is multiplied by the differentiated quadrature and quadrature signal is multiplied by the differentiated in-phase. Both multiplications are summed together and scaled down. Now the FM signal is effectively demodulated. Because the sample rate is very high, 29 MSPS, we will need to down convert by a scale of 100. This new signal is then sent to the computer via UART. Ideally, a playable MP3 file is created on the computer and sent to the Echo Nest server to be identified and/or played on the computer.  The scheme can be seen graphically in figure \ref{fig:fpga}
+
+Mathematically, the demodulation scheme can be described as follows:
+
+\begin{equation}
+  \phi_{FM}(t) = Acos\big(\omega_ct + k_f\int_{-\infty}^{t}m(t)dt\big)
+\end{equation}
+
+After I/Q sampling, we arrive at
+
+\begin{equation}
+\begin{aligned}
+  &I(t) = Acos\big(\psi(t)) \\
+  &Q(t) = Asin\big(\psi(t)) \\
+  &\psi(t) = k_f\int_{-\infty}^{t}m(t)dt \\
+\end{aligned}
+\end{equation}
+
+Thus to get back the message signal $m(t)$,
+
+\begin{equation}
+m(t) = \dot{\psi(t)} = \frac{d}{dt}\tan^{-1}{\Big(\frac{Q(t)}{I(t)}\Big)} =\
+\frac{\dot{Q(t)}I(t) + \dot{I(t)}Q(t)}{I^2(t) + Q^2(t)}
+\end{equation}
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{FPGA.jpg}
+\caption{FPGA Demodulation Scheme}
+\label{fig:fpga}
+\end{figure}
 
 As of now, we are strictly focusing on the heart of the project, which is RF front end, FMC input to the FPGA and then demodulation on the FPGA. Later, depending on time constraints, we will narrow down our specifications for for the later stages of the project. 
 \section{Additional Concerns}
