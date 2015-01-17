@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/ryan/Documents/Projects/fourth_year/schem/fourth_year/fourth_year.sch)
-    (date "Sat 17 Jan 2015 01:32:57 PM CST")
+    (date "Sat 17 Jan 2015 05:24:32 PM CST")
     (tool "eeschema (2013-jul-07)-stable"))
   (components
     (comp (ref R6)
@@ -181,7 +181,7 @@
       (sheetpath (names /) (tstamps /))
       (tstamp 544168DA))
     (comp (ref C21)
-      (value 18Pf)
+      (value 18pF)
       (footprint "1.00mm x 0.55mm")
       (libsource (lib device) (part C))
       (sheetpath (names /) (tstamps /))
