@@ -1,4 +1,4 @@
-PCBNEW-BOARD Version 2 date Sun 18 Jan 2015 05:37:55 PM CST
+PCBNEW-BOARD Version 2 date Wed 21 Jan 2015 03:55:58 PM CST
 
 # Created by Pcbnew(2013-jul-07)-stable
 
@@ -7,12 +7,11 @@ encoding utf-8
 Units mm
 LayerCount 2
 EnabledLayers 1FFF8001
-VisibleLayers 1FFF8000
 Links 346
-NoConn 0
-Di 33.591499 57.416699 271.614901 133.692901
-Ndraw 21
-Ntrack 2048
+NoConn 1
+Di 33.591499 57.416699 251.904501 133.692901
+Ndraw 19
+Ntrack 2056
 Nzone 0
 BoardThickness 1.6002
 Nmodule 114
@@ -22,7 +21,7 @@ $EndGENERAL
 $SHEETDESCR
 Sheet A4 11693 8268
 Title ""
-Date "18 jan 2015"
+Date "21 jan 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -35,7 +34,7 @@ $SETUP
 Layers 2
 Layer[0] Back signal
 Layer[15] Front signal
-TrackWidth 0.254
+TrackWidth 0.635
 TrackWidthList 0.254
 TrackWidthList 0.3048
 TrackWidthList 0.381
@@ -45,8 +44,8 @@ TrackWidthList 0.762
 TrackWidthList 0.889
 TrackWidthList 0.94742
 TrackWidthList 1.016
-TrackWidthList 1.2446
 TrackWidthList 1.27
+TrackWidthList 1.905
 TrackWidthList 2.8702
 TrackClearence 0.1524
 ZoneClearence 0.508
@@ -73,13 +72,13 @@ TextPcbSize 1.524 2.032
 EdgeModWidth 0.381
 TextModSize 1.524 1.524
 TextModWidth 0.3048
-PadSize 4.5 4.5
-PadDrill 4
+PadSize 3.7 3.7
+PadDrill 3
 Pad2MaskClearance 0.0762
 SolderMaskMinWidth 0
 AuxiliaryAxisOrg 0 0
 VisibleElements FFFFFFBF
-PcbPlotParams (pcbplotparams (layerselection 284196865) (usegerberextensions true) (excludeedgelayer true) (linewidth 0.100000) (plotframeref false) (viasonmask false) (mode 1) (useauxorigin false) (hpglpennumber 1) (hpglpenspeed 20) (hpglpendiameter 15) (hpglpenoverlay 2) (psnegative false) (psa4output false) (plotreference true) (plotvalue true) (plotothertext true) (plotinvisibletext true) (padsonsilk true) (subtractmaskfromsilk false) (outputformat 1) (mirror false) (drillshape 0) (scaleselection 1) (outputdirectory plots/gerber/))
+PcbPlotParams (pcbplotparams (layerselection 284196865) (usegerberextensions false) (excludeedgelayer true) (linewidth 0.100000) (plotframeref true) (viasonmask false) (mode 1) (useauxorigin false) (hpglpennumber 1) (hpglpenspeed 20) (hpglpendiameter 15) (hpglpenoverlay 2) (psnegative false) (psa4output false) (plotreference true) (plotvalue true) (plotothertext true) (plotinvisibletext true) (padsonsilk true) (subtractmaskfromsilk false) (outputformat 2) (mirror false) (drillshape 0) (scaleselection 1) (outputdirectory /home/ryan/Documents/Projects/fourth_year/schem/fourth_year/plots/postscript/))
 $EndSETUP
 
 $EQUIPOT
@@ -1025,1619 +1024,6 @@ Ne 6 "GND"
 Po -4.06 -4.06
 $EndPAD
 $EndMODULE FTYPE_90DEG
-$MODULE FMC_LPC
-Po 242.7224 99.695 900 0 549E2A23 54AA3D40 ~~
-Li FMC_LPC
-Sc 54AA3D40
-AR /54A0668D
-Op 0 0 0
-T0 -0.05588 5.16382 1.524 1.524 900 0.3048 M V 20 N "U5"
-T1 0.03302 -5.34924 1.524 1.524 900 0.3048 M V 20 N "FMC_LPC"
-DS -27.89 -7.34 -27.89 7.34 0.381 20
-DS -27.89 -7.34 27.89 -7.34 0.381 20
-DS 27.89 -7.34 27.89 7.34 0.381 20
-DS -27.89 7.34 27.89 7.34 0.381 20
-$PAD
-Sh "C40" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -24.765 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C39" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -23.495 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C38" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -22.225 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C37" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -20.955 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C36" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -19.685 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C35" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -18.415 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C34" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -17.145 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C33" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -15.875 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C32" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -14.605 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C31" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -13.335 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C30" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -12.065 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C29" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -10.795 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C28" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -9.525 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C27" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -8.255 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C26" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -6.985 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C25" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -5.715 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C24" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -4.445 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C23" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -3.175 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C22" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -1.905 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C21" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -0.635 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C20" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 0.635 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C19" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 1.905 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C18" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 3.175 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C17" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 4.445 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C16" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 5.715 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C15" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 6.985 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C14" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 8.255 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C13" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 9.525 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C12" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 10.795 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C11" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 12.065 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C10" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 13.335 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C9" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 14.605 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C8" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 15.875 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C7" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 17.145 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C6" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 18.415 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C5" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 19.685 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C4" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 20.955 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C3" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 22.225 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C2" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 23.495 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "C1" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 24.765 3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D40" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -24.765 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D39" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -23.495 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D38" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -22.225 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D37" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -20.955 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D36" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -19.685 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D35" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -18.415 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D34" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -17.145 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D33" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -15.875 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D32" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -14.605 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D31" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -13.335 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D30" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -12.065 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D29" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -10.795 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D28" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -9.525 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D27" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -8.255 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D26" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -6.985 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D25" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -5.715 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D24" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -4.445 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D23" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -3.175 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D22" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -1.905 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D21" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -0.635 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D20" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 0.635 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D19" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 1.905 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D18" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 3.175 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D17" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 4.445 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D16" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 5.715 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D15" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 6.985 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D14" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 8.255 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D13" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 9.525 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D12" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 10.795 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D11" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 12.065 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D10" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 13.335 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D9" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 14.605 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D8" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 15.875 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D7" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 17.145 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D6" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 18.415 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D5" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 19.685 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D4" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 20.955 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D3" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 22.225 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D2" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 23.495 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "D1" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 24.765 1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G40" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -24.765 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G39" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -23.495 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G38" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -22.225 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G37" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -20.955 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G36" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -19.685 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G35" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -18.415 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G34" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -17.145 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G33" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -15.875 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G32" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -14.605 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G31" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -13.335 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G30" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -12.065 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G29" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -10.795 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G28" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -9.525 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G27" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -8.255 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G26" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -6.985 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G25" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -5.715 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G24" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -4.445 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G23" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -3.175 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G22" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -1.905 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G21" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -0.635 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G20" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 0.635 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G19" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 1.905 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G18" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 3.175 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G17" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 4.445 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G16" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 5.715 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G15" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 6.985 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G14" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 8.255 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G13" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 9.525 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G12" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 10.795 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G11" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 12.065 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G10" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 13.335 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G9" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 14.605 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G8" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 15.875 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G7" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 17.145 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G6" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 18.415 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G5" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 19.685 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G4" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 20.955 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G3" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 22.225 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G2" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 23.495 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "G1" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 24.765 -1.91
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H40" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 21 "N-00000138"
-Po -24.765 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H39" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -23.495 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H38" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -22.225 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H37" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 26 "N-0000018"
-Po -20.955 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H36" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -19.685 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H35" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 41 "N-0000029"
-Po -18.415 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H34" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 95 "N-000009"
-Po -17.145 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H33" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -15.875 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H32" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 8 "N-0000010"
-Po -14.605 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H31" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 9 "N-0000011"
-Po -13.335 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H30" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -12.065 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H29" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -10.795 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H28" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 10 "N-0000012"
-Po -9.525 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H27" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -8.255 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H26" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -6.985 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H25" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 63 "N-000005"
-Po -5.715 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H24" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -4.445 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H23" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po -3.175 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H22" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 23 "N-0000015"
-Po -1.905 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H21" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po -0.635 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H20" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 0.635 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H19" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 1.905 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H18" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 3.175 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H17" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 4.445 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H16" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 15 "N-0000013"
-Po 5.715 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H15" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 6.985 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H14" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 8.255 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H13" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 22 "N-0000014"
-Po 9.525 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H12" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 10.795 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H11" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 12.065 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H10" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 94 "N-0000080"
-Po 13.335 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H9" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 14.605 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H8" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 34 "N-0000021"
-Po 15.875 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H7" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 33 "N-0000020"
-Po 17.145 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H6" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 18.415 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H5" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 19.685 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H4" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 20.955 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H3" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 6 "GND"
-Po 22.225 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H2" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 23.495 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$PAD
-Sh "H1" C 0.64 0.64 0 0 900
-Dr 0 0 0
-At SMD N 00460001
-Ne 0 ""
-Po 24.765 -3.18
-.SolderMask 0.15
-.SolderPaste 0.15
-.LocalClearance 0.15
-$EndPAD
-$EndMODULE FMC_LPC
 $MODULE DIP-8__300
 Po 133.2484 77.6986 900 15 43A7F843 54AD805D ~~
 Li DIP-8__300
@@ -4310,13 +2696,13 @@ Po 0.8 0
 $EndPAD
 $EndMODULE 1.60mmX0.80mm
 $MODULE 1.60mmX0.80mm
-Po 72.6694 97.2566 1800 15 54BC0AF1 54BC0BAD ~~
+Po 72.6694 97.2566 1800 15 54BFF181 54BC0BAD ~~
 Li 1.60mmX0.80mm
 Sc 54BC0BAD
 AR /542DDE79
 Op 0 0 0
-T0 -0.0306 0.0566 0.25 0.25 1800 0.0625 N V 21 N "L4"
-T1 0 1.1 0.25 0.25 1800 0.0625 N V 21 N "68nH"
+T0 -0.0381 -0.0889 0.6 0.6 1800 0.0625 N V 21 N "L4"
+T1 0.0254 1.3081 0.6 0.6 1800 0.0625 N V 21 N "68nH"
 DS -1.4 -0.7 1.4 -0.7 0.1 21
 DS 1.4 -0.7 1.4 0.7 0.1 21
 DS 1.4 0.7 -1.4 0.7 0.1 21
@@ -4376,13 +2762,13 @@ Po 0.8 0
 $EndPAD
 $EndMODULE 1.60mmX0.80mm
 $MODULE 1.60mmX0.80mm
-Po 57.3 111.6 0 15 54AAC64A 54AA40A6 ~~
+Po 57.3 111.6 0 15 54BFF1AF 54AA40A6 ~~
 Li 1.60mmX0.80mm
 Sc 54AA40A6
 AR /542CB682
 Op 0 0 0
-T0 0 -1 0.25 0.25 0 0.0625 N V 21 N "L2"
-T1 0 1.1 0.25 0.25 0 0.0625 N V 21 N "47nH"
+T0 -1.3565 -1.745 0.6 0.6 0 0.0625 N V 21 N "L2"
+T1 -1.4835 -0.9195 0.6 0.6 0 0.0625 N V 21 N "47nH"
 DS -1.4 -0.7 1.4 -0.7 0.1 21
 DS 1.4 -0.7 1.4 0.7 0.1 21
 DS 1.4 0.7 -1.4 0.7 0.1 21
@@ -4541,13 +2927,13 @@ Po 0.8 0
 $EndPAD
 $EndMODULE 1.60mmX0.80mm
 $MODULE 1.19mmX0.64mm
-Po 73.3044 100.4951 0 15 54BC0AFE 54AA40E4 ~~
+Po 73.3044 100.4951 0 15 54BFF16E 54AA40E4 ~~
 Li 1.19mmX0.64mm
 Sc 54AA40E4
 AR /542DDE0D
 Op 0 0 0
-T0 -0.0044 -1.4951 0.2 0.2 0 0.05 N V 21 N "L6"
-T1 -1.6044 0.0049 0.2 0.2 0 0.05 N V 21 N "19nH"
+T0 -2.0574 -1.8796 0.8 0.8 0 0.05 N V 21 N "L6"
+T1 -2.0574 0.5969 0.6 0.6 0 0.05 N V 21 N "19nH"
 DS -0.9 0.4 -0.9 0.5 0.1 21
 DS -0.9 0.5 0.9 0.5 0.1 21
 DS 0.9 0.5 0.9 0.4 0.1 21
@@ -4632,13 +3018,13 @@ Po 1 0
 $EndPAD
 $EndMODULE 2.00mmX1.25mm
 $MODULE 2.00mmX1.25mm
-Po 58.0644 107.0356 900 15 54AAC633 54AA3FD0 ~~
+Po 58.0644 107.0356 900 15 54BFF199 54AA3FD0 ~~
 Li 2.00mmX1.25mm
 Sc 54AA3FD0
 AR /54A990AC
 Op 0 0 0
-T0 0 -1.5 0.5 0.5 900 0.125 N V 21 N "C39"
-T1 0 1.8 0.5 0.5 900 0.125 N V 21 N "3pF"
+T0 0 -1.5 0.6 0.6 900 0.125 N V 21 N "C39"
+T1 0 1.8 0.6 0.6 900 0.125 N V 21 N "3pF"
 DS -1.6 -1 -1.6 1 0.2 21
 DS -1.6 1 1.6 1 0.2 21
 DS 1.6 1 1.6 -1 0.2 21
@@ -4659,13 +3045,13 @@ Po 1 0
 $EndPAD
 $EndMODULE 2.00mmX1.25mm
 $MODULE 2.00mmX1.25mm
-Po 62.3824 109.0676 2700 15 54AAC633 54AA3FC6 ~~
+Po 62.3824 109.0676 2700 15 54BFF194 54AA3FC6 ~~
 Li 2.00mmX1.25mm
 Sc 54AA3FC6
 AR /542CB6F7
 Op 0 0 0
-T0 0 -1.5 0.5 0.5 2700 0.125 N V 21 N "C5"
-T1 0 1.8 0.5 0.5 2700 0.125 N V 21 N "3pF"
+T0 0 -1.5 0.6 0.6 2700 0.125 N V 21 N "C5"
+T1 0 1.8 0.6 0.6 2700 0.125 N V 21 N "3pF"
 DS -1.6 -1 -1.6 1 0.2 21
 DS -1.6 1 1.6 1 0.2 21
 DS 1.6 1 1.6 -1 0.2 21
@@ -4686,13 +3072,13 @@ Po 1 0
 $EndPAD
 $EndMODULE 2.00mmX1.25mm
 $MODULE 2.00mmX1.25mm
-Po 67.2084 108.0516 1800 15 54AAC633 54AA3FBC ~~
+Po 67.2084 108.0516 1800 15 54BFF18D 54AA3FBC ~~
 Li 2.00mmX1.25mm
 Sc 54AA3FBC
 AR /542CB71F
 Op 0 0 0
-T0 0 -1.5 0.5 0.5 1800 0.125 N V 21 N "C4"
-T1 0 1.8 0.5 0.5 1800 0.125 N V 21 N "1nF"
+T0 0 -1.5 0.6 0.6 1800 0.125 N V 21 N "C4"
+T1 0 1.8 0.6 0.6 1800 0.125 N V 21 N "1nF"
 DS -1.6 -1 -1.6 1 0.2 21
 DS -1.6 1 1.6 1 0.2 21
 DS 1.6 1 1.6 -1 0.2 21
@@ -4713,13 +3099,13 @@ Po 1 0
 $EndPAD
 $EndMODULE 2.00mmX1.25mm
 $MODULE 1.19mmX0.64mm
-Po 73.3044 98.9711 1800 15 54BC0AFC 54AB942E ~~
+Po 73.3044 98.9711 1800 15 54BFF171 54AB942E ~~
 Li 1.19mmX0.64mm
 Sc 54AB942E
 AR /542DDE6D
 Op 0 0 0
-T0 0.0044 -1.5289 0.2 0.2 1800 0.05 N V 21 N "L5"
-T1 1.6044 -0.1289 0.2 0.2 1800 0.05 N V 21 N "15nH"
+T0 1.9939 -1.3589 0.6 0.6 1800 0.05 N V 21 N "L5"
+T1 2.0574 -0.4699 0.5 0.5 1800 0.05 N V 21 N "15nH"
 DS -0.9 0.4 -0.9 0.5 0.1 21
 DS -0.9 0.5 0.9 0.5 0.1 21
 DS 0.9 0.5 0.9 0.4 0.1 21
@@ -6528,7 +4914,7 @@ Ro 0 0 0
 $EndSHAPE3D
 $EndMODULE AD9235-tssop28
 $MODULE DC_JACK
-Po 173.736 66.7385 900 15 54BC434E 54AA3D71 ~~
+Po 173.736 66.7385 900 15 54C003D4 54AA3D71 ~~
 Li DC_JACK
 Sc 54AA3D71
 AR /5442FFE3
@@ -6541,20 +4927,1648 @@ DS 4.3 2.4 4.3 -2.4 0.381 21
 DS 4.3 -2.4 -4.3 -2.4 0.381 21
 T2 4.7 -1.7 1.524 1.524 900 0.3048 N V 21 N "+"
 $PAD
-Sh "1" R 4.3 4.3 0 0 1800
-Dr 3.8 0 0
+Sh "1" R 3.7 3.7 0 0 1800
+Dr 3 0 0
 At STD N 00E0FFFF
 Ne 19 "N-00000136"
 Po 3 0
 $EndPAD
 $PAD
-Sh "2" R 4.3 4.3 0 0 1800
-Dr 3.8 0 0
+Sh "2" R 3.7 3.7 0 0 1800
+Dr 3 0 0
 At STD N 00E0FFFF
 Ne 6 "GND"
 Po -3 0
 $EndPAD
 $EndMODULE DC_JACK
+$MODULE FMC_LPC_HOLES
+Po 242.7224 99.695 900 0 54BE86CD 54AA3D40 ~~
+Li FMC_LPC_HOLES
+Cd FMC_LPC with holes
+Sc 54AA3D40
+AR /54A0668D
+Op 0 0 0
+T0 -0.05588 5.16382 1.524 1.524 900 0.3048 M V 20 N "U5"
+T1 0.03302 -5.34924 1.524 1.524 900 0.3048 M V 20 N "FMC_LPC"
+DS -27.89 -7.34 -27.89 7.34 0.381 20
+DS -27.89 -7.34 27.89 -7.34 0.381 20
+DS 27.89 -7.34 27.89 7.34 0.381 20
+DS -27.89 7.34 27.89 7.34 0.381 20
+$PAD
+Sh "C40" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -24.765 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C39" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -23.495 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C38" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -22.225 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C37" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -20.955 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C36" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -19.685 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C35" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -18.415 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C34" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -17.145 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C33" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -15.875 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C32" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -14.605 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C31" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -13.335 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C30" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -12.065 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C29" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -10.795 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C28" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -9.525 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C27" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -8.255 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C26" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -6.985 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C25" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -5.715 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C24" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -4.445 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C23" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -3.175 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C22" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -1.905 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C21" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -0.635 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C20" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 0.635 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C19" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 1.905 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C18" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 3.175 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C17" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 4.445 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C16" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 5.715 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C15" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 6.985 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C14" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 8.255 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C13" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 9.525 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C12" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 10.795 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C11" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 12.065 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C10" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 13.335 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C9" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 14.605 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C8" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 15.875 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C7" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 17.145 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C6" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 18.415 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C5" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 19.685 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C4" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 20.955 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C3" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 22.225 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C2" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 23.495 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "C1" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 24.765 3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D40" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -24.765 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D39" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -23.495 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D38" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -22.225 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D37" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -20.955 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D36" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -19.685 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D35" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -18.415 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D34" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -17.145 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D33" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -15.875 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D32" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -14.605 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D31" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -13.335 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D30" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -12.065 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D29" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -10.795 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D28" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -9.525 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D27" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -8.255 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D26" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -6.985 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D25" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -5.715 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D24" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -4.445 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D23" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -3.175 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D22" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -1.905 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D21" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -0.635 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D20" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 0.635 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D19" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 1.905 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D18" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 3.175 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D17" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 4.445 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D16" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 5.715 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D15" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 6.985 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D14" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 8.255 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D13" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 9.525 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D12" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 10.795 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D11" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 12.065 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D10" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 13.335 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D9" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 14.605 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D8" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 15.875 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D7" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 17.145 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D6" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 18.415 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D5" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 19.685 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D4" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 20.955 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D3" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 22.225 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D2" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 23.495 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "D1" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 24.765 1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G40" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -24.765 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G39" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -23.495 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G38" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -22.225 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G37" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -20.955 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G36" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -19.685 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G35" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -18.415 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G34" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -17.145 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G33" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -15.875 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G32" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -14.605 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G31" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -13.335 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G30" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -12.065 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G29" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -10.795 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G28" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -9.525 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G27" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -8.255 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G26" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -6.985 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G25" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -5.715 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G24" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -4.445 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G23" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -3.175 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G22" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -1.905 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G21" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -0.635 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G20" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 0.635 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G19" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 1.905 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G18" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 3.175 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G17" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 4.445 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G16" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 5.715 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G15" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 6.985 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G14" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 8.255 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G13" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 9.525 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G12" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 10.795 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G11" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 12.065 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G10" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 13.335 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G9" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 14.605 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G8" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 15.875 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G7" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 17.145 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G6" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 18.415 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G5" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 19.685 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G4" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 20.955 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G3" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 22.225 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G2" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 23.495 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "G1" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 24.765 -1.91
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H40" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 21 "N-00000138"
+Po -24.765 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H39" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -23.495 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H38" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -22.225 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H37" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 26 "N-0000018"
+Po -20.955 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H36" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -19.685 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H35" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 41 "N-0000029"
+Po -18.415 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H34" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 95 "N-000009"
+Po -17.145 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H33" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -15.875 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H32" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 8 "N-0000010"
+Po -14.605 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H31" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 9 "N-0000011"
+Po -13.335 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H30" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -12.065 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H29" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -10.795 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H28" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 10 "N-0000012"
+Po -9.525 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H27" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -8.255 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H26" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -6.985 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H25" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 63 "N-000005"
+Po -5.715 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H24" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -4.445 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H23" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po -3.175 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H22" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 23 "N-0000015"
+Po -1.905 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H21" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po -0.635 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H20" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 0.635 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H19" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 1.905 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H18" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 3.175 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H17" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 4.445 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H16" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 15 "N-0000013"
+Po 5.715 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H15" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 6.985 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H14" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 8.255 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H13" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 22 "N-0000014"
+Po 9.525 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H12" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 10.795 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H11" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 12.065 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H10" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 94 "N-0000080"
+Po 13.335 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H9" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 14.605 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H8" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 34 "N-0000021"
+Po 15.875 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H7" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 33 "N-0000020"
+Po 17.145 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H6" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 18.415 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H5" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 19.685 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H4" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 20.955 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H3" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 6 "GND"
+Po 22.225 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H2" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 23.495 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "H1" C 0.64 0.64 0 0 900
+Dr 0 0 0
+At SMD N 00460001
+Ne 0 ""
+Po 24.765 -3.18
+.SolderMask 0.15
+.SolderPaste 0.15
+.LocalClearance 0.15
+$EndPAD
+$PAD
+Sh "" C 1.75 1.75 0 0 900
+Dr 1.52 0 0
+At HOLE N 00D0FFFF
+Ne 0 ""
+Po -27.191 -3.05
+$EndPAD
+$PAD
+Sh "" C 1.75 1.75 0 0 900
+Dr 1.52 0 0
+At HOLE N 00D0FFFF
+Ne 0 ""
+Po 27.189 0
+$EndPAD
+$EndMODULE FMC_LPC_HOLES
 $TEXTPCB
 Te "RYAN KINNEAR - 2015"
 nl "UNIVERSITY OF REGINA"
@@ -6587,10 +6601,6 @@ $EndDRAWSEGMENT
 $DRAWSEGMENT
 Po 0 33.782 57.6072 251.714 57.6072 0.381
 De 28 0 900 0 0
-$EndDRAWSEGMENT
-$DRAWSEGMENT
-Po 0 271.4244 99.0854 271.4244 97.9932 0.381
-De 25 0 900 0 0
 $EndDRAWSEGMENT
 $TEXTPCB
 Te "RF IN"
@@ -6647,10 +6657,6 @@ Po 0 168.1988 99.7204 168.1988 99.6696 0.381
 De 25 0 900 0 0
 $EndDRAWSEGMENT
 $DRAWSEGMENT
-Po 0 85.4964 99.7204 168.1988 99.7204 0.381
-De 25 0 900 0 0
-$EndDRAWSEGMENT
-$DRAWSEGMENT
 Po 0 119.7864 99.7331 119.7864 99.7966 0.381
 De 25 0 900 0 0
 $EndDRAWSEGMENT
@@ -6663,13 +6669,13 @@ Po 0 123.0376 89.392 123.0345 89.3951 0.508 -1
 De 15 0 1 0 0
 Po 0 123.0345 89.3951 116.1034 89.3951 1.27 -1
 De 15 0 1 54AD9CD8 0
-Po 0 123.0376 89.392 123.0376 94.4372 1.016 -1
+Po 0 123.0376 89.392 123.0376 94.4372 1.27 -1
 De 15 0 1 0 0
 Po 0 123.6472 97.3836 123.6599 97.0661 0.3048 -1
 De 15 0 1 54AC716E 0
 Po 0 123.6472 95.0468 123.6472 97.3836 1.016 -1
 De 15 0 1 54AC716C 0
-Po 0 123.0376 94.4372 123.6472 95.0468 1.016 -1
+Po 0 123.0376 94.4372 123.6472 95.0468 1.27 -1
 De 15 0 1 54AC716B 0
 Po 0 56.3 114.9 56.3 111.8 1.27 -1
 De 15 0 2 0 0
@@ -6737,15 +6743,15 @@ Po 0 173.6344 107.3404 173.6344 103.4796 1.27 -1
 De 15 0 3 54B82E14 0
 Po 0 168.7828 112.192 173.6344 107.3404 1.27 -1
 De 15 0 3 54B82E11 0
-Po 0 161.5948 114.554 163.5254 114.554 0.889 -1
+Po 0 161.5948 114.554 163.5254 114.554 1.27 -1
 De 15 0 3 0 0
-Po 0 163.5254 114.554 165.8874 112.192 0.889 -1
+Po 0 163.5254 114.554 165.8874 112.192 1.27 -1
 De 15 0 3 54B82DEE 0
-Po 0 161.5948 109.474 163.1694 109.474 0.889 -1
+Po 0 161.5948 109.474 163.1694 109.474 1.27 -1
 De 15 0 3 0 0
-Po 0 163.1694 109.474 165.8874 112.192 0.889 -1
+Po 0 163.1694 109.474 165.8874 112.192 1.27 -1
 De 15 0 3 54B82DEB 0
-Po 0 161.5948 112.014 165.7094 112.014 0.889 -1
+Po 0 161.5948 112.014 165.7094 112.014 1.27 -1
 De 15 0 3 0 0
 Po 0 165.7094 112.014 165.8874 112.192 0.889 -1
 De 15 0 3 54B82DE7 0
@@ -6813,65 +6819,65 @@ Po 0 182.9689 90.2081 182.9689 90.2081 1.27 -1
 De 15 0 3 54B04D14 0
 Po 0 135.4074 109.4232 135.2929 109.7026 0.94742 -1
 De 15 0 3 54AC76C0 0
-Po 0 139.4079 105.4227 135.4074 109.4232 1.016 -1
+Po 0 139.4079 105.4227 135.4074 109.4232 1.27 -1
 De 15 0 3 54AC76BD 0
 Po 0 151.13 105.4227 151.1808 105.4227 0.94742 -1
 De 15 0 3 54AC76BB 0
-Po 0 151.1808 105.4227 139.4079 105.4227 1.016 -1
+Po 0 151.1808 105.4227 139.4079 105.4227 1.27 -1
 De 15 0 3 54AC781D 0
 Po 0 147.32 114.6812 147.32 114.9096 1.016 -1
 De 15 0 4 0 0
-Po 0 147.32 114.9096 132.9436 129.286 1.016 -1
+Po 0 147.32 114.9096 132.9436 129.286 1.27 -1
 De 15 0 4 54BAC2C4 0
-Po 0 132.9436 129.286 96.9264 129.286 1.016 -1
+Po 0 132.9436 129.286 96.9264 129.286 1.27 -1
 De 15 0 4 54BAC2C9 0
-Po 0 96.9264 129.286 92.8116 125.1712 1.016 -1
+Po 0 96.9264 129.286 92.8116 125.1712 1.27 -1
 De 15 0 4 54BAC2D4 0
-Po 0 92.8116 125.1712 77.4192 125.1712 1.016 -1
+Po 0 92.8116 125.1712 77.4192 125.1712 1.27 -1
 De 15 0 4 54BAC2D5 0
-Po 0 77.4192 125.1712 72.7804 120.5324 1.016 -1
+Po 0 77.4192 125.1712 72.7804 120.5324 1.27 -1
 De 15 0 4 54BAC2D9 0
-Po 0 72.7804 120.5324 72.7804 114.6556 1.016 -1
+Po 0 72.7804 120.5324 72.7804 114.6556 1.27 -1
 De 15 0 4 54BAC2DC 0
 Po 0 147.32 114.6812 145.4656 114.6812 1.016 -1
 De 15 0 4 0 0
-Po 0 145.4656 114.6812 143.764 116.3828 1.016 -1
+Po 0 145.4656 114.6812 143.764 116.3828 1.27 -1
 De 15 0 4 54BAC2B2 0
-Po 0 143.764 116.3828 139.446 116.3828 1.016 -1
+Po 0 143.764 116.3828 139.446 116.3828 1.27 -1
 De 15 0 4 54BAC2B8 0
-Po 0 139.446 116.3828 129.54 126.2888 1.016 -1
+Po 0 139.446 116.3828 129.54 126.2888 1.27 -1
 De 15 0 4 54BAC2BA 0
-Po 0 129.54 126.2888 125.044 126.2888 1.016 -1
+Po 0 129.54 126.2888 125.044 126.2888 1.27 -1
 De 15 0 4 54BAC2BE 0
-Po 0 147.32 114.6812 138.76 114.6812 1.016 -1
+Po 0 147.32 114.6812 138.76 114.6812 1.27 -1
 De 15 0 4 0 0
-Po 0 138.76 114.6812 135.7884 117.6528 1.016 -1
+Po 0 138.76 114.6812 135.7884 117.6528 1.27 -1
 De 15 0 4 54BAC2A5 0
-Po 0 135.7884 117.6528 128.27 117.6528 1.016 -1
+Po 0 135.7884 117.6528 128.27 117.6528 1.27 -1
 De 15 0 4 54BAC2A9 0
-Po 0 128.27 117.6528 127.1016 118.8212 1.016 -1
+Po 0 128.27 117.6528 127.1016 118.8212 1.27 -1
 De 15 0 4 54BAC2AB 0
-Po 0 127.1016 118.8212 125.044 118.8212 1.016 -1
+Po 0 127.1016 118.8212 125.044 118.8212 1.27 -1
 De 15 0 4 54BAC2AE 0
-Po 0 147.32 114.6812 149.9872 112.014 0.889 -1
+Po 0 147.32 114.6812 149.9872 112.014 1.27 -1
 De 15 0 4 0 0
-Po 0 149.9872 112.014 153.9748 112.014 0.889 -1
+Po 0 149.9872 112.014 153.9748 112.014 1.27 -1
 De 15 0 4 54B82D96 0
 Po 0 147.32 114.6812 147.4472 114.554 0.889 -1
 De 15 0 4 0 0
-Po 0 147.4472 114.554 153.9748 114.554 0.889 -1
+Po 0 147.4472 114.554 153.9748 114.554 1.27 -1
 De 15 0 4 54B82D93 0
 Po 0 147.3454 107.5436 147.32 107.569 0.889 -1
 De 15 0 4 0 0
 Po 3 147.3454 107.5436 147.3454 107.5436 0.889 -1
 De 15 1 4 0 0
-Po 0 147.2819 89.7001 147.3454 107.5436 1.016 -1
+Po 0 147.2819 89.7001 147.3454 107.5436 1.27 -1
 De 0 0 4 54AC7528 0
 Po 3 147.2819 89.7001 147.2819 89.7001 0.889 -1
 De 15 1 4 0 0
-Po 0 147.319386 84.364593 147.2819 89.7001 0.94742 -1
+Po 0 147.319386 84.364593 147.2819 89.7001 1.27 -1
 De 15 0 4 54AD9A49 0
-Po 0 147.32 107.569 147.32 114.6812 0.889 -1
+Po 0 147.32 107.569 147.32 114.6812 1.27 -1
 De 15 0 4 54B82D90 0
 Po 0 68.7024 82.6096 68.4784 82.8336 1.27 -1
 De 15 0 4 0 0
@@ -6919,29 +6925,29 @@ Po 0 87.1474 100.7491 86.7664 101.1301 0.635 -1
 De 15 0 4 54AC0EF6 0
 Po 0 86.7664 101.1301 84.6709 101.1301 0.635 -1
 De 15 0 4 54AC0EF7 0
-Po 0 147.319386 84.364593 147.319386 80.974586 0.94742 -1
+Po 0 147.319386 84.364593 147.319386 80.974586 1.27 -1
 De 15 0 4 0 0
 Po 0 139.0904 66.1416 140.0556 66.1416 0.94742 -1
 De 15 0 4 0 0
-Po 0 137.0584 70.7136 141.3764 75.0316 0.94742 -1
+Po 0 137.0584 70.7136 141.3764 75.0316 1.27 -1
 De 15 0 4 54AD80A4 0
-Po 0 137.0584 68.1736 137.0584 70.7136 0.94742 -1
+Po 0 137.0584 68.1736 137.0584 70.7136 1.27 -1
 De 15 0 4 54AD80A3 0
-Po 0 139.0904 66.1416 137.0584 68.1736 0.94742 -1
+Po 0 139.0904 66.1416 137.0584 68.1736 1.27 -1
 De 15 0 4 54AD80A2 0
-Po 0 147.319386 80.974586 141.3764 75.0316 1.016 -1
+Po 0 147.319386 80.974586 141.3764 75.0316 1.27 -1
 De 15 0 4 54AD9A4B 0
-Po 0 125.6792 66.1068 104.9876 66.1068 1.2446 -1
+Po 0 125.6792 66.1068 104.9876 66.1068 1.905 -1
 De 15 0 4 0 0
-Po 0 99.6536 71.4408 94.488 76.6064 1.2446 -1
+Po 0 99.6536 71.4408 94.488 76.6064 1.905 -1
 De 15 0 4 54AC70CF 0
-Po 0 94.488 76.6064 70.4596 76.6064 1.2446 -1
+Po 0 94.488 76.6064 70.4596 76.6064 1.905 -1
 De 15 0 4 54AC70D1 0
-Po 0 70.4596 76.6064 68.7324 78.3336 1.2446 -1
+Po 0 70.4596 76.6064 68.7324 78.3336 1.905 -1
 De 15 0 4 54AC70D3 0
 Po 0 68.7324 78.3336 68.7024 78.3596 1.2446 -1
 De 15 0 4 54AC70D5 0
-Po 0 104.9876 66.1068 99.6536 71.4408 1.2446 -1
+Po 0 104.9876 66.1068 99.6536 71.4408 1.905 -1
 De 15 0 4 54AD9A31 0
 Po 0 147.32 84.2772 147.319386 84.364593 0.94742 -1
 De 15 0 4 54AD80A7 0
@@ -6969,13 +6975,13 @@ Po 0 72.7329 114.5286 72.7804 114.6556 0.3048 -1
 De 15 0 4 54AD49B0 0
 Po 0 72.7329 112.3856 72.7329 114.5286 1.27 -1
 De 15 0 4 54AD49AB 0
-Po 0 131.7244 66.1188 125.7528 66.1188 1.2446 -1
+Po 0 131.7244 66.1188 125.7528 66.1188 1.905 -1
 De 15 0 4 0 0
 Po 0 125.6284 66.2432 125.6792 66.1068 1.2446 -1
 De 15 0 4 54AC70CB 0
 Po 0 125.7528 66.1188 125.6284 66.2432 1.2446 -1
 De 15 0 4 54AC70C9 0
-Po 0 140.0556 66.1416 131.6736 66.1416 1.2446 -1
+Po 0 140.0556 66.1416 131.6736 66.1416 1.905 -1
 De 15 0 4 0 0
 Po 0 131.6736 66.1416 131.6228 66.1924 1.2446 -1
 De 15 0 4 54AC70C6 0
@@ -6991,9 +6997,9 @@ Po 0 95.0214 84.3661 95.0214 91.1606 0.635 -1
 De 15 0 4 54AC0E7D 0
 Po 0 95.0214 91.1606 95.0468 91.2116 0.254 -1
 De 15 0 4 54AC0E84 0
-Po 0 68.7024 82.6096 73.4314 87.3386 0.635 -1
+Po 0 68.7024 82.6096 73.4314 87.3386 1.016 -1
 De 15 0 4 0 0
-Po 0 73.4314 87.3386 73.4314 90.9701 0.635 -1
+Po 0 73.4314 87.3386 73.4314 90.9701 1.016 -1
 De 15 0 4 54AC0D33 0
 Po 0 73.4314 90.9701 73.39 91.186 0.254 -1
 De 15 0 4 54AC0D38 0
@@ -7007,7 +7013,7 @@ Po 0 68.7024 82.6096 75.7024 82.6096 0.635 -1
 De 15 0 4 0 0
 Po 0 75.7024 82.6096 78.7064 85.3596 0.635 -1
 De 15 0 4 54AC0C98 0
-Po 0 68.7024 78.3596 68.7024 82.6096 1.2446 -1
+Po 0 68.7024 78.3596 68.7024 82.6096 1.905 -1
 De 15 0 4 0 0
 Po 0 81.38062 100.98666 84.42586 100.98666 0.3048 -1
 De 15 0 4 0 0
@@ -7031,7 +7037,7 @@ Po 0 77.73064 95.34496 78.6384 94.4372 0.3048 -1
 De 15 0 4 54ABC6B9 0
 Po 0 76.72988 96.8363 76.72988 93.13828 0.3048 -1
 De 15 0 4 0 0
-Po 0 74.8284 91.2368 73.406 91.2368 0.3048 -1
+Po 0 74.8284 91.2368 73.406 91.2368 0.762 -1
 De 15 0 4 54ABC5C8 0
 Po 0 76.72988 93.13828 74.8284 91.2368 0.3048 -1
 De 15 0 4 54ABC5C6 0
@@ -7041,33 +7047,33 @@ Po 0 66.4939 95.1771 68.4784 95.1771 1.27 -1
 De 15 0 4 54ABC216 0
 Po 0 64.9859 96.6851 66.4939 95.1771 1.27 -1
 De 15 0 4 54ABC215 0
-Po 0 134.9504 85.8901 134.9504 93.4976 1.016 -1
+Po 0 134.9504 85.8901 134.9504 93.4976 1.27 -1
 De 15 0 5 0 0
 Po 0 123.2314 110.4011 123.2154 110.4171 0.508 -1
 De 15 0 5 54ADCA9C 0
-Po 0 125.0569 110.4011 123.2314 110.4011 1.016 -1
+Po 0 125.0569 110.4011 123.2314 110.4011 1.27 -1
 De 15 0 5 54ADCA9B 0
-Po 0 128.9939 106.4641 125.0569 110.4011 1.016 -1
+Po 0 128.9939 106.4641 125.0569 110.4011 1.27 -1
 De 15 0 5 54ADCA9A 0
 Po 3 128.9939 106.4641 128.9939 106.4641 0.889 -1
 De 15 1 5 0 0
-Po 0 133.1849 106.4641 128.9939 106.4641 1.016 -1
+Po 0 133.1849 106.4641 128.9939 106.4641 1.27 -1
 De 0 0 5 54ADCA98 0
 Po 0 133.3754 106.2736 133.1849 106.4641 0.508 -1
 De 0 0 5 54ADCA97 0
 Po 3 133.3754 106.2736 133.3754 106.2736 0.889 -1
 De 15 1 5 0 0
-Po 0 136.1059 103.5431 133.3754 106.2736 1.016 -1
+Po 0 136.1059 103.5431 133.3754 106.2736 1.27 -1
 De 15 0 5 54ADCA8E 0
-Po 0 136.1059 94.6531 136.1059 103.5431 1.016 -1
+Po 0 136.1059 94.6531 136.1059 103.5431 1.27 -1
 De 15 0 5 54ADCA87 0
-Po 0 134.9504 93.4976 136.1059 94.6531 1.016 -1
+Po 0 134.9504 93.4976 136.1059 94.6531 1.27 -1
 De 15 0 5 54ADCA83 0
 Po 0 141.6939 91.9861 135.4584 85.7506 1.016 -1
 De 15 0 5 0 0
-Po 0 156.6799 90.1446 154.8384 91.9861 1.016 -1
+Po 0 156.6799 90.1446 154.8384 91.9861 1.27 -1
 De 15 0 5 0 0
-Po 0 154.8384 91.9861 141.6939 91.9861 1.016 -1
+Po 0 154.8384 91.9861 141.6939 91.9861 1.27 -1
 De 15 0 5 54AD9B43 0
 Po 0 135.4584 85.7506 134.3279 85.7506 0.94742 -1
 De 15 0 5 54AD9C29 0
@@ -7083,18 +7089,54 @@ Po 0 129.5424 85.7506 134.3279 85.7506 1.27 -1
 De 15 0 5 54AD9C0C 0
 Po 0 129.4384 85.8546 129.4384 81.5086 1.27 -1
 De 15 0 5 0 0
-Po 0 156.6799 90.1446 154.0004 90.1446 1.016 -1
+Po 0 156.6799 90.1446 154.0004 90.1446 1.27 -1
 De 15 0 5 0 0
-Po 0 154.0004 90.1446 151.0919 87.2361 1.016 -1
+Po 0 154.0004 90.1446 151.0919 87.2361 1.27 -1
 De 15 0 5 54AD9B7C 0
-Po 0 123.2154 110.4171 123.2154 105.6386 0.635 -1
+Po 0 123.2154 110.4171 123.2154 105.6386 1.27 -1
 De 15 0 5 0 0
 Po 0 123.698 102.2604 123.6599 102.4001 0.508 -1
 De 15 0 5 54AC71B4 0
 Po 0 123.698 105.156 123.698 102.2604 0.635 -1
 De 15 0 5 54AC71B1 0
-Po 0 123.2154 105.6386 123.698 105.156 0.635 -1
+Po 0 123.2154 105.6386 123.698 105.156 1.27 -1
 De 15 0 5 54AC71AE 0
+Po 0 83.7852 85.852 82.931 85.852 0.762 -1
+De 15 0 6 0 0
+Po 3 82.042 84.963 82.042 84.963 0.889 -1
+De 15 1 6 0 0
+Po 0 82.931 85.852 82.042 84.963 0.762 -1
+De 15 0 6 54C02E9A 0
+Po 0 88.2 126.6 90.4 126.6 0.508 -1
+De 15 0 6 0 0
+Po 3 90.4 126.6 90.4 126.6 0.889 -1
+De 15 1 6 0 0
+Po 0 86.1 126.6 88.2 126.6 0.508 -1
+De 15 0 6 0 0
+Po 3 88.2 126.6 88.2 126.6 0.889 -1
+De 15 1 6 0 0
+Po 0 83.8 126.6 86.1 126.6 0.508 -1
+De 15 0 6 0 0
+Po 3 86.1 126.6 86.1 126.6 0.889 -1
+De 15 1 6 0 0
+Po 0 81.4 126.6 83.8 126.6 0.508 -1
+De 15 0 6 0 0
+Po 3 83.8 126.6 83.8 126.6 0.889 -1
+De 15 1 6 0 0
+Po 0 78.7 126.6 81.4 126.6 0.508 -1
+De 15 0 6 0 0
+Po 3 81.4 126.6 81.4 126.6 0.889 -1
+De 15 1 6 0 0
+Po 0 75.4 125.9 75.8 125.9 0.889 -1
+De 15 0 6 0 0
+Po 0 75.8 125.9 76.5 126.6 0.508 -1
+De 15 0 6 54BE18EF 0
+Po 0 76.5 126.6 78.7 126.6 0.508 -1
+De 15 0 6 54BE18F0 0
+Po 3 78.7 126.6 78.7 126.6 0.889 -1
+De 15 1 6 0 0
+Po 3 75.4 125.9 75.4 125.9 0.889 -1
+De 15 1 6 0 0
 Po 0 133.1 125.9 133.2 125.9 0.254 -1
 De 15 0 6 0 0
 Po 0 133.2 125.9 135.7 123.4 0.254 -1
@@ -8415,17 +8457,17 @@ Po 0 57.1 126.3 59.2 126.3 0.889 -1
 De 15 0 6 0 0
 Po 3 59.2 126.3 59.2 126.3 0.889 -1
 De 15 1 6 0 0
-Po 0 55.4 127.2 56.3 126.3 0.889 -1
+Po 0 55.4 125.9 56.3 126.3 0.889 -1
 De 15 0 6 0 0
 Po 0 56.3 126.3 57.1 126.3 0.889 -1
 De 15 0 6 54BB6DD6 0
 Po 3 57.1 126.3 57.1 126.3 0.889 -1
 De 15 1 6 0 0
-Po 0 53.8 125.7 55.3 127.2 0.889 -1
+Po 0 53.8 125.7 55.3 125.9 0.889 -1
 De 15 0 6 0 0
-Po 0 55.3 127.2 55.4 127.2 0.889 -1
+Po 0 55.3 125.9 55.4 125.9 0.889 -1
 De 15 0 6 54BB6DD2 0
-Po 3 55.4 127.2 55.4 127.2 0.889 -1
+Po 3 55.4 125.9 55.4 125.9 0.889 -1
 De 15 1 6 0 0
 Po 0 53.8 123.6 53.8 125.7 0.889 -1
 De 15 0 6 0 0
@@ -8575,26 +8617,10 @@ Po 0 85.3 120.567 85.3 123.4 0.889 -1
 De 15 0 6 54BB6D4D 0
 Po 3 85.3 123.4 85.3 123.4 0.889 -1
 De 15 1 6 0 0
-Po 0 79.6 127.1 81.8 127.1 0.889 -1
-De 15 0 6 0 0
-Po 3 81.8 127.1 81.8 127.1 0.889 -1
-De 15 1 6 0 0
-Po 0 77.5 127.1 79.6 127.1 0.889 -1
-De 15 0 6 0 0
-Po 3 79.6 127.1 79.6 127.1 0.889 -1
-De 15 1 6 0 0
-Po 0 75.4 125.9 76.6 127.1 0.889 -1
-De 15 0 6 0 0
-Po 0 76.6 127.1 77.5 127.1 0.889 -1
-De 15 0 6 54BB6D3D 0
-Po 3 77.5 127.1 77.5 127.1 0.889 -1
-De 15 1 6 0 0
 Po 0 73.7 124.5 75.1 125.9 0.889 -1
 De 15 0 6 0 0
 Po 0 75.1 125.9 75.4 125.9 0.889 -1
 De 15 0 6 54BB6D39 0
-Po 3 75.4 125.9 75.4 125.9 0.889 -1
-De 15 1 6 0 0
 Po 0 72.6 123.2 73.7 124.3 0.889 -1
 De 15 0 6 0 0
 Po 0 73.7 124.3 73.7 124.5 0.889 -1
@@ -9751,38 +9777,34 @@ Po 0 223.0374 94.9198 224.7138 94.9198 0.3048 -1
 De 15 0 15 0 0
 Po 0 224.7138 94.9198 225.298 95.504 0.3048 -1
 De 15 0 15 54BAB6B9 0
+Po 0 88.9254 102.7811 103.2383 102.7811 0.381 -1
+De 15 0 16 0 0
+Po 0 118.0848 115.062 115.5192 115.062 0.635 -1
+De 15 0 16 54BABD4F 0
 Po 0 121.844 118.8212 118.0848 115.062 0.635 -1
 De 15 0 16 0 0
-Po 0 118.0848 115.062 117.094 115.062 0.635 -1
-De 15 0 16 54BABD4F 0
-Po 0 117.094 115.062 104.8131 102.7811 0.635 -1
-De 15 0 16 0 0
-Po 0 104.8131 102.7811 104.1527 102.7811 0.635 -1
-De 15 0 16 54BABD40 0
-Po 0 88.9254 102.7811 101.3714 102.7811 0.381 -1
-De 15 0 16 54ADDDBA 0
-Po 0 81.8388 94.996 87.2363 94.996 0.381 -1
-De 0 0 16 0 0
-Po 0 79.22924 96.33556 79.22924 96.8363 0.2032 -1
-De 15 0 16 0 0
-Po 3 81.8388 94.996 81.8388 94.996 0.635 -1
-De 15 1 16 0 0
-Po 0 81.534 95.3008 81.8388 94.996 0.2032 -1
-De 15 0 16 54ABCA44 0
-Po 0 80.264 95.3008 81.534 95.3008 0.2032 -1
-De 15 0 16 54ABCA42 0
-Po 0 79.22924 96.33556 80.264 95.3008 0.2032 -1
-De 15 0 16 54ABCA41 0
-Po 3 88.2904 102.1461 88.2904 102.1461 0.635 -1
-De 15 1 16 0 0
-Po 0 88.2904 96.0501 88.2904 102.1461 0.381 -1
-De 0 0 16 54ADDBF5 0
-Po 0 87.2363 94.996 88.2904 96.0501 0.381 -1
-De 0 0 16 54ADDBF0 0
 Po 0 88.2904 102.1461 88.9254 102.7811 0.381 -1
 De 15 0 16 0 0
-Po 0 104.1527 102.7811 101.3714 102.7811 0.381 -1
-De 15 0 16 54ADDFF9 0
+Po 0 87.2363 94.996 88.2904 96.0501 0.381 -1
+De 0 0 16 54ADDBF0 0
+Po 0 88.2904 96.0501 88.2904 102.1461 0.381 -1
+De 0 0 16 54ADDBF5 0
+Po 3 88.2904 102.1461 88.2904 102.1461 0.635 -1
+De 15 1 16 0 0
+Po 0 79.22924 96.33556 80.264 95.3008 0.2032 -1
+De 15 0 16 54ABCA41 0
+Po 0 80.264 95.3008 81.534 95.3008 0.2032 -1
+De 15 0 16 54ABCA42 0
+Po 0 81.534 95.3008 81.8388 94.996 0.2032 -1
+De 15 0 16 54ABCA44 0
+Po 3 81.8388 94.996 81.8388 94.996 0.635 -1
+De 15 1 16 0 0
+Po 0 79.22924 96.33556 79.22924 96.8363 0.2032 -1
+De 15 0 16 0 0
+Po 0 81.8388 94.996 87.2363 94.996 0.381 -1
+De 0 0 16 0 0
+Po 0 103.2383 102.7811 115.5192 115.062 0.635 -1
+De 15 0 16 54C02EAD 0
 Po 0 197.4024 88.8096 197.4024 92.7096 0.381 -1
 De 15 0 17 0 0
 Po 0 197.4024 88.8096 197.4024 84.8096 0.381 -1
@@ -9817,25 +9839,25 @@ Po 0 197.7024 97.6096 197.3674 97.2746 0.381 -1
 De 15 0 18 54B05017 0
 Po 0 197.3674 97.2746 197.3674 96.3041 0.381 -1
 De 15 0 18 54B05019 0
-Po 0 149.352 63.6684 140.1224 63.6684 1.27 -1
+Po 0 149.352 63.6684 140.1224 63.6684 1.905 -1
 De 15 0 19 0 0
 Po 0 140.1224 63.6684 140.0556 63.6016 1.27 -1
 De 15 0 19 54BB6B9B 0
-Po 0 155.956 63.6296 149.3908 63.6296 1.27 -1
+Po 0 155.956 63.6296 149.3908 63.6296 1.905 -1
 De 15 0 19 0 0
 Po 0 149.3908 63.6296 149.352 63.6684 1.27 -1
 De 15 0 19 54BB6B98 0
 Po 0 173.736 63.7385 173.6271 63.6296 1.27 -1
 De 15 0 19 0 0
-Po 0 173.6271 63.6296 155.956 63.6296 1.27 -1
+Po 0 173.6271 63.6296 155.956 63.6296 1.905 -1
 De 15 0 19 54BABDF4 0
 Po 0 173.736 63.7385 161.2644 76.2101 1.27 -1
 De 15 0 19 0 0
 Po 0 161.2644 76.2101 161.2644 80.1116 1.27 -1
 De 15 0 19 54BABDCC 0
-Po 0 161.2644 80.1116 159.2199 82.1561 1.016 -1
+Po 0 161.2644 80.1116 159.2199 82.1561 1.27 -1
 De 15 0 19 0 0
-Po 0 159.2199 82.1561 159.2199 90.1446 1.016 -1
+Po 0 159.2199 82.1561 159.2199 90.1446 1.27 -1
 De 15 0 19 54AEA6F6 0
 Po 0 205.0034 94.8436 205.0034 92.6432 0.381 -1
 De 15 0 20 0 0
@@ -10755,103 +10777,47 @@ $EndTRACK
 $ZONE
 $EndZONE
 $CZONE_OUTLINE
-ZInfo 54AC06B6 0 ""
+ZInfo 54BE1942 0 ""
 ZLayer 23
-ZAux 4 E
+ZAux 16 E
 ZClearance 0.508 T
 ZMinThickness 0.254
 ZOptions 0 16 F 0.508 0.508
 ZSmoothing 0 0
-ZCorner 52.2224 102.2096 0
-ZCorner 49.6824 102.2096 0
-ZCorner 49.6824 92.0496 0
-ZCorner 52.2224 92.0496 1
-$POLYSCORNERS
-52.0954 102.0826 0 0
-49.8094 102.0826 0 0
-49.8094 92.1766 0 0
-52.0954 92.1766 0 0
-52.0954 102.0826 1 0
-$endPOLYSCORNERS
-$endCZONE_OUTLINE
-$CZONE_OUTLINE
-ZInfo 54AC06E4 0 ""
-ZLayer 23
-ZAux 4 E
-ZClearance 0.508 T
-ZMinThickness 0.254
-ZOptions 0 16 F 0.508 0.508
-ZSmoothing 0 0
-ZCorner 52.2224 83.1596 0
-ZCorner 49.6824 83.1596 0
-ZCorner 49.6824 72.9996 0
-ZCorner 52.2224 72.9996 1
-$POLYSCORNERS
-52.0954 83.0326 0 0
-49.8094 83.0326 0 0
-49.8094 73.1266 0 0
-52.0954 73.1266 0 0
-52.0954 83.0326 1 0
-$endPOLYSCORNERS
-$endCZONE_OUTLINE
-$CZONE_OUTLINE
-ZInfo 54AC070A 0 ""
-ZLayer 23
-ZAux 4 E
-ZClearance 0.508 T
-ZMinThickness 0.254
-ZOptions 0 16 F 0.508 0.508
-ZSmoothing 0 0
-ZCorner 52.2224 127.6096 0
+ZCorner 92.9 130.1 0
+ZCorner 92.8624 130.1 0
+ZCorner 92.8624 130.1496 0
+ZCorner 82.7024 130.1496 0
+ZCorner 82.7024 130.1 0
+ZCorner 72.5424 130.1 0
+ZCorner 72.5424 130.0996 0
+ZCorner 62.3824 130.0996 0
+ZCorner 62.3824 130.1 0
+ZCorner 49.7 130.1 0
+ZCorner 49.7 127.6096 0
 ZCorner 49.6824 127.6096 0
 ZCorner 49.6824 117.4496 0
-ZCorner 52.2224 117.4496 1
+ZCorner 52.2224 117.4496 0
+ZCorner 52.2224 127.6 0
+ZCorner 92.9 127.6 1
 $POLYSCORNERS
-52.0954 127.4826 0 0
+92.773 129.973 0 0
+92.7354 129.973 0 0
+92.7354 130.0226 0 0
+82.8294 130.0226 0 0
+82.8294 129.973 0 0
+72.6694 129.973 0 0
+72.6694 129.9726 0 0
+62.2554 129.9726 0 0
+62.2554 129.973 0 0
+49.827 129.973 0 0
+49.827 127.4826 0 0
 49.8094 127.4826 0 0
 49.8094 117.5766 0 0
 52.0954 117.5766 0 0
-52.0954 127.4826 1 0
-$endPOLYSCORNERS
-$endCZONE_OUTLINE
-$CZONE_OUTLINE
-ZInfo 54AC0783 0 ""
-ZLayer 23
-ZAux 4 E
-ZClearance 0.508 T
-ZMinThickness 0.254
-ZOptions 0 16 F 0.508 0.508
-ZSmoothing 0 0
-ZCorner 72.5424 130.1496 0
-ZCorner 62.3824 130.1496 0
-ZCorner 62.3824 127.6096 0
-ZCorner 72.5424 127.6096 1
-$POLYSCORNERS
-72.4154 130.0226 0 0
-62.5094 130.0226 0 0
-62.5094 127.7366 0 0
-72.4154 127.7366 0 0
-72.4154 130.0226 1 0
-$endPOLYSCORNERS
-$endCZONE_OUTLINE
-$CZONE_OUTLINE
-ZInfo 54AC07D7 0 ""
-ZLayer 23
-ZAux 4 E
-ZClearance 0.508 T
-ZMinThickness 0.254
-ZOptions 0 16 F 0.508 0.508
-ZSmoothing 0 0
-ZCorner 92.8624 130.1496 0
-ZCorner 82.7024 130.1496 0
-ZCorner 82.7024 127.6096 0
-ZCorner 92.8624 127.6096 1
-$POLYSCORNERS
-92.7354 130.0226 0 0
-82.8294 130.0226 0 0
-82.8294 127.7366 0 0
-92.7354 127.7366 0 0
-92.7354 130.0226 1 0
+52.0954 127.727 0 0
+92.773 127.727 0 0
+92.773 129.973 1 0
 $endPOLYSCORNERS
 $endCZONE_OUTLINE
 $CZONE_OUTLINE
@@ -10875,63 +10841,28 @@ $POLYSCORNERS
 $endPOLYSCORNERS
 $endCZONE_OUTLINE
 $CZONE_OUTLINE
-ZInfo 54AC0844 0 ""
-ZLayer 23
-ZAux 4 E
-ZClearance 0.508 T
-ZMinThickness 0.254
-ZOptions 0 16 F 0.508 0.508
-ZSmoothing 0 0
-ZCorner 103.0224 86.36 0
-ZCorner 100.4824 86.36 0
-ZCorner 100.4824 76.2 0
-ZCorner 103.0224 76.2 1
-$POLYSCORNERS
-102.8954 86.233 0 0
-100.6094 86.233 0 0
-100.6094 76.327 0 0
-102.8954 76.327 0 0
-102.8954 86.233 1 0
-$endPOLYSCORNERS
-$endCZONE_OUTLINE
-$CZONE_OUTLINE
 ZInfo 54AC087F 0 ""
 ZLayer 23
-ZAux 4 E
+ZAux 7 E
 ZClearance 0.508 T
 ZMinThickness 0.254
 ZOptions 0 16 F 0.508 0.508
 ZSmoothing 0 0
-ZCorner 72.5424 72.9996 0
-ZCorner 62.3824 72.9996 0
-ZCorner 62.3824 70.4596 0
-ZCorner 72.5424 70.4596 1
+ZCorner 92.9 73 0
+ZCorner 52.3 73 0
+ZCorner 52.3 102.2 0
+ZCorner 49.7 102.2 0
+ZCorner 49.7 70.4 0
+ZCorner 92.9 70.4 0
+ZCorner 92.9 73 1
 $POLYSCORNERS
-72.4154 72.8726 0 0
-62.5094 72.8726 0 0
-62.5094 70.5866 0 0
-72.4154 70.5866 0 0
-72.4154 72.8726 1 0
-$endPOLYSCORNERS
-$endCZONE_OUTLINE
-$CZONE_OUTLINE
-ZInfo 54AC0890 0 ""
-ZLayer 23
-ZAux 4 E
-ZClearance 0.508 T
-ZMinThickness 0.254
-ZOptions 0 16 F 0.508 0.508
-ZSmoothing 0 0
-ZCorner 92.8624 72.9996 0
-ZCorner 82.7024 72.9996 0
-ZCorner 82.7024 70.4596 0
-ZCorner 92.8624 70.4596 1
-$POLYSCORNERS
-92.7354 72.8726 0 0
-82.8294 72.8726 0 0
-82.8294 70.5866 0 0
-92.7354 70.5866 0 0
-92.7354 72.8726 1 0
+92.773 72.873 0 0
+52.173 72.873 0 0
+52.173 102.073 0 0
+49.827 102.073 0 0
+49.827 70.527 0 0
+92.773 70.527 0 0
+92.773 72.873 1 0
 $endPOLYSCORNERS
 $endCZONE_OUTLINE
 $CZONE_OUTLINE
@@ -10947,9 +10878,9 @@ ZCorner 34.9504 132.1308 0
 ZCorner 34.9504 58.8264 0
 ZCorner 250.5964 58.8264 1
 $POLYSCORNERS
-143.087354 117.5258 0 0
-132.470154 128.143 0 0
-123.0884 128.143 0 0
+142.780748 117.6528 0 0
+132.417548 128.016 0 0
+123.0884 128.016 0 0
 123.0884 113.29335 0 0
 123.0884 112.5441 0 0
 121.98915 112.5441 0 0
@@ -10961,10 +10892,10 @@ $POLYSCORNERS
 122.591155 113.45221 0 0
 122.92965 113.4521 0 0
 123.0884 113.29335 0 0
-123.0884 128.143 0 0
-99.01391 128.143 0 0
-97.399845 128.143 0 0
-96.9518 127.694954 0 0
+123.0884 128.016 0 0
+99.01391 128.016 0 0
+97.452451 128.016 0 0
+96.9518 127.515348 0 0
 96.9518 110.42465 0 0
 96.9518 109.5754 0 0
 95.30255 109.5754 0 0
@@ -10976,11 +10907,12 @@ $POLYSCORNERS
 95.904555 110.58351 0 0
 96.79305 110.5834 0 0
 96.9518 110.42465 0 0
-96.9518 127.694954 0 0
-93.619823 124.362977 0 0
-93.249007 124.115206 0 0
-92.8116 124.0282 0 0
-86.503871 124.0282 0 0
+96.9518 127.515348 0 0
+93.709626 124.273174 0 0
+93.297608 123.997873 0 0
+92.8116 123.901199 0 0
+92.811594 123.9012 0 0
+86.503871 123.9012 0 0
 86.503871 120.718098 0 0
 86.472761 120.247704 0 0
 86.3526 119.957609 0 0
@@ -10999,8 +10931,8 @@ $POLYSCORNERS
 86.132332 121.207927 0 0
 86.3526 121.164591 0 0
 86.503871 120.718098 0 0
-86.503871 124.0282 0 0
-85.952727 124.0282 0 0
+86.503871 123.9012 0 0
+85.952727 123.9012 0 0
 85.952727 121.387532 0 0
 85.3059 120.740705 0 0
 85.126295 120.92031 0 0
@@ -11019,10 +10951,10 @@ $POLYSCORNERS
 85.619296 121.727961 0 0
 85.909391 121.6078 0 0
 85.952727 121.387532 0 0
-85.952727 124.0282 0 0
-77.892645 124.0282 0 0
-73.9234 120.058954 0 0
-73.9234 117.5766 0 0
+85.952727 123.9012 0 0
+77.945251 123.9012 0 0
+74.0504 120.006348 0 0
+74.0504 117.5766 0 0
 77.828922 117.5766 0 0
 79.2734 118.83208 0 0
 79.2734 119.837557 0 0
@@ -11321,25 +11253,13 @@ $POLYSCORNERS
 95.901395 84.001594 0 0
 95.694919 83.692581 0 0
 95.694919 83.69258 0 0
-90.170419 78.168081 0 0
-89.861406 77.961605 0 0
-89.4969 77.8891 0 0
-72.4704 77.8891 0 0
-72.105894 77.961605 0 0
-71.79688 78.168081 0 0
-69.9597 80.005261 0 0
-69.9597 78.88439 0 0
-70.98039 77.8637 0 0
-94.488 77.8637 0 0
-94.488 77.863699 0 0
-94.969148 77.767994 0 0
-95.377045 77.495445 0 0
-100.542645 72.329846 0 0
-100.542645 72.329845 0 0
-100.542647 72.329842 0 0
-105.50839 67.3641 0 0
-124.383729 67.3641 0 0
-124.29409 67.581045 0 0
+90.196238 78.1939 0 0
+94.488 78.1939 0 0
+95.09551 78.073059 0 0
+95.610532 77.728932 0 0
+100.776132 72.563332 0 0
+105.645164 67.6943 0 0
+124.294141 67.6943 0 0
 124.2942 67.82105 0 0
 124.45295 67.9798 0 0
 125.5522 67.9798 0 0
@@ -11348,24 +11268,17 @@ $POLYSCORNERS
 125.8062 67.9798 0 0
 126.90545 67.9798 0 0
 127.0642 67.82105 0 0
-127.06431 67.581045 0 0
-126.979628 67.3761 0 0
-131.252787 67.3761 0 0
-131.285978 67.382701 0 0
-131.423948 67.433875 0 0
-131.524305 67.430107 0 0
-131.6228 67.449699 0 0
-131.767123 67.420991 0 0
-131.914177 67.415471 0 0
-131.950287 67.3989 0 0
-136.268225 67.3989 0 0
-136.034086 67.749315 0 0
-135.94969 68.1736 0 0
-135.94969 70.7136 0 0
-136.034086 71.137885 0 0
-136.274424 71.497576 0 0
-137.337412 72.560564 0 0
-137.324813 72.555333 0 0
+127.064252 67.7063 0 0
+131.558976 67.7063 0 0
+131.6736 67.7291 0 0
+135.876816 67.7291 0 0
+135.788399 68.1736 0 0
+135.7884 68.173605 0 0
+135.7884 70.713594 0 0
+135.788399 70.7136 0 0
+135.885073 71.199608 0 0
+136.160374 71.611626 0 0
+137.103888 72.55514 0 0
 136.794314 72.55487 0 0
 136.30402 72.757455 0 0
 135.928574 73.132247 0 0
@@ -11625,12 +11538,13 @@ $POLYSCORNERS
 129.4384 87.1246 0 0
 129.924408 87.027927 0 0
 129.935373 87.0206 0 0
-133.8074 87.0206 0 0
-133.8074 93.4976 0 0
-133.894406 93.935007 0 0
-134.142177 94.305823 0 0
-134.9629 95.126546 0 0
-134.9629 95.54529 0 0
+133.6804 87.0206 0 0
+133.6804 93.497594 0 0
+133.680399 93.4976 0 0
+133.777073 93.983608 0 0
+134.052374 94.395626 0 0
+134.8359 95.179151 0 0
+134.8359 95.54529 0 0
 133.969045 95.54529 0 0
 133.735571 95.641759 0 0
 133.556787 95.820232 0 0
@@ -11700,8 +11614,8 @@ $POLYSCORNERS
 125.485068 90.575087 0 0
 125.251764 90.478211 0 0
 124.999145 90.47799 0 0
-124.1806 90.47799 0 0
-124.1806 90.296928 0 0
+124.3076 90.47799 0 0
+124.3076 90.170149 0 0
 124.325613 90.152168 0 0
 124.422489 89.918864 0 0
 124.42271 89.666245 0 0
@@ -11858,11 +11772,12 @@ $POLYSCORNERS
 119.939022 95.201886 0 0
 119.963844 95.142107 0 0
 121.357742 93.74821 0 0
-121.8946 93.74821 0 0
-121.8946 94.4372 0 0
-121.981606 94.874607 0 0
-122.229377 95.245423 0 0
-122.5042 95.520246 0 0
+121.7676 93.74821 0 0
+121.7676 94.437194 0 0
+121.767599 94.4372 0 0
+121.864273 94.923208 0 0
+122.139574 95.335226 0 0
+122.5042 95.699851 0 0
 122.5042 95.73122 0 0
 121.964425 95.73122 0 0
 121.754671 95.817887 0 0
@@ -11957,11 +11872,11 @@ $POLYSCORNERS
 121.653113 104.252184 0 0
 121.817111 104.649089 0 0
 122.120514 104.953022 0 0
-122.45667 105.092607 0 0
-122.335405 105.274094 0 0
-122.2629 105.6386 0 0
-122.2629 105.805882 0 0
-122.051764 105.718211 0 0
+122.163495 104.970869 0 0
+122.042073 105.152592 0 0
+121.945399 105.6386 0 0
+121.9454 105.638605 0 0
+121.9454 105.718117 0 0
 121.799145 105.71799 0 0
 120.799145 105.71799 0 0
 120.691018 105.762666 0 0
@@ -12007,10 +11922,8 @@ $POLYSCORNERS
 120.564732 108.891113 0 0
 120.798036 108.987989 0 0
 121.050655 108.98821 0 0
-122.050655 108.98821 0 0
-122.2629 108.900512 0 0
-122.2629 109.4137 0 0
-122.106171 109.478459 0 0
+121.9454 108.98821 0 0
+121.9454 109.63895 0 0
 121.927387 109.656932 0 0
 121.830511 109.890236 0 0
 121.83029 110.142855 0 0
@@ -12030,13 +11943,14 @@ $POLYSCORNERS
 124.44165 112.2901 0 0
 124.6004 112.13135 0 0
 124.60051 111.891345 0 0
-124.504041 111.657871 0 0
-124.390467 111.5441 0 0
-125.0569 111.5441 0 0
-125.494307 111.457094 0 0
-125.865123 111.209323 0 0
-129.802122 107.272324 0 0
-129.897353 107.129799 0 0
+124.509507 111.6711 0 0
+125.056894 111.6711 0 0
+125.0569 111.671101 0 0
+125.0569 111.6711 0 0
+125.542908 111.574427 0 0
+125.954926 111.299126 0 0
+129.891925 107.362126 0 0
+129.987156 107.219602 0 0
 130.9499 108.182346 0 0
 130.9499 109.7026 0 0
 130.95779 109.742265 0 0
@@ -12047,12 +11961,12 @@ $POLYSCORNERS
 130.567387 115.243432 0 0
 130.470511 115.476736 0 0
 130.47029 115.729355 0 0
-130.47029 116.5098 0 0
-128.27 116.5098 0 0
-127.832593 116.596806 0 0
-127.461777 116.844577 0 0
-126.628154 117.6782 0 0
-126.171984 117.6782 0 0
+130.47029 116.3828 0 0
+128.27 116.3828 0 0
+127.783992 116.479473 0 0
+127.371974 116.754774 0 0
+126.575548 117.5512 0 0
+126.119509 117.5512 0 0
 126.082641 117.461971 0 0
 125.904168 117.283187 0 0
 125.670864 117.186311 0 0
@@ -12075,9 +11989,11 @@ $POLYSCORNERS
 124.005987 117.461032 0 0
 123.909111 117.694336 0 0
 123.90889 117.946955 0 0
-123.90889 118.781534 0 0
-123.901 118.8212 0 0
-123.90889 118.860865 0 0
+123.90889 118.277996 0 0
+123.870673 118.335192 0 0
+123.774 118.8212 0 0
+123.870673 119.307208 0 0
+123.90889 119.364403 0 0
 123.90889 119.946955 0 0
 124.005359 120.180429 0 0
 124.183832 120.359213 0 0
@@ -12086,12 +12002,14 @@ $POLYSCORNERS
 125.669755 120.45631 0 0
 125.903229 120.359841 0 0
 126.082013 120.181368 0 0
-126.172188 119.9642 0 0
-127.1016 119.9642 0 0
-127.539007 119.877194 0 0
-127.909823 119.629423 0 0
-128.743446 118.7958 0 0
-130.470328 118.7958 0 0
+126.119453 120.0912 0 0
+127.101594 120.0912 0 0
+127.1016 120.091201 0 0
+127.1016 120.0912 0 0
+127.587608 119.994527 0 0
+127.999626 119.719226 0 0
+128.796052 118.9228 0 0
+130.470369 118.9228 0 0
 130.4704 119.01785 0 0
 130.62915 119.1766 0 0
 131.9784 119.1766 0 0
@@ -12100,9 +12018,9 @@ $POLYSCORNERS
 132.2324 119.1766 0 0
 133.58165 119.1766 0 0
 133.7404 119.01785 0 0
-133.740471 118.7958 0 0
-135.416554 118.7958 0 0
-133.74051 120.471844 0 0
+133.74043 118.9228 0 0
+135.109948 118.9228 0 0
+133.74051 120.292238 0 0
 133.74051 119.929355 0 0
 133.7404 119.58935 0 0
 133.58165 119.4306 0 0
@@ -12114,8 +12032,8 @@ $POLYSCORNERS
 133.465568 120.341613 0 0
 133.644041 120.162829 0 0
 133.74051 119.929355 0 0
-133.74051 120.471844 0 0
-131.9784 122.233954 0 0
+133.74051 120.292238 0 0
+131.9784 122.054348 0 0
 131.9784 120.27985 0 0
 131.9784 119.4306 0 0
 130.62915 119.4306 0 0
@@ -12127,9 +12045,9 @@ $POLYSCORNERS
 131.231155 120.43871 0 0
 131.81965 120.4386 0 0
 131.9784 120.27985 0 0
-131.9784 122.233954 0 0
-129.066554 125.1458 0 0
-126.171984 125.1458 0 0
+131.9784 122.054348 0 0
+129.013948 125.0188 0 0
+126.119509 125.0188 0 0
 126.082641 124.929571 0 0
 125.904168 124.750787 0 0
 125.670864 124.653911 0 0
@@ -12139,9 +12057,11 @@ $POLYSCORNERS
 124.005987 124.928632 0 0
 123.909111 125.161936 0 0
 123.90889 125.414555 0 0
-123.90889 126.249134 0 0
-123.901 126.2888 0 0
-123.90889 126.328465 0 0
+123.90889 125.745596 0 0
+123.870673 125.802792 0 0
+123.774 126.2888 0 0
+123.870673 126.774808 0 0
+123.90889 126.832003 0 0
 123.90889 127.414555 0 0
 124.005359 127.648029 0 0
 124.183832 127.826813 0 0
@@ -12150,19 +12070,114 @@ $POLYSCORNERS
 125.669755 127.92391 0 0
 125.903229 127.827441 0 0
 126.082013 127.648968 0 0
-126.172188 127.4318 0 0
-129.54 127.4318 0 0
-129.977407 127.344794 0 0
-130.348223 127.097023 0 0
-139.919445 117.5258 0 0
-143.087354 117.5258 1 0
-170.778848 64.8996 0 0
+126.119453 127.5588 0 0
+129.539994 127.5588 0 0
+129.54 127.558801 0 0
+129.54 127.5588 0 0
+130.026008 127.462127 0 0
+130.438026 127.186826 0 0
+139.972051 117.6528 0 0
+142.780748 117.6528 1 0
+146.560821 90.7161 0 0
+143.58701 90.7161 0 0
+143.58701 81.637355 0 0
+143.5869 81.39735 0 0
+143.42815 81.2386 0 0
+142.3289 81.2386 0 0
+142.3289 81.98785 0 0
+142.48765 82.1466 0 0
+142.826145 82.14671 0 0
+143.078764 82.146489 0 0
+143.312068 82.049613 0 0
+143.490541 81.870829 0 0
+143.58701 81.637355 0 0
+143.58701 90.7161 0 0
+142.0749 90.7161 0 0
+142.0749 81.98785 0 0
+142.0749 81.2386 0 0
+140.97565 81.2386 0 0
+140.8169 81.39735 0 0
+140.81679 81.637355 0 0
+140.913259 81.870829 0 0
+141.091732 82.049613 0 0
+141.325036 82.146489 0 0
+141.577655 82.14671 0 0
+141.91615 82.1466 0 0
+142.0749 81.98785 0 0
+142.0749 90.7161 0 0
+142.040346 90.7161 0 0
+138.828024 87.503778 0 0
+139.009629 87.428741 0 0
+139.188413 87.250268 0 0
+139.285289 87.016964 0 0
+139.28551 86.764345 0 0
+139.28551 85.015855 0 0
+139.285289 84.763236 0 0
+139.188413 84.529932 0 0
+139.009629 84.351459 0 0
+138.776155 84.25499 0 0
+138.43615 84.2551 0 0
+138.2774 84.41385 0 0
+138.2774 85.7631 0 0
+139.12665 85.7631 0 0
+139.2854 85.60435 0 0
+139.28551 85.015855 0 0
+139.28551 86.764345 0 0
+139.2854 86.17585 0 0
+139.12665 86.0171 0 0
+138.2774 86.0171 0 0
+138.2774 86.0371 0 0
+138.0234 86.0371 0 0
+138.0234 86.0171 0 0
+138.0034 86.0171 0 0
+138.0034 85.7631 0 0
+138.0234 85.7631 0 0
+138.0234 84.41385 0 0
+137.8753 84.26575 0 0
+137.956422 84.184628 0 0
+137.956425 84.184626 0 0
+137.956426 84.184626 0 0
+138.231727 83.772608 0 0
+138.3284 83.2866 0 0
+138.3284 82.486622 0 0
+138.391789 82.333964 0 0
+138.39201 82.081345 0 0
+138.39201 80.684345 0 0
+138.295541 80.450871 0 0
+138.213712 80.3689 0 0
+140.906429 80.3689 0 0
+140.81679 80.585845 0 0
+140.8169 80.82585 0 0
+140.97565 80.9846 0 0
+142.0749 80.9846 0 0
+142.0749 80.9646 0 0
+142.3289 80.9646 0 0
+142.3289 80.9846 0 0
+143.42815 80.9846 0 0
+143.5869 80.82585 0 0
+143.58701 80.585845 0 0
+143.490541 80.352371 0 0
+143.312068 80.173587 0 0
+143.162707 80.111567 0 0
+143.311129 80.050241 0 0
+143.489913 79.871768 0 0
+143.586789 79.638464 0 0
+143.58701 79.385845 0 0
+143.58701 79.038261 0 0
+146.049386 81.500637 0 0
+146.049386 84.354726 0 0
+146.04918 84.355726 0 0
+146.011931 89.691234 0 0
+146.105209 90.177905 0 0
+146.377627 90.591835 0 0
+146.560821 90.7161 1 0
+170.461348 65.2171 0 0
 160.366374 75.312074 0 0
 160.091073 75.724092 0 0
 159.994399 76.2101 0 0
 159.9944 76.210105 0 0
-159.9944 79.765154 0 0
-159.19951 80.560043 0 0
+159.9944 79.585548 0 0
+159.19951 80.380438 0 0
 159.19951 78.937355 0 0
 159.199289 78.684736 0 0
 159.102413 78.451432 0 0
@@ -12174,27 +12189,12 @@ $POLYSCORNERS
 159.04065 79.9846 0 0
 159.1994 79.82585 0 0
 159.19951 78.937355 0 0
-159.19951 80.560043 0 0
-159.19942 80.560133 0 0
-159.1994 80.39735 0 0
+159.19951 80.380438 0 0
+159.190999 80.388949 0 0
 159.04065 80.2386 0 0
 158.1914 80.2386 0 0
-158.1914 81.677545 0 0
-158.163906 81.718693 0 0
-158.0769 82.1561 0 0
-158.0769 89.419973 0 0
-157.949806 89.726048 0 0
-157.811045 89.39022 0 0
-157.436253 89.014774 0 0
-157.251865 88.938209 0 0
-157.252645 88.93821 0 0
-157.505264 88.937989 0 0
-157.738568 88.841113 0 0
-157.917041 88.662329 0 0
-158.01351 88.428855 0 0
-158.01351 86.780345 0 0
-157.9374 86.596143 0 0
-157.9374 81.88785 0 0
+158.1914 80.2586 0 0
+157.9374 80.2586 0 0
 157.9374 80.2386 0 0
 157.9374 79.9846 0 0
 157.9374 78.33535 0 0
@@ -12236,7 +12236,13 @@ $POLYSCORNERS
 157.205171 81.950241 0 0
 157.438645 82.04671 0 0
 157.77865 82.0466 0 0
-157.9374 81.88785 0 0
+157.937398 81.887852 0 0
+157.937398 82.0466 0 0
+157.9374 82.0466 0 0
+157.97168 82.0466 0 0
+157.949899 82.1561 0 0
+157.9499 82.156105 0 0
+157.9499 86.626396 0 0
 157.9374 86.596143 0 0
 157.917041 86.546871 0 0
 157.738568 86.368087 0 0
@@ -12245,12 +12251,8 @@ $POLYSCORNERS
 156.96565 86.2711 0 0
 156.8069 86.42985 0 0
 156.8069 87.4776 0 0
-157.85465 87.4776 0 0
-158.0134 87.31885 0 0
-158.01351 86.780345 0 0
-158.01351 88.428855 0 0
-158.0134 87.89035 0 0
-157.85465 87.7316 0 0
+156.8269 87.4776 0 0
+156.8269 87.7316 0 0
 156.8069 87.7316 0 0
 156.8069 87.7516 0 0
 156.566498 87.7516 0 0
@@ -12292,12 +12294,9 @@ $POLYSCORNERS
 155.34629 88.428855 0 0
 155.442759 88.662329 0 0
 155.621232 88.841113 0 0
-155.854536 88.937989 0 0
-156.107155 88.93821 0 0
-156.107627 88.938209 0 0
-155.954211 89.0016 0 0
-154.473846 89.0016 0 0
-153.02701 87.554764 0 0
+155.701877 88.8746 0 0
+154.526451 88.8746 0 0
+153.02701 87.375158 0 0
 153.02701 86.610345 0 0
 153.02701 84.661855 0 0
 153.02701 83.410345 0 0
@@ -12365,10 +12364,10 @@ $POLYSCORNERS
 152.752068 86.198087 0 0
 152.518764 86.101211 0 0
 152.266145 86.10099 0 0
-151.131565 86.10099 0 0
-151.0919 86.0931 0 0
-151.052234 86.10099 0 0
-150.9649 86.10099 0 0
+151.635103 86.10099 0 0
+151.577908 86.062773 0 0
+151.0919 85.966099 0 0
+150.9649 85.991361 0 0
 150.9649 85.01235 0 0
 150.9649 84.1631 0 0
 150.9649 83.9091 0 0
@@ -12430,7 +12429,9 @@ $POLYSCORNERS
 149.917655 85.17121 0 0
 150.80615 85.1711 0 0
 150.9649 85.01235 0 0
-150.9649 86.10099 0 0
+150.9649 85.991361 0 0
+150.605892 86.062773 0 0
+150.548696 86.10099 0 0
 149.666145 86.10099 0 0
 149.432671 86.197459 0 0
 149.253887 86.375932 0 0
@@ -12441,9 +12442,9 @@ $POLYSCORNERS
 149.431732 88.274113 0 0
 149.665036 88.370989 0 0
 149.917655 88.37121 0 0
-150.610564 88.37121 0 0
-153.082454 90.8431 0 0
-148.653699 90.8431 0 0
+150.430958 88.37121 0 0
+152.775848 90.7161 0 0
+148.653699 90.7161 0 0
 148.653699 73.7616 0 0
 148.557994 73.280452 0 0
 148.53151 73.240816 0 0
@@ -12477,139 +12478,21 @@ $POLYSCORNERS
 148.53151 74.282383 0 0
 148.557994 74.242748 0 0
 148.653699 73.7616 0 0
-148.653699 90.8431 0 0
-143.58701 90.8431 0 0
-143.58701 81.637355 0 0
-143.5869 81.39735 0 0
-143.42815 81.2386 0 0
-142.3289 81.2386 0 0
-142.3289 81.98785 0 0
-142.48765 82.1466 0 0
-142.826145 82.14671 0 0
-143.078764 82.146489 0 0
-143.312068 82.049613 0 0
-143.490541 81.870829 0 0
-143.58701 81.637355 0 0
-143.58701 90.8431 0 0
-142.167346 90.8431 0 0
-142.0749 90.750654 0 0
-142.0749 81.98785 0 0
-142.0749 81.2386 0 0
-140.97565 81.2386 0 0
-140.8169 81.39735 0 0
-140.81679 81.637355 0 0
-140.913259 81.870829 0 0
-141.091732 82.049613 0 0
-141.325036 82.146489 0 0
-141.577655 82.14671 0 0
-141.91615 82.1466 0 0
-142.0749 81.98785 0 0
-142.0749 90.750654 0 0
-138.828024 87.503778 0 0
-139.009629 87.428741 0 0
-139.188413 87.250268 0 0
-139.285289 87.016964 0 0
-139.28551 86.764345 0 0
-139.28551 85.015855 0 0
-139.285289 84.763236 0 0
-139.188413 84.529932 0 0
-139.009629 84.351459 0 0
-138.776155 84.25499 0 0
-138.43615 84.2551 0 0
-138.2774 84.41385 0 0
-138.2774 85.7631 0 0
-139.12665 85.7631 0 0
-139.2854 85.60435 0 0
-139.28551 85.015855 0 0
-139.28551 86.764345 0 0
-139.2854 86.17585 0 0
-139.12665 86.0171 0 0
-138.2774 86.0171 0 0
-138.2774 86.0371 0 0
-138.0234 86.0371 0 0
-138.0234 86.0171 0 0
-138.0034 86.0171 0 0
-138.0034 85.7631 0 0
-138.0234 85.7631 0 0
-138.0234 84.41385 0 0
-137.8753 84.26575 0 0
-137.956422 84.184628 0 0
-137.956425 84.184626 0 0
-137.956426 84.184626 0 0
-138.231727 83.772608 0 0
-138.3284 83.2866 0 0
-138.3284 82.486622 0 0
-138.391789 82.333964 0 0
-138.39201 82.081345 0 0
-138.39201 80.684345 0 0
-138.295541 80.450871 0 0
-138.213712 80.3689 0 0
-140.906429 80.3689 0 0
-140.81679 80.585845 0 0
-140.8169 80.82585 0 0
-140.97565 80.9846 0 0
-142.0749 80.9846 0 0
-142.0749 80.9646 0 0
-142.3289 80.9646 0 0
-142.3289 80.9846 0 0
-143.42815 80.9846 0 0
-143.5869 80.82585 0 0
-143.58701 80.585845 0 0
-143.490541 80.352371 0 0
-143.312068 80.173587 0 0
-143.162707 80.111567 0 0
-143.311129 80.050241 0 0
-143.489913 79.871768 0 0
-143.586789 79.638464 0 0
-143.58701 79.385845 0 0
-143.58701 78.858656 0 0
-146.210676 81.482322 0 0
-146.210676 84.355833 0 0
-146.210466 84.356852 0 0
-146.173217 89.69236 0 0
-146.202273 89.843961 0 0
-146.202213 89.913884 0 0
-146.227323 89.974656 0 0
-146.254649 90.117224 0 0
-146.339509 90.246165 0 0
-146.366211 90.310789 0 0
-146.412666 90.357325 0 0
-146.49247 90.478584 0 0
-146.620214 90.565236 0 0
-146.669614 90.614722 0 0
-146.730342 90.639938 0 0
-146.850474 90.721427 0 0
-147.001652 90.752597 0 0
-147.066232 90.779413 0 0
-147.13199 90.77947 0 0
-147.27416 90.808783 0 0
-147.425761 90.779726 0 0
-147.495684 90.779787 0 0
-147.556456 90.754676 0 0
-147.699024 90.727351 0 0
-147.827965 90.64249 0 0
-147.892589 90.615789 0 0
-147.939125 90.569333 0 0
-148.060384 90.48953 0 0
-148.147036 90.361785 0 0
-148.196522 90.312386 0 0
-148.221738 90.251657 0 0
-148.303227 90.131526 0 0
-148.334397 89.980347 0 0
-148.361213 89.915768 0 0
-148.36127 89.850009 0 0
-148.390583 89.70784 0 0
-148.427823 84.373522 0 0
-148.428069 84.372333 0 0
-148.428679 84.28494 0 0
-148.428096 84.281898 0 0
-148.428096 81.146972 0 0
-148.462386 80.974586 0 0
-148.37538 80.537179 0 0
-148.127609 80.166363 0 0
-142.184623 74.223377 0 0
-142.038478 74.125726 0 0
-141.57971 73.666958 0 0
+148.653699 90.7161 0 0
+148.003869 90.7161 0 0
+148.173635 90.604373 0 0
+148.451805 90.194287 0 0
+148.551869 89.708966 0 0
+148.589119 84.373458 0 0
+148.588384 84.369626 0 0
+148.589386 84.364593 0 0
+148.589386 80.974586 0 0
+148.492713 80.488578 0 0
+148.217412 80.07656 0 0
+148.217408 80.076557 0 0
+142.274426 74.133574 0 0
+142.274422 74.133571 0 0
+141.57971 73.438858 0 0
 141.57971 69.444845 0 0
 141.5796 68.96735 0 0
 141.42085 68.8086 0 0
@@ -12621,8 +12504,8 @@ $POLYSCORNERS
 141.482613 69.930768 0 0
 141.579489 69.697464 0 0
 141.57971 69.444845 0 0
-141.57971 73.666958 0 0
-139.9286 72.015848 0 0
+141.57971 73.438858 0 0
+139.9286 71.787748 0 0
 139.9286 70.04685 0 0
 139.9286 68.8086 0 0
 138.69035 68.8086 0 0
@@ -12634,11 +12517,10 @@ $POLYSCORNERS
 139.040845 70.20571 0 0
 139.76985 70.2056 0 0
 139.9286 70.04685 0 0
-139.9286 72.015848 0 0
-138.16711 70.254358 0 0
-138.16711 68.632842 0 0
-138.53157 68.268381 0 0
-138.5316 68.39585 0 0
+139.9286 71.787748 0 0
+138.3284 70.187548 0 0
+138.3284 68.699651 0 0
+138.5819 68.44615 0 0
 138.69035 68.5546 0 0
 139.9286 68.5546 0 0
 139.9286 68.5346 0 0
@@ -12650,14 +12532,12 @@ $POLYSCORNERS
 141.579489 67.665736 0 0
 141.482613 67.432432 0 0
 141.303829 67.253959 0 0
-141.158566 67.193938 0 0
-141.34683 67.006003 0 0
-141.579334 66.446072 0 0
-141.579863 65.839788 0 0
-141.348337 65.279452 0 0
-141.007879 64.9384 0 0
-148.051281 64.9384 0 0
-147.96689 65.142645 0 0
+141.210653 67.215459 0 0
+141.522259 66.74911 0 0
+141.6431 66.1416 0 0
+141.522259 65.53409 0 0
+141.336378 65.2559 0 0
+147.966941 65.2559 0 0
 147.967 65.38265 0 0
 148.12575 65.5414 0 0
 149.225 65.5414 0 0
@@ -12666,11 +12546,9 @@ $POLYSCORNERS
 149.479 65.5414 0 0
 150.57825 65.5414 0 0
 150.737 65.38265 0 0
-150.73711 65.142645 0 0
-150.640641 64.909171 0 0
-150.631086 64.8996 0 0
-155.956 64.8996 0 0
-170.778848 64.8996 1 0
+150.737075 65.2171 0 0
+155.956 65.2171 0 0
+170.461348 65.2171 1 0
 177.953793 93.691858 0 0
 177.888899 94.0181 0 0
 177.8889 94.018105 0 0
@@ -12693,16 +12571,20 @@ $POLYSCORNERS
 152.434692 102.458673 0 0
 152.022674 102.733974 0 0
 152.022671 102.733977 0 0
-150.476948 104.2797 0 0
-139.4079 104.2797 0 0
-138.970493 104.366706 0 0
-138.599677 104.614477 0 0
-135.146664 108.06749 0 0
+150.603948 104.1527 0 0
+139.4079 104.1527 0 0
+138.921892 104.249373 0 0
+138.509874 104.524674 0 0
+138.509871 104.524677 0 0
+134.967058 108.06749 0 0
 134.667145 108.06749 0 0
 134.433671 108.163959 0 0
 134.254887 108.342432 0 0
 134.158011 108.575736 0 0
 134.15779 108.828355 0 0
+134.15779 109.320688 0 0
+134.137399 109.4232 0 0
+134.15779 109.525711 0 0
 134.15779 110.828355 0 0
 134.254259 111.061829 0 0
 134.432732 111.240613 0 0
@@ -12713,25 +12595,19 @@ $POLYSCORNERS
 136.330913 111.062768 0 0
 136.427789 110.829464 0 0
 136.42801 110.576845 0 0
-136.42801 110.019036 0 0
-139.881346 106.5657 0 0
-146.885272 106.5657 0 0
-146.734711 106.627911 0 0
-146.430778 106.931314 0 0
-146.361906 107.097174 0 0
-146.322672 107.155893 0 0
-146.309015 107.224549 0 0
-146.266087 107.327932 0 0
-146.265988 107.440859 0 0
-146.2405 107.569 0 0
-146.2405 113.5382 0 0
-145.4656 113.5382 0 0
-138.76 113.5382 0 0
-138.322593 113.625206 0 0
-137.951777 113.872977 0 0
-135.314954 116.5098 0 0
-133.740482 116.5098 0 0
-133.74051 116.477845 0 0
+136.42801 110.198641 0 0
+139.933951 106.6927 0 0
+146.407457 106.6927 0 0
+146.146673 107.082992 0 0
+146.05 107.569 0 0
+146.05 113.4112 0 0
+145.465599 113.4112 0 0
+138.760005 113.4112 0 0
+138.76 113.411199 0 0
+138.273992 113.507873 0 0
+137.861974 113.783174 0 0
+135.262348 116.3828 0 0
+133.74051 116.3828 0 0
 133.74051 115.477845 0 0
 133.644041 115.244371 0 0
 133.465568 115.065587 0 0
@@ -12739,13 +12615,13 @@ $POLYSCORNERS
 133.2484 109.6518 0 0
 133.2359 109.588958 0 0
 133.2359 107.7089 0 0
-133.169615 107.375666 0 0
-133.3754 107.4166 0 0
-133.812807 107.329594 0 0
-134.183623 107.081823 0 0
-136.914123 104.351323 0 0
-137.161894 103.980507 0 0
-137.178843 103.895298 0 0
+133.195918 107.507899 0 0
+133.3754 107.543601 0 0
+133.861408 107.446927 0 0
+134.273426 107.171626 0 0
+137.003926 104.441126 0 0
+137.279227 104.029108 0 0
+137.305821 103.895409 0 0
 137.420555 103.89551 0 0
 138.420555 103.89551 0 0
 138.654029 103.799041 0 0
@@ -13374,47 +13250,47 @@ $POLYSCORNERS
 187.194718 68.259218 0 0
 187.194715 68.259221 0 0
 178.561436 76.8925 0 0
-176.52111 76.8925 0 0
-176.52111 71.762745 0 0
-176.52111 67.714255 0 0
-176.520889 67.461636 0 0
-176.424013 67.228332 0 0
-176.245229 67.049859 0 0
-176.011755 66.95339 0 0
-174.02175 66.9535 0 0
-173.863 67.11225 0 0
+176.22111 76.8925 0 0
+176.22111 71.462745 0 0
+176.22111 68.014255 0 0
+176.220889 67.761636 0 0
+176.124013 67.528332 0 0
+175.945229 67.349859 0 0
+175.711755 67.25339 0 0
+174.02175 67.2535 0 0
+173.863 67.41225 0 0
 173.863 69.6115 0 0
-176.36225 69.6115 0 0
-176.521 69.45275 0 0
-176.52111 67.714255 0 0
-176.52111 71.762745 0 0
-176.521 70.02425 0 0
-176.36225 69.8655 0 0
+176.06225 69.6115 0 0
+176.221 69.45275 0 0
+176.22111 68.014255 0 0
+176.22111 71.462745 0 0
+176.221 70.02425 0 0
+176.06225 69.8655 0 0
 173.863 69.8655 0 0
-173.863 72.36475 0 0
-174.02175 72.5235 0 0
-176.011755 72.52361 0 0
-176.245229 72.427141 0 0
-176.424013 72.248668 0 0
-176.520889 72.015364 0 0
-176.52111 71.762745 0 0
-176.52111 76.8925 0 0
+173.863 72.06475 0 0
+174.02175 72.2235 0 0
+175.711755 72.22361 0 0
+175.945229 72.127141 0 0
+176.124013 71.948668 0 0
+176.220889 71.715364 0 0
+176.22111 71.462745 0 0
+176.22111 76.8925 0 0
 175.23033 76.8925 0 0
 175.1328 76.8731 0 0
 174.340607 77.030677 0 0
 173.669018 77.479418 0 0
 173.609 77.569241 0 0
-173.609 72.36475 0 0
+173.609 72.06475 0 0
 173.609 69.8655 0 0
-171.10975 69.8655 0 0
-170.951 70.02425 0 0
-170.95089 71.762745 0 0
-170.951111 72.015364 0 0
-171.047987 72.248668 0 0
-171.226771 72.427141 0 0
-171.460245 72.52361 0 0
-173.45025 72.5235 0 0
-173.609 72.36475 0 0
+171.40975 69.8655 0 0
+171.251 70.02425 0 0
+171.25089 71.462745 0 0
+171.251111 71.715364 0 0
+171.347987 71.948668 0 0
+171.526771 72.127141 0 0
+171.760245 72.22361 0 0
+173.45025 72.2235 0 0
+173.609 72.06475 0 0
 173.609 77.569241 0 0
 173.220277 78.151007 0 0
 173.06791 78.917007 0 0
@@ -13901,26 +13777,27 @@ $POLYSCORNERS
 138.654968 95.642387 0 0
 138.421664 95.545511 0 0
 138.169045 95.54529 0 0
-137.2489 95.54529 0 0
-137.2489 94.6531 0 0
-137.248899 94.653099 0 0
-137.161894 94.215693 0 0
-137.161893 94.215692 0 0
-137.079677 94.092647 0 0
-136.914123 93.844877 0 0
-136.914123 93.844876 0 0
-136.0934 93.024153 0 0
-136.0934 88.002046 0 0
-140.885676 92.794323 0 0
-140.885677 92.794323 0 0
-141.256492 93.042094 0 0
-141.256493 93.042094 0 0
-141.329062 93.056529 0 0
-141.6939 93.1291 0 0
-154.8384 93.1291 0 0
-155.275807 93.042094 0 0
-155.646623 92.794323 0 0
-156.975733 91.465212 0 0
+137.3759 95.54529 0 0
+137.3759 94.6531 0 0
+137.375899 94.653099 0 0
+137.3759 94.653099 0 0
+137.35986 94.572465 0 0
+137.279227 94.167092 0 0
+137.003926 93.755074 0 0
+137.003922 93.755071 0 0
+136.2204 92.971548 0 0
+136.2204 88.129046 0 0
+140.509923 92.41857 0 0
+140.520573 92.472108 0 0
+140.795874 92.884126 0 0
+141.207892 93.159427 0 0
+141.6939 93.2561 0 0
+154.838394 93.2561 0 0
+154.8384 93.256101 0 0
+154.8384 93.2561 0 0
+155.324408 93.159427 0 0
+155.736426 92.884126 0 0
+157.281804 91.338746 0 0
 157.43428 91.275745 0 0
 157.809726 90.900953 0 0
 157.949993 90.563151 0 0
@@ -13932,9 +13809,9 @@ $POLYSCORNERS
 160.349726 90.900953 0 0
 160.553167 90.411013 0 0
 160.55363 89.880514 0 0
-160.3629 89.418911 0 0
-160.3629 82.629546 0 0
-160.945736 82.04671 0 0
+160.4899 89.726275 0 0
+160.4899 82.682151 0 0
+161.125341 82.04671 0 0
 161.890155 82.04671 0 0
 162.123629 81.950241 0 0
 162.302413 81.771768 0 0
@@ -13944,66 +13821,61 @@ $POLYSCORNERS
 162.437727 80.597608 0 0
 162.5344 80.1116 0 0
 162.5344 76.736151 0 0
-170.950928 68.319622 0 0
-170.951 69.45275 0 0
-171.10975 69.6115 0 0
+171.25089 68.01966 0 0
+171.251 69.45275 0 0
+171.40975 69.6115 0 0
 173.609 69.6115 0 0
-173.609 67.11225 0 0
-173.45025 66.9535 0 0
-172.317113 66.953437 0 0
-172.746941 66.52361 0 0
-176.011755 66.52361 0 0
-176.245229 66.427141 0 0
-176.424013 66.248668 0 0
-176.520889 66.015364 0 0
-176.52111 65.762745 0 0
-176.52111 61.462745 0 0
-176.424641 61.229271 0 0
-176.246168 61.050487 0 0
-176.012864 60.953611 0 0
-175.760245 60.95339 0 0
-171.460245 60.95339 0 0
-171.226771 61.049859 0 0
-171.047987 61.228332 0 0
-170.951111 61.461636 0 0
-170.95089 61.714255 0 0
-170.95089 62.3596 0 0
-155.956 62.3596 0 0
-149.3908 62.3596 0 0
-149.195739 62.3984 0 0
-141.007879 62.3984 0 0
-140.920003 62.31037 0 0
+173.609 67.41225 0 0
+173.45025 67.2535 0 0
+172.017144 67.253406 0 0
+173.046941 66.22361 0 0
+175.711755 66.22361 0 0
+175.945229 66.127141 0 0
+176.124013 65.948668 0 0
+176.220889 65.715364 0 0
+176.22111 65.462745 0 0
+176.22111 61.762745 0 0
+176.124641 61.529271 0 0
+175.946168 61.350487 0 0
+175.712864 61.253611 0 0
+175.460245 61.25339 0 0
+171.760245 61.25339 0 0
+171.526771 61.349859 0 0
+171.347987 61.528332 0 0
+171.251111 61.761636 0 0
+171.25089 62.014255 0 0
+171.25089 62.0421 0 0
+155.956 62.0421 0 0
+149.3908 62.0421 0 0
+149.195738 62.0809 0 0
+140.367378 62.0809 0 0
 140.360072 62.077866 0 0
 139.753788 62.077337 0 0
 139.193452 62.308863 0 0
 138.76437 62.737197 0 0
 138.531866 63.297128 0 0
 138.531337 63.903412 0 0
+138.628348 64.138197 0 0
+138.655741 64.27591 0 0
+138.733067 64.391636 0 0
 138.762863 64.463748 0 0
-139.170339 64.871935 0 0
-139.157953 64.8843 0 0
-131.941985 64.8843 0 0
-131.923277 64.877361 0 0
-131.823053 64.881123 0 0
-131.7244 64.8615 0 0
-125.7528 64.8615 0 0
-125.746164 64.862819 0 0
-125.6792 64.8495 0 0
-104.9876 64.8495 0 0
-104.506452 64.945206 0 0
-104.098555 65.217755 0 0
-98.764557 70.551752 0 0
-98.764554 70.551755 0 0
-93.967209 75.3491 0 0
-70.4596 75.3491 0 0
-69.978452 75.444806 0 0
-69.570554 75.717355 0 0
-68.313419 76.97449 0 0
-68.176645 76.97449 0 0
-67.943171 77.070959 0 0
-67.764387 77.249432 0 0
-67.7024 77.398713 0 0
-67.640413 77.249432 0 0
+138.818472 64.519454 0 0
+138.841621 64.5541 0 0
+131.839023 64.5541 0 0
+131.7244 64.5313 0 0
+125.7528 64.5313 0 0
+125.746164 64.532619 0 0
+125.6792 64.5193 0 0
+104.9876 64.5193 0 0
+104.38009 64.640141 0 0
+103.865068 64.984268 0 0
+98.531068 70.318268 0 0
+93.830436 75.0189 0 0
+70.4596 75.0189 0 0
+69.85209 75.139741 0 0
+69.337068 75.483868 0 0
+67.609868 77.211068 0 0
+67.606712 77.21579 0 0
 67.461629 77.070959 0 0
 67.228155 76.97449 0 0
 66.98815 76.9746 0 0
@@ -14014,10 +13886,8 @@ $POLYSCORNERS
 66.8294 78.4866 0 0
 66.8294 79.58585 0 0
 66.98815 79.7446 0 0
-67.228155 79.74471 0 0
-67.4451 79.65507 0 0
-67.4451 81.314129 0 0
-67.228155 81.22449 0 0
+67.1149 79.744658 0 0
+67.1149 81.224541 0 0
 66.98815 81.2246 0 0
 66.8294 81.38335 0 0
 66.8294 82.4826 0 0
@@ -14184,28 +14054,34 @@ $POLYSCORNERS
 41.386518 112.8796 0 0
 49.5554 112.8796 0 0
 49.5554 117.5766 0 0
-71.6374 117.5766 0 0
-71.6374 120.5324 0 0
-71.724406 120.969807 0 0
-71.972177 121.340623 0 0
-76.610976 125.979422 0 0
-76.610977 125.979423 0 0
-76.981792 126.227193 0 0
-76.981793 126.227194 0 0
-77.419199 126.314199 0 0
-77.4192 126.3142 0 0
-92.338154 126.3142 0 0
-96.118176 130.094222 0 0
-96.118177 130.094223 0 0
-96.488992 130.341993 0 0
-96.488993 130.341994 0 0
-96.926399 130.428999 0 0
-96.9264 130.429 0 0
-132.9436 130.429 0 0
-133.381007 130.341994 0 0
-133.751823 130.094223 0 0
-145.384904 118.461141 0 0
-145.38489 118.506955 0 0
+71.5104 117.5766 0 0
+71.5104 120.532394 0 0
+71.510399 120.5324 0 0
+71.607073 121.018408 0 0
+71.882374 121.430426 0 0
+76.521171 126.069222 0 0
+76.521174 126.069226 0 0
+76.933191 126.344526 0 0
+76.933192 126.344527 0 0
+77.322526 126.42197 0 0
+77.419199 126.4412 0 0
+77.419199 126.441199 0 0
+77.4192 126.4412 0 0
+92.285548 126.4412 0 0
+96.028371 130.184022 0 0
+96.028374 130.184026 0 0
+96.440391 130.459326 0 0
+96.440392 130.459327 0 0
+96.829726 130.53677 0 0
+96.926399 130.556 0 0
+96.926399 130.555999 0 0
+96.9264 130.556 0 0
+132.943594 130.556 0 0
+132.9436 130.556001 0 0
+132.9436 130.556 0 0
+133.429608 130.459327 0 0
+133.841626 130.184026 0 0
+145.424012 118.601638 0 0
 145.481359 118.740429 0 0
 145.659832 118.919213 0 0
 145.893136 119.016089 0 0
@@ -14217,13 +14093,9 @@ $POLYSCORNERS
 147.173 117.7542 0 0
 147.193 117.7542 0 0
 147.193 116.90495 0 0
-147.067048 116.778997 0 0
-148.029736 115.81631 0 0
-148.745755 115.81631 0 0
-148.979229 115.719841 0 0
-149.06572 115.6335 0 0
-153.168208 115.6335 0 0
-153.218447 115.683826 0 0
+147.15685 116.8688 0 0
+148.201651 115.824 0 0
+153.556023 115.824 0 0
 153.708387 115.887267 0 0
 154.238886 115.88773 0 0
 154.72918 115.685145 0 0
@@ -14256,36 +14128,31 @@ $POLYSCORNERS
 153.220219 110.408186 0 0
 153.281872 110.643798 0 0
 153.561116 110.742082 0 0
-153.22042 110.882855 0 0
-153.168684 110.9345 0 0
-149.9872 110.9345 0 0
-149.574093 111.016672 0 0
-149.223878 111.250678 0 0
-149.223875 111.250681 0 0
-148.3995 112.075056 0 0
-148.3995 107.819987 0 0
-148.424713 107.759268 0 0
-148.4249 107.5436 0 0
-148.425087 107.329816 0 0
-148.342728 107.130493 0 0
-148.261089 106.932911 0 0
-148.108722 106.780278 0 0
-147.957686 106.628978 0 0
-147.805296 106.5657 0 0
-150.598604 106.5657 0 0
-150.643992 106.596027 0 0
+153.556475 110.744 0 0
+149.9872 110.744 0 0
+149.501192 110.840673 0 0
+149.089174 111.115974 0 0
+149.089171 111.115977 0 0
+148.59 111.615148 0 0
+148.59 107.569 0 0
+148.493327 107.082992 0 0
+148.232542 106.6927 0 0
+151.129994 106.6927 0 0
 151.13 106.692701 0 0
-151.616008 106.596027 0 0
-152.028026 106.320726 0 0
+151.130005 106.6927 0 0
+151.1808 106.6927 0 0
+151.666808 106.596027 0 0
+152.078826 106.320726 0 0
+152.181119 106.167632 0 0
 153.446751 104.902 0 0
 162.160947 104.902 0 0
 164.406714 107.147766 0 0
-164.406714 109.18467 0 0
-163.932722 108.710678 0 0
-163.582507 108.476672 0 0
-163.1694 108.3945 0 0
-162.401391 108.3945 0 0
-162.351153 108.344174 0 0
+164.406714 108.915262 0 0
+164.067426 108.575974 0 0
+163.655408 108.300673 0 0
+163.1694 108.203999 0 0
+163.169394 108.204 0 0
+162.013576 108.204 0 0
 162.013351 108.203906 0 0
 162.34918 108.065145 0 0
 162.724626 107.690353 0 0
@@ -14324,19 +14191,28 @@ $POLYSCORNERS
 160.838447 115.683826 0 0
 161.328387 115.887267 0 0
 161.858886 115.88773 0 0
-162.34918 115.685145 0 0
-162.400915 115.6335 0 0
-163.5254 115.6335 0 0
-163.938507 115.551328 0 0
-164.288722 115.317322 0 0
-164.376096 115.229946 0 0
-164.41115 115.265 0 0
+162.013124 115.824 0 0
+163.525394 115.824 0 0
+163.5254 115.824001 0 0
+163.5254 115.824 0 0
+164.011408 115.727327 0 0
+164.323189 115.519002 0 0
+164.411148 115.519002 0 0
+164.2524 115.67775 0 0
+164.25229 116.017755 0 0
+164.348759 116.251229 0 0
+164.527232 116.430013 0 0
+164.760536 116.526889 0 0
+165.013155 116.52711 0 0
+165.60165 116.527 0 0
+165.7604 116.36825 0 0
+165.7604 115.519 0 0
+165.7404 115.519 0 0
+165.7404 115.265 0 0
 165.7604 115.265 0 0
 165.7604 114.41575 0 0
-165.60165 114.257 0 0
-165.34909 114.256952 0 0
-165.628016 113.978027 0 0
-165.676714 113.987714 0 0
+165.61005 114.2654 0 0
+165.940135 113.935316 0 0
 166.162722 113.891041 0 0
 166.57474 113.61574 0 0
 166.677465 113.462 0 0
@@ -14392,18 +14268,6 @@ $POLYSCORNERS
 167.426041 116.251229 0 0
 167.52251 116.017755 0 0
 167.52251 121.751526 0 0
-165.7604 123.513636 0 0
-165.7604 116.36825 0 0
-165.7604 115.519 0 0
-164.41115 115.519 0 0
-164.2524 115.67775 0 0
-164.25229 116.017755 0 0
-164.348759 116.251229 0 0
-164.527232 116.430013 0 0
-164.760536 116.526889 0 0
-165.013155 116.52711 0 0
-165.60165 116.527 0 0
-165.7604 116.36825 0 0
 165.7604 123.513636 0 0
 165.360136 123.9139 0 0
 163.144908 123.9139 0 0
@@ -17822,77 +17686,77 @@ $POLYSCORNERS
 183.291196 97.117698 0 0
 183.625926 97.25669 0 0
 183.503199 97.3074 0 0
-176.52111 97.3074 0 0
-176.52111 71.762745 0 0
-176.52111 67.714255 0 0
-176.52111 65.762745 0 0
-176.52111 61.462745 0 0
-176.424641 61.229271 0 0
-176.246168 61.050487 0 0
-176.012864 60.953611 0 0
-175.760245 60.95339 0 0
-171.460245 60.95339 0 0
-171.226771 61.049859 0 0
-171.047987 61.228332 0 0
-170.951111 61.461636 0 0
-170.95089 61.714255 0 0
-170.95089 66.014255 0 0
-171.047359 66.247729 0 0
-171.225832 66.426513 0 0
-171.459136 66.523389 0 0
-171.711755 66.52361 0 0
-176.011755 66.52361 0 0
-176.245229 66.427141 0 0
-176.424013 66.248668 0 0
-176.520889 66.015364 0 0
-176.52111 65.762745 0 0
-176.52111 67.714255 0 0
-176.520889 67.461636 0 0
-176.424013 67.228332 0 0
-176.245229 67.049859 0 0
-176.011755 66.95339 0 0
-174.02175 66.9535 0 0
-173.863 67.11225 0 0
+176.22111 97.3074 0 0
+176.22111 71.462745 0 0
+176.22111 68.014255 0 0
+176.22111 65.462745 0 0
+176.22111 61.762745 0 0
+176.124641 61.529271 0 0
+175.946168 61.350487 0 0
+175.712864 61.253611 0 0
+175.460245 61.25339 0 0
+171.760245 61.25339 0 0
+171.526771 61.349859 0 0
+171.347987 61.528332 0 0
+171.251111 61.761636 0 0
+171.25089 62.014255 0 0
+171.25089 65.714255 0 0
+171.347359 65.947729 0 0
+171.525832 66.126513 0 0
+171.759136 66.223389 0 0
+172.011755 66.22361 0 0
+175.711755 66.22361 0 0
+175.945229 66.127141 0 0
+176.124013 65.948668 0 0
+176.220889 65.715364 0 0
+176.22111 65.462745 0 0
+176.22111 68.014255 0 0
+176.220889 67.761636 0 0
+176.124013 67.528332 0 0
+175.945229 67.349859 0 0
+175.711755 67.25339 0 0
+174.02175 67.2535 0 0
+173.863 67.41225 0 0
 173.863 69.6115 0 0
-176.36225 69.6115 0 0
-176.521 69.45275 0 0
-176.52111 67.714255 0 0
-176.52111 71.762745 0 0
-176.521 70.02425 0 0
-176.36225 69.8655 0 0
+176.06225 69.6115 0 0
+176.221 69.45275 0 0
+176.22111 68.014255 0 0
+176.22111 71.462745 0 0
+176.221 70.02425 0 0
+176.06225 69.8655 0 0
 173.863 69.8655 0 0
-173.863 72.36475 0 0
-174.02175 72.5235 0 0
-176.011755 72.52361 0 0
-176.245229 72.427141 0 0
-176.424013 72.248668 0 0
-176.520889 72.015364 0 0
-176.52111 71.762745 0 0
-176.52111 97.3074 0 0
+173.863 72.06475 0 0
+174.02175 72.2235 0 0
+175.711755 72.22361 0 0
+175.945229 72.127141 0 0
+176.124013 71.948668 0 0
+176.220889 71.715364 0 0
+176.22111 71.462745 0 0
+176.22111 97.3074 0 0
 173.609 97.3074 0 0
-173.609 72.36475 0 0
+173.609 72.06475 0 0
 173.609 69.8655 0 0
 173.609 69.6115 0 0
-173.609 67.11225 0 0
-173.45025 66.9535 0 0
-171.460245 66.95339 0 0
-171.226771 67.049859 0 0
-171.047987 67.228332 0 0
-170.951111 67.461636 0 0
-170.95089 67.714255 0 0
-170.951 69.45275 0 0
-171.10975 69.6115 0 0
+173.609 67.41225 0 0
+173.45025 67.2535 0 0
+171.760245 67.25339 0 0
+171.526771 67.349859 0 0
+171.347987 67.528332 0 0
+171.251111 67.761636 0 0
+171.25089 68.014255 0 0
+171.251 69.45275 0 0
+171.40975 69.6115 0 0
 173.609 69.6115 0 0
 173.609 69.8655 0 0
-171.10975 69.8655 0 0
-170.951 70.02425 0 0
-170.95089 71.762745 0 0
-170.951111 72.015364 0 0
-171.047987 72.248668 0 0
-171.226771 72.427141 0 0
-171.460245 72.52361 0 0
-173.45025 72.5235 0 0
-173.609 72.36475 0 0
+171.40975 69.8655 0 0
+171.251 70.02425 0 0
+171.25089 71.462745 0 0
+171.251111 71.715364 0 0
+171.347987 71.948668 0 0
+171.526771 72.127141 0 0
+171.760245 72.22361 0 0
+173.45025 72.2235 0 0
+173.609 72.06475 0 0
 173.609 97.3074 0 0
 171.39114 97.3074 0 0
 171.085073 97.180309 0 0
@@ -18542,16 +18406,16 @@ $POLYSCORNERS
 156.113263 130.533386 0 0
 156.211925 130.26653 0 0
 156.211925 132.0038 0 0
-148.487179 132.0038 0 0
-148.487179 107.539613 0 0
-148.424893 89.69611 0 0
-148.336361 89.25901 0 0
-148.087297 88.889061 0 0
-147.715618 88.642586 0 0
-147.27791 88.557107 0 0
-146.84081 88.645639 0 0
-146.470861 88.894703 0 0
-146.2532 89.222931 0 0
+148.614178 132.0038 0 0
+148.614178 107.53917 0 0
+148.551892 89.695667 0 0
+148.453523 89.209999 0 0
+148.176786 88.798945 0 0
+147.763809 88.525084 0 0
+147.277467 88.430108 0 0
+146.791799 88.528477 0 0
+146.380745 88.805214 0 0
+146.2532 88.997549 0 0
 146.2532 73.8886 0 0
 146.157494 73.407452 0 0
 145.884945 72.999555 0 0
@@ -18691,26 +18555,27 @@ $POLYSCORNERS
 145.884945 74.777645 0 0
 146.157494 74.369748 0 0
 146.2532 73.8886 0 0
-146.2532 89.222931 0 0
-146.224386 89.266382 0 0
-146.138907 89.70409 0 0
-146.201193 107.547593 0 0
-146.289725 107.984694 0 0
-146.538789 108.354643 0 0
-146.910468 108.601118 0 0
-147.348176 108.686596 0 0
-147.785276 108.598064 0 0
-148.155225 108.349 0 0
-148.4017 107.977322 0 0
-148.487179 107.539613 0 0
-148.487179 132.0038 0 0
+146.2532 88.997549 0 0
+146.106884 89.218191 0 0
+146.011908 89.704533 0 0
+146.074194 107.548036 0 0
+146.172562 108.033704 0 0
+146.4493 108.444759 0 0
+146.862276 108.71862 0 0
+147.348619 108.813596 0 0
+147.834287 108.715227 0 0
+148.245341 108.438489 0 0
+148.519202 108.025513 0 0
+148.614178 107.53917 0 0
+148.614178 132.0038 0 0
 134.455087 132.0038 0 0
 134.455087 106.059816 0 0
 134.291089 105.662911 0 0
 133.987686 105.358978 0 0
 133.591068 105.194287 0 0
 133.161616 105.193913 0 0
-132.872511 105.313368 0 0
+133.161163 105.1941 0 0
+132.872511 105.1941 0 0
 132.872511 69.663829 0 0
 132.859596 69.48145 0 0
 132.859596 65.894025 0 0
@@ -18748,9 +18613,8 @@ $POLYSCORNERS
 132.514503 70.129298 0 0
 132.729616 70.092152 0 0
 132.872511 69.663829 0 0
-132.872511 105.313368 0 0
-132.8538 105.3211 0 0
-132.334898 105.3211 0 0
+132.872511 105.1941 0 0
+132.334898 105.1941 0 0
 132.334898 70.308903 0 0
 131.7244 69.698405 0 0
 131.544795 69.87801 0 0
@@ -18769,8 +18633,8 @@ $POLYSCORNERS
 132.029774 70.635016 0 0
 132.297752 70.524016 0 0
 132.334898 70.308903 0 0
-132.334898 105.3211 0 0
-130.784324 105.3211 0 0
+132.334898 105.1941 0 0
+130.784324 105.1941 0 0
 130.784324 76.62112 0 0
 130.77213 76.396664 0 0
 130.77213 73.624514 0 0
@@ -18803,8 +18667,8 @@ $POLYSCORNERS
 130.372586 77.183181 0 0
 130.608198 77.121528 0 0
 130.784324 76.62112 0 0
-130.784324 105.3211 0 0
-130.77213 105.3211 0 0
+130.784324 105.1941 0 0
+130.77213 105.1941 0 0
 130.77213 81.244514 0 0
 130.569545 80.75422 0 0
 130.194753 80.378774 0 0
@@ -18851,8 +18715,8 @@ $POLYSCORNERS
 130.568226 82.264953 0 0
 130.771667 81.775013 0 0
 130.77213 81.244514 0 0
-130.77213 105.3211 0 0
-130.586511 105.3211 0 0
+130.77213 105.1941 0 0
+130.586511 105.1941 0 0
 130.586511 89.399629 0 0
 130.573596 89.21725 0 0
 130.573596 85.629825 0 0
@@ -18890,8 +18754,8 @@ $POLYSCORNERS
 130.228503 89.865098 0 0
 130.443616 89.827952 0 0
 130.586511 89.399629 0 0
-130.586511 105.3211 0 0
-130.048898 105.3211 0 0
+130.586511 105.1941 0 0
+130.048898 105.1941 0 0
 130.048898 90.044703 0 0
 129.4384 89.434205 0 0
 129.258795 89.61381 0 0
@@ -18910,8 +18774,8 @@ $POLYSCORNERS
 129.743774 90.370816 0 0
 130.011752 90.259816 0 0
 130.048898 90.044703 0 0
-130.048898 105.3211 0 0
-129.281483 105.3211 0 0
+130.048898 105.1941 0 0
+129.471552 105.1941 0 0
 129.535423 105.151423 0 0
 129.783194 104.780607 0 0
 129.8702 104.3432 0 0
@@ -18931,20 +18795,23 @@ $POLYSCORNERS
 122.7328 105.1814 0 0
 127.96384 105.1814 0 0
 128.289793 105.399194 0 0
-128.505589 105.442118 0 0
-128.185677 105.655877 0 0
-127.937906 106.026693 0 0
-127.8509 106.4641 0 0
-127.937906 106.901507 0 0
-128.185677 107.272323 0 0
-128.556493 107.520094 0 0
-128.9939 107.6071 0 0
-133.1849 107.6071 0 0
-133.622307 107.520094 0 0
-133.993123 107.272323 0 0
-134.17383 107.001875 0 0
-134.290022 106.885886 0 0
+128.332819 105.407752 0 0
+128.095874 105.566074 0 0
+127.820573 105.978092 0 0
+127.7239 106.4641 0 0
+127.820573 106.950108 0 0
+128.095874 107.362126 0 0
+128.507892 107.637427 0 0
+128.9939 107.7341 0 0
+133.1849 107.7341 0 0
+133.670908 107.637427 0 0
+134.082926 107.362126 0 0
+134.358227 106.950108 0 0
+134.445462 106.511545 0 0
 134.454713 106.489268 0 0
+134.454734 106.464933 0 0
+134.4549 106.4641 0 0
+134.454735 106.463273 0 0
 134.455087 106.059816 0 0
 134.455087 132.0038 0 0
 120.48871 132.0038 0 0
@@ -19852,5 +19719,25 @@ ZCorner 118.9 114.8 0
 ZCorner 106.1 102 0
 ZCorner 96.6 102 0
 ZCorner 96.6 104.4 1
+$endCZONE_OUTLINE
+$CZONE_OUTLINE
+ZInfo 54BE1921 0 ""
+ZLayer 23
+ZAux 4 E
+ZClearance 0.508 T
+ZMinThickness 0.254
+ZOptions 0 16 F 0.508 0.508
+ZSmoothing 0 0
+ZCorner 103.25 96.75 0
+ZCorner 100.65 96.75 0
+ZCorner 100.65 76.35 0
+ZCorner 103.25 76.35 1
+$POLYSCORNERS
+103.123 96.623 0 0
+100.777 96.623 0 0
+100.777 76.477 0 0
+103.123 76.477 0 0
+103.123 96.623 1 0
+$endPOLYSCORNERS
 $endCZONE_OUTLINE
 $EndBOARD
