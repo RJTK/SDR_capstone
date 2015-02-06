@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/ryan/Documents/Projects/fourth_year/schem/fourth_year/fourth_year.sch)
-    (date "Wed 21 Jan 2015 04:04:45 PM CST")
+    (date "Fri 06 Feb 2015 03:38:25 PM CST")
     (tool "eeschema (2013-jul-07)-stable"))
   (components
     (comp (ref R6)
@@ -1137,8 +1137,8 @@
         (field (name Footprint) ~)
         (field (name Datasheet) ~))
       (pins
-        (pin (num 1) (name GND) (type BiDi))
-        (pin (num 2) (name OUT) (type input))
+        (pin (num 1) (name OUT) (type input))
+        (pin (num 2) (name GND) (type BiDi))
         (pin (num 3) (name IN) (type input)))))
   (libraries
     (library (logical device)
@@ -1243,7 +1243,7 @@
     (net (code 29) (name 5V)
       (node (ref C37) (pin 1))
       (node (ref C28) (pin 1))
-      (node (ref Q2) (pin 2))
+      (node (ref Q2) (pin 1))
       (node (ref U2) (pin 3))
       (node (ref C50) (pin 1))
       (node (ref U8) (pin 1))
@@ -1434,7 +1434,6 @@
       (node (ref U5) (pin H9))
       (node (ref U5) (pin C9))
       (node (ref U5) (pin C12))
-      (node (ref Q2) (pin 1))
       (node (ref C2) (pin 2))
       (node (ref U5) (pin G8))
       (node (ref U5) (pin H21))
@@ -1458,6 +1457,7 @@
       (node (ref U5) (pin D6))
       (node (ref C27) (pin 2))
       (node (ref C30) (pin 2))
+      (node (ref Q2) (pin 2))
       (node (ref C28) (pin 2))
       (node (ref U5) (pin G14))
       (node (ref U5) (pin H39))
