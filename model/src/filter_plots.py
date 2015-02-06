@@ -45,3 +45,11 @@ def plot_filter(b, a):
   ax2.grid()
   fig.show()
   return
+
+def main():
+  plot_filter([1, -1], [1])
+
+if __name__ == '__main__':
+  main()
+  while True:
+    pass

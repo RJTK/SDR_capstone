@@ -56,14 +56,13 @@ def main():
   fm_mod, kf = modulate_fm(musicRL, fsBB, fsIF, debug = False, 
                            preemph = predeemph, fc = fc, progress = show_progress)
 
-  fm_mod = AWGN_channel(fm_mod, 5, debug = False, progress = show_progress)
+  #fm_mod = AWGN_channel(fm_mod, 5, debug = False, progress = show_progress)
   #fm_mod = distortion_channel(fm_mod, taps = 50, progress = show_progress)
 
-  #  fm_mod = multipath_channel(fm_mod, [1.1e-6, 3e-5, 2.6e-5, 2.4e-5, 1e-3],
-  #                             [1,1,1,1,1],
-  #                             fsIF, debug = True)
-  #  fm_mod = nonlinearphase_channel(fm_mod, taps = 12, debug = True)
-  #  fm_mod = AWGN_channel(fm_mod, 5, debug = False, progress = show_progress)
+  fm_mod = multipath_channel(fm_mod, [1e-7],
+                               [1], fsIF, debug = False)
+  #fm_mod = nonlinearphase_channel(fm_mod, taps = 12, debug = True)
+  #fm_mod = AWGN_channel(fm_mod, 5, debug = False, progress = show_progress)
 
   #The analog_to_digital function is only really useful for generating an
   #output file, since the following arithmetic is still done with float64.

@@ -7,7 +7,7 @@ import numpy as np
 
 from progress.bar import Bar
 from numpy import sqrt, random, zeros, append
-from scipy.signal import lfilter
+from scipy.signal import lfilter, resample
 from matplotlib import pyplot as plt
 from numpy.polynomial import polynomial as poly
 
@@ -99,9 +99,9 @@ def distortion_channel(x, tap_magnitude = 1, taps = 5, debug = False,
   return distorted
 
 #-------------------------------------------------------------------------------
-def multipath_channel(x, delay_time, G, fs, debug = False):
+def multipath_channel(x, delay_time, G, fs, debug = False, warn = 0):
   '''
-  *NOT COMPLETE*
+  *DOESN'T REALLY WORK*
 
   Models a multipath channel.  This function creates a delayed version of the 
   signal 'x' by disgarding samples, multiplies by a gain factor G, and adds
@@ -117,28 +117,66 @@ def multipath_channel(x, delay_time, G, fs, debug = False):
   possible to effectively shift the signal by some small amount, without
   incurring a huge computational cost? ***
 
+  *** Also, it seems a huge amount of extra noise is added somewhere in this
+  function.  It is not just a delay... ***
+
   x: The original signal
   delay_time: A delay time in seconds.  That is, the multipath propagation delay.
     This will probably be on the order of micro seconds or nano seconds.  Light
     takes appx 3ns to travel 1m.  So, roughly 3us to travel 1Km
   G: A gain factor for the multipath.  Must be 0 <= G <= 1
   fs: The sample rate (used to calculate time in seconds)
+  warn: If the factor of additional samples is greater than the specified value
+    A warning is raised and the user is asked if he wishes to continue.  Use
+    warn = -1 to disable.
   '''
-  bar = Bar('Multipath channel...', max = 3 + len(G))
-  bar.next()
+  print 'Multipath Channel'
   fs = float(fs)
-  assert len(delay_time) == len(G)
+  assert len(delay_time) == len(G), \
+    'delay_time and G must have the same number of elements'
   G = [float(g) for g in G]
   delay_time = [float(dt) for dt in delay_time]
   for g in G:
-    assert(0 <= g and g <= 1)
-  multipath_signals = []
-  bar.next()
+    assert(0 <= g and g <= 1), 'Gains must be in the [0,1] interval'
+
+  min_delay = min(delay_time) #The smallest delay, the sample time needs to be \
+                              #equal to, or an integer factor less than this.
+  fs_new = 1./min_delay #The required sample rate
+  rate_gain_noround = (fs_new / fs) #The factor of required additional samples
+  rate_gain = int(round(rate_gain_noround))
+
+  if warn >= 0:
+    if rate_gain >= warn:
+      yes = ['yes', 'y', 'ye', '']
+      no = ['no', 'n']
+      while True:
+        choice = raw_input('The rate gain required for multipath '
+                           'channel modeling is %d. do you wish to '
+                           'continue?  [Yes/No] ' % rate_gain).lower()
+        if choice in yes:
+          break #Continue to the upsampling!
+        elif choice in no:
+          return x #Return the original signal unmodified
+        else:
+          print 'Please answer \'yes\' or \'no\''
+          continue
 
   dt_sample = 1./fs #Amount of time per sample  
+  original_num_samples = len(x)
+  if rate_gain > 1:
+    print 'Resampling.  This may take some time ...'
+    x = resample(x, len(x)*rate_gain)
+    dt_sample = 1./(fs*rate_gain)
+
+  bar = Bar('Multipath channel...', max = 2 + len(G))
+  bar.next()
+  Err = []
+  y = x
   for T, g in zip(delay_time, G):
-    n_samples = T/dt_sample #Number of samples for the delay time
-    n_samples = int(round(n_samples)) #Round to nearest sample
+    n_samples_noround = T/dt_sample #Number of samples for the delay time
+    n_samples = int(round(n_samples_noround)) #Round to nearest sample
+    err = n_samples/n_samples_noround - 1
+    Err.append(err)
     if n_samples <= 0:
       print '  WARN: 0 samples of delay'
     if debug == True:
@@ -146,21 +184,25 @@ def multipath_channel(x, delay_time, G, fs, debug = False):
     multipath = x[0:-1*n_samples]
     multipath = append(zeros(n_samples), multipath)
     multipath = multipath*g
-    multipath_signals.append(multipath)
+    y = y + multipath
     bar.next()
 
-  y = x
-  for m in multipath_signals:
-    y = y + m
+  if debug == True:
+    #We plot x if debug is true
+    x = resample(x, original_num_samples)
+  #y is always returned, so it must always be resampled
+  y = resample(y, original_num_samples)
+    
   mx = max(max(y), -1*min(y))
   y = y/mx #normalize to 1
   bar.next()
 
   if debug == True:
+    print "The errors:",
+    print Err
     fig = plt.figure()
     spec_plot(x, fs, fig, sub_plot = (1,2,1), plt_title = 'Original')
-    spec_plot(multipath_signals[0], fs, fig, sub_plot = (1,2,2), 
-              plt_title = 'Multipath 1')
+    spec_plot(y, fs, fig, sub_plot = (1,2,2), plt_title = 'Multipath')
     fig.show()
 
   bar.finish()
