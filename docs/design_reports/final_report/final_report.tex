@@ -326,7 +326,7 @@ Applying a lowpass filter (with a gain of 2) to these two quantities yields what
 For a more general exposition of the effects of IQ demodulation in the frequency domain, see \cite{iq_sampling}.  However, our project is primarily related to demodulating FM broadcast radio and the preceeding information is enough.
 
 \section{Project Overview and SDR Components}
-SDR involves three main components.  An analog radio frequency front end \ref{sec:rf_frontend}, an FPGA (or other suitable high speed processing unit) \ref{sec:fpga}, and a software system \ref{sec:software}.  These three components and their relationship to our project are explained in this section.
+SDR involves three main components.  An analog radio frequency front end \ref{sec:analog_frontend}, an FPGA (or other suitable high speed processing unit) \ref{sec:fpga}, and a software system \ref{sec:software}.  These three components and their relationship to our project are explained in this section.
 
 \subsection{Analog Front End}
 \label{sec:analog_frontend}
@@ -352,20 +352,16 @@ The most popular radio architecture is the superheterodyne radio.  This system m
 \label{sec:fpga}
 FPGAs are well suited for software defined radio for a variety of reasons.  One of the main reasons is that they are reconfigurable.  As explained in section \ref{sec:intro}, flexibility is essentially the whole point of SDR.  FPGAs are typically used to implement portions of the signal processing chain that require the fastest processing.  For example, FFTs, filters, channel selection, resampling, quadrature sampling etc...
 
-%
-% Write more here
-%
+The reason that FPGAs are necessary in the first place is that even after the signal is mixed down to a lower IF frequency, the required sample rate is still very high.  In our project in particular, the sample rate is 29MSPs.  Processing even this modest speed is beyond the capability of DSPs or GPPs.  The FPGA is suitable for high data rate computations that involve simple and fast operations, whereas general purpose processors are more suitable for algorithms that require a lot of decision making or intelligence.
 
 \subsection{Software}
 \label{sec:software}
-%Need reference for kernel space and user space
+The software in ``Software Defined Radio'', is obviously a quite substantial component.  Serious SDR packages such as GNURadio will contain on the order of hundreds of thousands of lines of code.  This software is quite generic, and can be used to process any digital data regardless of it's origin.  That is to say, we could potentially interface our hardware with a well developed SDR platform.  For research and development purposes it isn't necessary to develop custom software.  However, a commercial implementation would probably have custom code that is optimized for a particular platform or purpose.
 
-The software in ``Software Defined Radio'', is obviously a quite substantial component.  Serious SDR packages such as GNURadio will contain on the order of millions of lines of code.  This software is quite generic, and can be used to process any digital data regardless of it's origin.  That is to say, we could potentially interface our hardware with a well developed SDR platform.  We have no reaso to recreate our own software.
-
-Even though the signal processing software is very generic, that doesn't mean you can just plug any radio peripheral into your computer and expect it to work.  There needs to be a small layer of software between the SDR platform and the hardware peripheral, and this layer - called a \textit{driver} - needs to be unique to each hardware peripheral (and each operating system). \footnote{unless the hardware is explicitly designed to take advantage of existing drivers}.  This driver software operates in kernel space \cite{kernel_space}, and provides a generic interface between userspace code \ref{user_space} where the SDR software exists, and the SDR hardware.
+Even though the signal processing software is very generic, that doesn't mean you can just plug any radio peripheral into your computer and expect it to work.  There needs to be a small layer of software between the SDR platform and the hardware peripheral, and this layer - called a \textit{driver} - needs to be unique to each hardware peripheral (and each operating system). \footnote{unless the hardware is explicitly designed to take advantage of existing drivers}.  This driver software operates in kernel space, and provides a generic interface between userspace code where the SDR software exists, and the SDR hardware.
 
 \subsection{Project Scope}
-The goals of our project are to implement an SDR \textit{peripheral}.  The peripheral is the hardware component that digitizes the RF waveform and after suitable preprocessing, sends the data to a computer.  We have went through a degree in electronics engineering, and thus we wish to focus on the hardware design.  Writing a driver to interface with our hardware, while still in the scope of work for an electrical engineer, is beyond the scope of our project.  The reason is that writing such a driver would be a substantial undertaking (for a non expert).  If our group was made up of 3 individuals rather than 2, this would be an appropriate task for them to take on.
+The goals of our project are to implement an SDR \textit{peripheral}.  The peripheral is the hardware component that digitizes the RF waveform and after suitable preprocessing, sends the data to a computer.  We have went through a degree in electronics engineering, and thus we wish to focus on the hardware design.  Writing a driver to interface with our hardware, while still in the scope of work for an electrical engineer, is beyond the scope of our project.  The reason is that writing such a driver would be a substantial undertaking (for a non expert).  If our group was made up of 3 individuals rather than 2, an appropriate task for them would be to figure out how to interface our peripheral with GNURadio.
 
 In order to incorporate a driver to interface in real time to an SDR platform like GNURadio would involve a large amount of work.  The person writing this driver would need to work closely with the FPGA developer in order to establish a communications protocol between the FPGA and the driver.  Then, they would need to write a module in GNURadio that interfaces with the driver.  Also consider that this driver needs to exist in kernel space.  Writing kernel space code is very different from writing user space code and would require a lot of background studying before even getting started.  For these reasons, we are wanted to keep our computer interface as simple as possible.
 
@@ -381,11 +377,11 @@ In order to incorporate a driver to interface in real time to an SDR platform li
 % Wrote on plane
 % No citations for numpy, scipy, matplotlib, lapack, blas in bibtex.
 
-In the early stages of the design we built a simple model in Python.  Python is a powerful general purpose scripting language that is well suited for a variety of tasks.  A number of Python packages exist which give Python similar capabilities to MatLab, namely NumPy\cite{numpy}, SciPy\cite{scipy}, and MatPlotLib\cite{matplotlib}.  In fact, these packages interface with the exact same FORTRAN code that MatLab is based on, LAPACK\cite{lapack}, and BLAS\cite{blas}.  The main advantage of using Python over MatLab is that Python is completely free software, and is also more suited to various general purpose tasks (in particular file io) than MatLab is.
+In the early stages of the design we built a simple model in Python.  Python is a powerful general purpose scripting language that is well suited for a variety of tasks.  A number of Python packages exist which give Python similar capabilities to MatLab, namely numpy, matplotlib, and the scipy library.  These packages all fall under the ecosystem called SciPy \cite{scipy}.  In fact, these packages interface with the exact same FORTRAN code that MatLab is based on, LAPACK\cite{lapack}, and BLAS\cite{blas}.  The main advantage of using Python over MatLab is that Python is completely free software.  Moreover, Python is still well suited for \textit{general purpose} tasks, whereas MatLab is designed only for number crunching.
 
-The source code for the Python model can be found in the Github repository \ref{sec:git}.  The goal of this model is two fold.  Firstly, it was meant as a way to test the feasibility of different modulation schemes.
+The source code for the Python model can be found in the Github repository \ref{sec:git}.  The goal of this model is two fold.  Firstly, it was meant as a way to test the feasibility of different modulation schemes.  Second, to get a feel for whether or not our system would work when the realities of noise, interferance, and distortion are present.
 
-
+Noise in our Python model is simulated by simply generating gaussian distributed random variables with a known variance and adding it to the radio signal.  We model distortion by generating an FIR filter with random taps.  With this model we were able to conclude that even under extremely heavy noise and distortion, the demodulation algorithm should still be capable of reproducing a recognizable signal.
 
 \section{RF Front end - MAX3543}
 \subsection{Differential Signaling}
@@ -408,7 +404,7 @@ Specifically, the output of the op-amp was designed to be centered about 1.5V, w
 \subsection{SPICE Modeling}
 A major concern with driving the ADC was impedance matching.  We were unsure whether or not some kind of matching network was needed.  In order to get a better sense of what was going on, a SPICE model was constructed and simulated using Ngspice \cite{ngspice}.
 
-The datasheet for the AD8138 seemed to suggest that +5V and 0V power supplies would be satisfactory for our application.  However, the first thing we found with the spice model was that this was not the case.  The AD8138 is not capable of swinging within about 1.3V of the supplies, see figure \ref{fig:ad8138_swing_bad}.  So, it was determined that a -5V supply would need to be included.  This is quite unfortunate, it was hoped there would be no switching supply on the board to cause extra noise and interference.  However, if the supplies are causing too much trouble, the PCB is designed to allow the voltages be supplied by the bench top supply.
+The datasheet for the AD8138 seemed to suggest that +5V and 0V power supplies would be satisfactory for our application.  However, the first thing we found with the spice model was that this was not the case.  The AD8138 is not capable of swinging within about 1.3V of the supplies, see figure \ref{fig:ad8138_swing_bad}.  So, it was determined that a -5V supply would need to be included.  This is quite unfortunate, it was hoped there would be no switching supply on the board to cause extra noise.  If necessary, power can be supplied by the bench top supply by simply soldering wires into the PCB and connecting them to the supply.  This is obviously a crude hack, but designing in connection points for this purpose just raises cost, design time, and complexity.  We have only included ``real'' test points where we are almost certain they will be needed.
 
 \begin{figure}[ht]
 \centering
