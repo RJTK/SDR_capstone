@@ -1,8 +1,9 @@
-\documentclass[a4paper, 12pt]{article}
+\documentclass[a4paper, 12pt, notitlepage]{article}
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows}
 \usetikzlibrary{shapes.geometric}
 \usepackage{fullpage}
+\usepackage{wrapfig}
 \usepackage{cite}
 \usepackage{hyperref}
 \usepackage{amsmath}
@@ -13,7 +14,7 @@
 \usepackage{subcaption}
 
 \author{Ryan Kinnear - 200273748 \\ Raza Rauf}
-\title{Implementation of Software Defined Radio}
+\title{FPGA Based Software Defined Radio Peripheral}
 \date{\today}
 
 \newtheorem{thm:NSST}{Nyquist-Shannon Sampling Theorem}
@@ -21,6 +22,10 @@
 \begin{document}
 
 \maketitle
+
+\begin{abstract}
+Wireless communication systems are a ubiquitous part of society and these systems, especially cellular systems, are advancing at an exponential rate.  Generally, significant portions of the communications protocols and algorithms (such as LTE) are implemented in monolithic integrated circuits.  This means that for a provider to update their system to a newer protocol, a lot of new hardware needs to be deployed - an expensive endeavour.  Implementing these algorithms in software enables wireless providers to upgrade to new protocols, add functionality, and fix problems simply by remotely downloading new code.  This approach is captured in the idea of software defined radio (SDR).  However, an SDR still requires a significant amount of electronics hardware (FPGAs, and analog ICs) between the antenna and the processor.  This hardware is known as the SDR peripheral.  The design and realization of an SDR peripheral is the objective of our project.  As a demonstration of functionality we will demodulate broadcast FM radio on an FPGA.
+\end{abstract}
 
 \newpage
 \tableofcontents
@@ -363,14 +368,36 @@ Even though the signal processing software is very generic, that doesn't mean yo
 \subsection{Project Scope}
 The goals of our project are to implement an SDR \textit{peripheral}.  The peripheral is the hardware component that digitizes the RF waveform and after suitable preprocessing, sends the data to a computer.  We have went through a degree in electronics engineering, and thus we wish to focus on the hardware design.  Writing a driver to interface with our hardware, while still in the scope of work for an electrical engineer, is beyond the scope of our project.  The reason is that writing such a driver would be a substantial undertaking (for a non expert).  If our group was made up of 3 individuals rather than 2, an appropriate task for them would be to figure out how to interface our peripheral with GNURadio.
 
-In order to incorporate a driver to interface in real time to an SDR platform like GNURadio would involve a large amount of work.  The person writing this driver would need to work closely with the FPGA developer in order to establish a communications protocol between the FPGA and the driver.  Then, they would need to write a module in GNURadio that interfaces with the driver.  Also consider that this driver needs to exist in kernel space.  Writing kernel space code is very different from writing user space code and would require a lot of background studying before even getting started.  For these reasons, we are wanted to keep our computer interface as simple as possible.
+In order to incorporate a driver to interface in real time to an SDR platform like GNURadio would involve a large amount of work.  The person writing this driver would need to work closely with the FPGA developer in order to establish a communications protocol between the FPGA and the driver.  Then, they would need to write a module in GNURadio that interfaces with the driver.  Also consider that this driver needs to exist in kernel space.  Writing kernel space code is very different from writing user space code and would require a lot of background studying before even getting started.  For these reasons, we are keeping our computer interface as simple as possible.
 
 %
 % What computer interface did we use in the end.  Write stuff here.
 %
 
 \section{System Design}
-\subsection{Analog}
+Figure \ref{fig:analog_block_diagram} is a block diagram of the analog front end component of the project.  Different blocks have been labeled with numbers (in red) for easy reference.  The dotted outline shows the conceptual boundary of the custom printed circuit board (PCB).  Everything in this figure has been the responsibility of Ryan.  On a higher level, this diagram is an implementation of the superheterodyne radio architecture described in section \ref{sec:analog_frontend}.  All the aspects of this design are described in greater detail in the following sections.
+
+\begin{figure}
+  \centering
+  \caption{Analog Front End Block Diagram}
+  \label{fig:analog_block_diagram}
+  \includegraphics[width=.8\textwidth]{images/system_diagram.eps}
+\end{figure}
+
+\subsection{RF Front end - MAX3543}
+The MAX3543 integrated circuit \cite{max3543} (label (3)) is a highly integrated RF tuner and downconverter.  This IC is a superhet architecture (see figure \ref{fig:analog_fronted}) designed for receiving analog and digital television signals.  It is capable of tuning to any 8MHz band between roughly 50MHz and 800MHz.  This 8MHz band is mixed down to a center frequency of 36.125MHz.  The frequency response can be seen in figure \ref{fig:max3543_freq_resp}.
+
+\begin{wrapfigure}{L}{0.5\textwidth}
+  \includegraphics[width=.48\textwidth]{images/max3543_freq_resp.png}
+  \caption{MAX3543 Frequency Response}
+  \label{fig:max3543_freq_resp}
+\end{wrapfigure}
+
+This IC is the ``core'' component of our project.  Implementing a radio front end from less integrated components would have been a substantial undertaking we viewed as being far beyond our scope.  However in hindsight, it may have been fairly doable - there are a lot of integrated circuits that implement mixers, tunable oscillators, etc...
+
+\subsection{Input - Antenna and Low Pass Filter}
+Labels (1) and (2) of the block diagram in figure \ref{fig:analog_block_diagram} is the first input section of the receiver.  The antenna is any standard television antenna matched to $75\Omega$.  The lowpass filter that the antenna feeds into is a simple discrete LC filter.  The MAX3543 has one RF input for high frequency (>300 MHz) and one RF input for low frequency (<300MHz).  Normally, a diplexing filter would split the RF spectrum on 300MHz, however we have implemented only the low frequency portion of this diplex filter.
+
 \subsection{Digital - FPGA vs DSP vs GPP}
 \subsection{Computer Modeling}
 \label{sec:model}
@@ -382,9 +409,6 @@ In the early stages of the design we built a simple model in Python.  Python is 
 The source code for the Python model can be found in the Github repository \ref{sec:git}.  The goal of this model is two fold.  Firstly, it was meant as a way to test the feasibility of different modulation schemes.  Second, to get a feel for whether or not our system would work when the realities of noise, interferance, and distortion are present.
 
 Noise in our Python model is simulated by simply generating gaussian distributed random variables with a known variance and adding it to the radio signal.  We model distortion by generating an FIR filter with random taps.  With this model we were able to conclude that even under extremely heavy noise and distortion, the demodulation algorithm should still be capable of reproducing a recognizable signal.
-
-\section{RF Front end - MAX3543}
-\subsection{Differential Signaling}
 
 \section{Analog to Digital Converter - AD9235}
 \subsection{Line Drivers - 74VHC541FT}
@@ -466,6 +490,29 @@ Figure \ref{fig:ad8138_bw_lowpass} shows the response of the system if a lowpass
 \section{Power Supplies}
 
 \section{PCB Design and Layout}
+\subsection{PCB Errata and Workarounds}
+Not suprisingly, the printed circuit board was not without errors.  It was expected there would be some issues and mistakes with the layout, but that these issues could be solved by some sort of workaround.  This section provides a list of the mistakes and the workarounds used.
+
+\begin{enumerate}
+  \item{
+    The pads for the DC barrel jack are the wrong way around.  For a center positive jack, the positive pin connects to the GND of the printed circuit board.  If this went un noticed it would fry everything on the board.  The workaround is simple, we just soldered the jack backwards on the underside of the board.
+  }
+
+  \item{
+    The GND and output pins for the UA78L05 5V regulator are backwards.  The problem is the same as what happened with the barrel jack.  The workaround again is to simply solder it in on a different angle.  The UA78L05 comes in a TO92 package, so this is not a big issue
+  }
+
+  \item{
+    Some of the through hole components have very little exposed copper on the backside of the PCB, making them difficult to solder.  This mistake is due to not knowing how to control this parameter in the EDA tool, we thought that we specified it correctly.  Again, this isn't a big issue there is enough room to solder everything down.
+    }
+
+  \item{ %I should include a picture of this.
+    The negative FB pin on the op amp feeds back to the negative input pin.  This was an unfortunate oversight, it was assumed that the negative output should feedback to the negative input, without carefully looking at the schematic in the datasheet.  This assumption caused a lot of grief when working with the SPICE model.  The problem was realized and fixed in SPICE, but forgot to make the change to the PCB as well.  This was a fairly serious problem since it is a surface mount device.  The workaround was to use through hole feedback resistors and solder them to the pads of the board and overtop of the op amp IC to make the proper connection.
+  }
+
+\end{enumerate}
+
+
 \subsection{FPGA Mezzanine Card Connector - VITA57.1}
 
 \clearpage
