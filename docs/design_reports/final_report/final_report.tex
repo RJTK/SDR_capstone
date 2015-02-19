@@ -24,7 +24,7 @@
 \maketitle
 
 \begin{abstract}
-Wireless communication systems are a ubiquitous part of society and these systems, especially cellular systems, are advancing at an exponential rate.  Generally, significant portions of the communications protocols and algorithms (such as LTE) are implemented in monolithic integrated circuits.  This means that for a provider to update their system to a newer protocol, a lot of new hardware needs to be deployed - an expensive endeavour.  Implementing these algorithms in software enables wireless providers to upgrade to new protocols, add functionality, and fix problems simply by remotely downloading new code.  This approach is captured in the idea of software defined radio (SDR).  However, an SDR still requires a significant amount of electronics hardware (FPGAs, and analog ICs) between the antenna and the processor.  This hardware is known as the SDR peripheral.  The design and realization of an SDR peripheral is the objective of our project.  As a demonstration of functionality we will demodulate broadcast FM radio on an FPGA.
+Wireless communication systems are a ubiquitous part of society and these systems, especially cellular systems, are advancing at an exponential rate.  Generally, significant portions of the communications protocols and algorithms (such as LTE) are implemented in monolithic integrated circuits.  This means that for a provider to update their system to a newer protocol, a lot of new hardware needs to be deployed - an expensive endeavor.  Implementing these algorithms in software enables wireless providers to upgrade to new protocols, add functionality, and fix problems simply by remotely downloading new code.  This approach is captured in the idea of software defined radio (SDR).  However, an SDR still requires a significant amount of electronics hardware (FPGAs, and analog ICs) between the antenna and the processor.  This hardware is known as the SDR peripheral.  The design and realization of an SDR peripheral is the objective of our project.  As a demonstration of functionality we will demodulate broadcast FM radio on an FPGA.
 \end{abstract}
 
 \newpage
@@ -224,7 +224,7 @@ Y_U(e^{j\omega}) = X(e^{j\omega L}) \qquad \text{Upsampling}
 
 Figure \ref{fig:multirate_freq} shows these effects visually in the frequency domaina.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \caption{Multirate in the Frequency Domain}
 \label{fig:multirate_freq}
 \centering
@@ -235,7 +235,7 @@ Notice that downsampling causes aliasing.  In order to downsample, the signal fi
 
 So, what is the point of downsampling?  The reason is that processing high speed digital data requires very fast hardware.  If the ADC is running at a modest 30MSPs with 12bits of width, then this is 360Mb/s.  And, if the entire signal processing chain requires a mere 20 operations per sample, then a processor capable of 600 million operations per second is required.  This isn't unobtainable, however it would definitely require a higher end device.  Most embedded processors run at rates well below 600MHz.  
 
-Downsampling a signal can significantly reduce the data rate without losing any information.  This is the reason that FPGAs are so commonly used in software defined radio.  FPGAs are capable of massive parallelism and extremely high speeds.  FPGAs are ideal for implementing filters and up/down samplers (resampling) \footnote{resampling is the processes of either downsampling, upsampling, or a combination thereof.  Fractional resampling is acheived by cascading downsamplers and upsamplers.}.  After downsampling, the digital bitstream is passed on to the computer.
+Downsampling a signal can significantly reduce the data rate without losing any information.  This is the reason that FPGAs are so commonly used in software defined radio.  FPGAs are capable of massive parallelism and extremely high speeds.  FPGAs are ideal for implementing filters and up/down samplers (resampling) \footnote{resampling is the processes of either downsampling, upsampling, or a combination thereof.  Fractional resampling is achieved by cascading downsamplers and upsamplers.}.  After downsampling, the digital bitstream is passed on to the computer.
 
 \subsection{Quadrature Demodulation}
 \label{sec:quadrature_sampling}
@@ -293,7 +293,7 @@ A(t) &= \sqrt{I^2(t) + Q^2(t})\\
 
 Finally, formula \ref{eq:quadrature_sampling4} can be interpreted geometrically (figure \ref{fig:quadrature_sampling}), and it becomes very convenient to use complex numbers to represent I/Q components.  That is, write the separate IQ components as a single complex number $I(t) + jQ(t)$.  This one complex number is a single IQ sample.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \caption{Geometric interpretation of formula \ref{eq:quadrature_sampling4}, and a complex number representation}
 \label{fig:quadrature_sampling}
 \centering
@@ -302,18 +302,22 @@ Finally, formula \ref{eq:quadrature_sampling4} can be interpreted geometrically 
 
 Since all of these quantities ($A, I, Q, \phi$) are time varying, they can be visualized as a helix in 3 dimensions.  This representation is far more enlightening than the typical 2D plots most of us are used to seeing.  For example, AM modulation can be seen with an IQ representation in figure \ref{fig:am_iq}, and PSK in figure \ref{fig:psk_iq}.
 
-\begin{figure}[ht]
-\caption{AM modulation visualized in IQ space}
-\label{fig:am_iq}
-\centering
-\includegraphics[width=9cm]{images/AM_IQ.png}
-\end{figure}
+\begin{figure}
+\begin{subfigure}[b]{0.45\textwidth}
+  \centering
+  \caption{AM} 
+  \label{fig:am_iq}
+  \includegraphics[width=\linewidth]{images/AM_IQ.png}
+\end{subfigure}
+\begin{subfigure}[b]{0.45\textwidth}
+  \centering
+  \caption{PSK}
+  \label{fig:psk_iq}
+  \includegraphics[width=\linewidth]{images/PSK_IQ.png}
+\end{subfigure}
 
-\begin{figure}[ht]
-\caption{PSK modulation visualized in IQ space}
-\label{fig:psk_iq}
-\centering
-\includegraphics[width=9cm]{images/PSK_IQ.png}
+\caption{IQ Space Modulation}
+\label{fig:iq_mod}
 \end{figure}
 
 The IQ representation is very powerful for digital processing because phase information is easily extracted.  The question remains, how to actually obtain the IQ samples?  The answer is by multiplying the signal separately by a cosine and a sine, both at the carrier frequency, then applying a low pass filter.
@@ -341,12 +345,12 @@ The RF front end mixes down the analog RF signal to a rate more appropriate for 
 
 The most popular radio architecture is the superheterodyne radio.  This system mixes down the RF frequency band to a common IF (intermediate frequency).  This means that regardless of which band the RF section is tuned to, it always mixes the band down to the same IF.  This radio architecture is very well suited to software radio applications because the IF frequency is fixed, there is no problem in picking a fixed sample rate.  This architecture can be seen in figure \ref{fig:superhet}
 
-\begin{figure}
-\centering
-\caption{Superheterodyne Radio Architecture}
-\label{fig:superhet}
-\includegraphics[width=.5\textwidth]{images/superhet.eps}
-\end{figure}
+\begin{wrapfigure}{R}{0.55\textwidth}
+  \centering
+  \caption{Superheterodyne Radio Architecture}
+  \label{fig:superhet}
+  \includegraphics[width=.5\textwidth]{images/superhet.eps}
+\end{wrapfigure}
 
 %
 % see /fourth_year/docs/app_notes/downconversion_architecture.pdf
@@ -439,7 +443,7 @@ Figure \ref{fig:analog_block_diagram} is a block diagram of the analog front end
 \end{figure}
 
 \subsection{RF Front end - MAX3543}
-The MAX3543 integrated circuit \cite{max3543} (label (3)) is a highly integrated RF tuner and downconverter.  This IC is a superhet architecture (see figure \ref{fig:analog_fronted}) designed for receiving analog and digital television signals.  It is capable of tuning to any 8MHz band between roughly 50MHz and 800MHz.  This 8MHz band is mixed down to a center frequency of 36.125MHz.  The frequency response can be seen in figure \ref{fig:max3543_freq_resp}.
+The MAX3543 integrated circuit \cite{max3543} (label (3)) is a highly integrated RF tuner and downconverter.  This IC is a superhet architecture (see figure \ref{fig:superhet}) designed for receiving analog and digital television signals.  It is capable of tuning to any 8MHz band between roughly 50MHz and 800MHz.  This 8MHz band is mixed down to a center frequency of 36.125MHz.  The frequency response can be seen in figure \ref{fig:max3543_freq_resp}.
 
 \begin{wrapfigure}{L}{0.5\textwidth}
   \includegraphics[width=.48\textwidth]{images/max3543_freq_resp.png}
@@ -551,21 +555,55 @@ After fixing a minor issue with the PCB (see section \ref{sec:pcb_errata}) the s
 \end{figure}
 
 \section{Power Supplies}
-The power supply design for the board was a fairly complex endeavour.  Originally the was to use as few voltage regulators as possible in order to minimize the complexity.  However, as the design went on the need for more and more voltage levels arose.  There are overall 5 different voltage levels present on the board: 5V, -5V, 3.3V, 3.0V, and 2.5V.  The 3.3V level is required for the MAX3543.  The 3.0V level is required for the analog to digital converter.  The +5V and -5V levels are required for teh AD8138 (performance is maximized with these supplies), and the 2.5V level is required for driving the line to the FPGA.  The 2.5V source does not have it's own on board regulator, it is supplied directly from the FPGA board through the FMC connector.  A schematic of the power supply design can be seen in figure \ref{fig:power_supply}
+The power supply design for the board was a fairly complex endeavour.  Originally the plan was to use as few voltage regulators as possible in order to minimize the complexity.  However, as the design went on the need for more and more voltage levels arose.  There are overall 5 different voltage levels present on the board: 5V, -5V, 3.3V, 3.0V, and 2.5V.  The 3.3V level is required for the MAX3543.  The 3.0V level is required for the analog to digital converter.  The +5V and -5V levels are required for the AD8138 (performance is maximized with these supplies), and the 2.5V level is required for driving the line to the FPGA.  The 2.5V source does not have it's own on board regulator, it is supplied directly from the FPGA board through the FMC connector.  A schematic of the power supply design can be seen in figure \ref{fig:power_supply}.
 
-\begin{figure}
-  \includegraphics[width=.80\textwidth]{images/power_supply.png}
+%\begin{wrapfigure}{L}{0.5\textwidth}
+%  \includegraphics[width=.48\textwidth]{images/max3543_freq_resp.png}
+%  \caption{MAX3543 Frequency Response}
+%  \label{fig:max3543_freq_resp}
+%\end{wrapfigure}
+
+\begin{wrapfigure}{R}{0.6\textwidth}
+  \includegraphics[width=.55\textwidth]{images/power_supply.png}
   \caption{Power Supply Schematic}
   \label{fig:power_supply}
-\end{figure}
+\end{wrapfigure}
 
-The TPS7330QP is a low dropout regulator (LDO) that regulates 3.0V down from 3.3V.  It was an odd oversight to think that an LDO was required, rather than just connecting another 3.0V regulator directly to the DC input jack.  However, after this realization was made the LDO had already been purchased, so the design stuck.  A carefully chosen $10\mu F$ capacitor with a controlled $1\Omega$ effective series resistance (ESR) is required for this regulator.
+The TPS7330QP is a low dropout regulator (LDO) that regulates 3.0V down from 3.3V.  It was an odd oversight to think that an LDO was required, rather than just connecting another 3.0V regulator directly to the DC input jack.  However, after this realization was made the LDO had already been purchased, so the design stuck.  A carefully chosen $10\mu F$ capacitor with a controlled $1\Omega$ effective series resistance (ESR) is required for this regulator.  Some breadboard testing of the LDO was done, including with a switched load and the performance appeared to be acceptable, some extra information about this test can be found in the project log book.
+
+
+\subsection{Digital - FPGA vs DSP}
+One of the earliest decisions we made was between the choice of using a DSP or an FPGA for our digital section.  The advantage of the DSP is that it should be easier to program.  However, it is not immediately clear whether or not a (reasonably priced) DSP would meet our requirements.  The input to our digital section is a roughly 8MHz band, sampled with 12 bits of width and at 29MS/s (29 million samples per second) thus the total bandwidth is 348Mb/s.  The key point of comparison is the number of multiply accumulate (MAC) operations that need to take place every second.  The reason for this comparison metric is that almost every DSP function from filters to integrators are formed by MAC operations.  Take for example the following N tap FIR filter:
+
+\begin{equation}
+  y[k] = b_0x[k] + b_1x[k - 1] + b_2x[k - 2] + ... + b_Nx[k - N]
+\end{equation}
+
+This equation describes an input to output relation where $y[k]$ is an output sample, and $x[k]$ is an input sample.  These are fundamental DSP operations and involve sums of products.  To implement this on a DSP the processor must, on each cycle, fetch data from a buffer, load a tap from program memory, perform a multiply, and then add to the running sum.  DSPs are optimized for this operation and many DSPs can compute a number of these on each clock cycle using SIMD (Single Instruction Multiple Data).
+
+To get an idea of the number of MAC/s are required consider figure \ref{fig:remez_filters}.  This figure shows different bandpass FIR filter responses designed using an implementation of the Parks-Mcclellen algorithm found in the scipy library (\cite{scipy-remez}).
 
 \begin{figure}[ht]
+\centering
+\begin{subfigure}[b]{0.45\textwidth}
+  \includegraphics[width=\textwidth]{images/remez_fir_filters.png}
+  \caption{FIR Filters}
+  \label{fig:fir_filters_response}
+\end{subfigure}
+\begin{subfigure}[b]{0.45\textwidth}
+  \includegraphics[width=\textwidth]{images/remez_fir_filter_ripple.png}
+  \caption{FIR Filter Ripple}
+  \label{fig:fir_filters_ripple}
+\end{subfigure}
 
+\caption{Bandpass Filter Responses}
+\label{fig:remez_filters}
 \end{figure}
 
-\subsection{Digital - FPGA vs DSP vs GPP}
+From the figure, it seems clear that the minimum number of filter taps is around 30 to 40, with 50+ being desirable.  If we assume that 30 taps is enough,  At 29MS/s a 30 tap filter requires 870 million MAC/s (870 MMAC/s).  A 50 tap filter would require 1450 MMAC/s.  And, this is only a single filter.  High end DSPs are advertised to be capable of around 4000 MMAC/s \cite{tigersharc_mac_performance}, and more modest devices are capable of only about 900 MMAC/s \cite{sharc_mac_performance}.  Since we needed at least 870 MMAC/s for only a single filter, there is no way that a reasonably priced DSP could satisfy our requirements.  In contrast, low end FPGAs are capable of 10s of billions of MAC operations per second \cite{xilinx_mac_performance}
+
+The reader may find it odd that a DSP, a device designed specifically for doing high speed digital signal processing is incapable of demodulating FM radio.  It is important to realize that our requirements are far greater than FM radio demodulation.  The bandwidth of FM radio is only 200KHz, which would require at least 400KS/s to digitally sample.  A DSP could easily handle this data rate.  The difference with our system is that our bandwidth is roughly 8MHz, 40 times greater than the bandwidth of FM radio.  The digital demodulator needs to digitally pick out a 200KHz channel from in the 8MHz band.  After this is done, downsampling (section \ref{sec:downsampling}) could be performed to lower the data rate to closer to 400KS/s.  This is a good illustration of the usefulness of FPGAs.
+
 
 \section{PCB Design and Layout}
 \label{sec:pcb_errata}
@@ -574,7 +612,7 @@ Not suprisingly, the printed circuit board was not without errors.  It was expec
 
 \begin{enumerate}
   \item{
-    The pads for the DC barrel jack are the wrong way around.  For a center positive jack, the positive pin connects to the GND of the printed circuit board.  If this went un noticed it would fry everything on the board.  The workaround is simple, we just soldered the jack backwards on the underside of the board.
+    The pads for the DC barrel jack are the wrong way around.  For a center positive jack, the positive pin connects to the GND of the printed circuit board.  If this went unnoticed it would fry everything on the board.  The workaround is simple, we just soldered the jack backwards on the underside of the board.
   }
 
   \item{
@@ -586,7 +624,7 @@ Not suprisingly, the printed circuit board was not without errors.  It was expec
     }
 vv
   \item{ %I should include a picture of this.
-    The negative FB pin on the op amp feeds back to the negative input pin.  This was an unfortunate oversight, it was assumed that the negative output should feedback to the negative input, without carefully looking at the schematic in the datasheet.  This assumption caused a lot of grief when working with the SPICE model.  The problem was realized and fixed in SPICE, but forgot to make the change to the PCB as well.  This was a fairly serious problem since it is a surface mount device.  The workaround was to use through hole feedback resistors and solder them to the pads of the board and overtop of the op amp IC to make the proper connection.
+    The negative FB pin on the op amp feeds back to the negative input pin.  This was an unfortunate oversight, it was assumed that the negative output should feedback to the negative input, without carefully looking at the schematic in the datasheet.  This assumption caused a lot of grief when working with the SPICE model.  The problem was realized and fixed in SPICE, but forgot to make the change to the PCB as well.  This was a fairly serious problem since it is a surface mount device.  The workaround was to use through hole feedback resistors and solder them to the pads of the board and over top of the op amp IC to make the proper connection.
   }
 
 \end{enumerate}

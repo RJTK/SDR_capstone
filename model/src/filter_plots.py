@@ -25,7 +25,7 @@ def plot_filter_pz(b, a):
   return
 
 #-------------------------------------------------------------------------------
-def plot_filter(b, a):
+def plot_filter(b, a, phase = True):
   '''
   Plots a filter's response
   '''
@@ -38,18 +38,20 @@ def plot_filter(b, a):
   ax1.set_ylabel('|H|', color = 'b')
   ax1.set_xlabel('frequency [Rad/Sample]')
 
-  ax2 = ax1.twinx()
-  angles = np.unwrap(np.angle(h))
-  ax2.plot(w, angles, 'g')
-  ax2.set_ylabel('Angle (radians)', color = 'g')
-  ax2.grid()
+  if phase:
+    ax2 = ax1.twinx()
+    angles = np.unwrap(np.angle(h))
+    ax2.plot(w, angles, 'g')
+    ax2.set_ylabel('Angle (radians)', color = 'g')
+    ax2.grid()
+
   fig.show()
+  raw_input('Continue?...')
   return
 
 def main():
-  plot_filter([1, -1], [1])
+  #Differentiator
+  plot_filter([1, -1], [1], phase = False)
 
 if __name__ == '__main__':
   main()
-  while True:
-    pass
