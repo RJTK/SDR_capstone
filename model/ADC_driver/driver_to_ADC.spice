@@ -337,7 +337,6 @@ RLN amp_outN load_outN 0
 * lpf only: RL = 3, RLP & RLN = 25
 * Both filters: RL = 3, RLP & RLN = 25
 * Using both filters is significantly worse
-** 
 
 *Xbsf load_outP load_outN filt1_outP filt1_outN bandstop_filter3
 *Xlpf filt1_outP filt1_outN filt_outP filt_outN lowpass_filter3
