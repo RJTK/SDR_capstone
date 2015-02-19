@@ -374,6 +374,60 @@ In order to incorporate a driver to interface in real time to an SDR platform li
 % What computer interface did we use in the end.  Write stuff here.
 %
 
+\section{FM Demodulation Methods}
+Our project is ultimately about building an SDR peripheral.  However, we also need some sort of demonstration of the system.  To this end, we will receive and demodulate a broadcast FM signal.
+
+A Frequency Modulated (FM) signal can be represented using the form from equation \ref{eq:quadrature_sampling}.
+
+\begin{equation}
+  \psi_{FM}(t) = A(t)cos(2\pi f_c t + \int_{-\infty}^{t}m(\tau)d\tau)
+\end{equation}
+
+Where $m(t)$ is the analog message signal (the baseband).  When it is transmitted the amplitude of an FM modulated signal $A(t)$ is constant.  However, receivers cannot assume amplitude is constant because the channel will cause various distorting effects.
+
+Intuitively, FM encodes information into the instantaneous frequency of the carrier signal.  An example of a simple FM signal can be seen in figure \ref{fig:fm_modulated_signal}.  An IQ space plot of an FM signal is not really any more insightful than just the regular 2D plot everyone is used to.
+
+\begin{figure}
+  \centering
+  \caption{Example FM Modulation}
+  \label{fig:fm_modulated_signal}
+  \includegraphics[width=.7\textwidth]{images/fm_modulated_signal.png}
+\end{figure}
+
+There are various methods for demodulating an FM modulated signal.  Note however that FM is \textit{non-linear} modulation, it cannot be written simply as an s-domain transfer function, and the spectrum for a general FM signal cannot easily be written down.  It thus requires some non-linear components for demodulating it.  A few methods we considered are discussed below.  The demodulation scheme we chose is IQ demodulation, and it will be discussed in detail.
+
+In essence, FM demodulators come down detecting instantaneous frequency.  This operation is called \textit{Frequency Discrimination}.  The message signal is recovered by the following equation:
+
+\begin{equation}
+  m(t) = K\frac{d}{dt}\phi(t)
+\end{equation}
+
+Where K is just some scaling factor.  The frequency $\frac{d}{dt}\phi(t)$ can be detected directly, or by detecting phase and then differentiating.
+
+Finally, it is important throughout the following discussion to keep in mind that we are \textit{digitally} demodulating the FM signal on an FPGA, there are no analog components available to us for demodulation purposes.
+
+\subsection{Zero Crossing Detection}
+This method of frequency discrimination involves detecting the signal's zero crossing points, this is a very very simple operation on an FPGA.  Short pulses are then generated at each zero crossing and the signal is low pass filtered.  The zero crossing pulses become similar to a PWM modulation of the baseband signal.  An illustration is provided in figure \ref{fig:zero_xing}.  Note that the demodulated signal is delayed significantly from the filtering process.
+
+\begin{figure}
+  \centering
+  \caption{Zero Crossing Detection}
+  \label{fig:zero_xing}
+  \includegraphics[width=0.8\textwidth]{images/zero_xing.png}
+\end{figure}
+
+The downside of this method is that it is not very robust against noise.  
+
+\section{Computer Modeling}
+\label{sec:model}
+In the early stages of the design we built a simple model in Python.  Python is a powerful general purpose scripting language that is well suited for a variety of tasks.  A number of Python packages exist which give Python similar capabilities to MatLab, namely numpy, matplotlib, scipy.  These packages all fall under the ecosystem called SciPy \cite{scipy}.  In fact, these packages interface with the exact same FORTRAN code that MatLab is based on, LAPACK\cite{lapack}, and BLAS\cite{blas}.  The main advantage of using Python over MatLab is that Python is completely free software.  Moreover, Python is still well suited for \textit{general purpose} tasks, whereas MatLab is designed only for number crunching.
+
+The source code for the Python model can be found in the Github repository (see section \ref{sec:git}).  The goal of this model is two fold.  Firstly, it was meant as a way to test the feasibility of different demodulation schemes.  Second, to get a feel for whether or not our system would work when the realities of noise, interferance, and distortion are present.
+
+Even though this model was at the start meant to test different demodulation schemes, we only really tested one method and eliminated others based on other criteria.
+
+Noise in our Python model is simulated by simply generating gaussian distributed random variables with a known variance and adding it to the radio signal.  We model distortion by generating an FIR filter with random taps.  With this model we were able to conclude that even under extremely heavy noise and distortion, the demodulation algorithm should still be capable of reproducing a recognizable signal.
+
 \section{System Design}
 Figure \ref{fig:analog_block_diagram} is a block diagram of the analog front end component of the project.  Different blocks have been labeled with numbers (in red) for easy reference.  The dotted outline shows the conceptual boundary of the custom printed circuit board (PCB).  Everything in this figure has been the responsibility of Ryan.  On a higher level, this diagram is an implementation of the superheterodyne radio architecture described in section \ref{sec:analog_frontend}.  All the aspects of this design are described in greater detail in the following sections.
 
@@ -396,19 +450,8 @@ The MAX3543 integrated circuit \cite{max3543} (label (3)) is a highly integrated
 This IC is the ``core'' component of our project.  Implementing a radio front end from less integrated components would have been a substantial undertaking we viewed as being far beyond our scope.  However in hindsight, it may have been fairly doable - there are a lot of integrated circuits that implement mixers, tunable oscillators, etc...
 
 \subsection{Input - Antenna and Low Pass Filter}
-Labels (1) and (2) of the block diagram in figure \ref{fig:analog_block_diagram} is the first input section of the receiver.  The antenna is any standard television antenna matched to $75\Omega$.  The lowpass filter that the antenna feeds into is a simple discrete LC filter.  The MAX3543 has one RF input for high frequency (>300 MHz) and one RF input for low frequency (<300MHz).  Normally, a diplexing filter would split the RF spectrum on 300MHz, however we have implemented only the low frequency portion of this diplex filter.
+Labels (1) and (2) of the block diagram in figure \ref{fig:analog_block_diagram} is the first input section of the receiver.  The antenna is any standard television antenna matched to $75\Omega$.  The lowpass filter that the antenna feeds into is a simple discrete LC filter.  The MAX3543 has one RF input for high frequency ($>$300 MHz) and one RF input for low frequency ($<$300MHz).  Normally, a diplexing filter would split the RF spectrum on 300MHz, however we have implemented only the low frequency portion of this diplex filter.
 
-\subsection{Digital - FPGA vs DSP vs GPP}
-\subsection{Computer Modeling}
-\label{sec:model}
-% Wrote on plane
-% No citations for numpy, scipy, matplotlib, lapack, blas in bibtex.
-
-In the early stages of the design we built a simple model in Python.  Python is a powerful general purpose scripting language that is well suited for a variety of tasks.  A number of Python packages exist which give Python similar capabilities to MatLab, namely numpy, matplotlib, and the scipy library.  These packages all fall under the ecosystem called SciPy \cite{scipy}.  In fact, these packages interface with the exact same FORTRAN code that MatLab is based on, LAPACK\cite{lapack}, and BLAS\cite{blas}.  The main advantage of using Python over MatLab is that Python is completely free software.  Moreover, Python is still well suited for \textit{general purpose} tasks, whereas MatLab is designed only for number crunching.
-
-The source code for the Python model can be found in the Github repository \ref{sec:git}.  The goal of this model is two fold.  Firstly, it was meant as a way to test the feasibility of different modulation schemes.  Second, to get a feel for whether or not our system would work when the realities of noise, interferance, and distortion are present.
-
-Noise in our Python model is simulated by simply generating gaussian distributed random variables with a known variance and adding it to the radio signal.  We model distortion by generating an FIR filter with random taps.  With this model we were able to conclude that even under extremely heavy noise and distortion, the demodulation algorithm should still be capable of reproducing a recognizable signal.
 
 \section{Analog to Digital Converter - AD9235}
 \subsection{Line Drivers - 74VHC541FT}
@@ -489,6 +532,8 @@ Figure \ref{fig:ad8138_bw_lowpass} shows the response of the system if a lowpass
 
 \section{Power Supplies}
 
+\subsection{Digital - FPGA vs DSP vs GPP}
+
 \section{PCB Design and Layout}
 \subsection{PCB Errata and Workarounds}
 Not suprisingly, the printed circuit board was not without errors.  It was expected there would be some issues and mistakes with the layout, but that these issues could be solved by some sort of workaround.  This section provides a list of the mistakes and the workarounds used.
@@ -505,13 +550,12 @@ Not suprisingly, the printed circuit board was not without errors.  It was expec
   \item{
     Some of the through hole components have very little exposed copper on the backside of the PCB, making them difficult to solder.  This mistake is due to not knowing how to control this parameter in the EDA tool, we thought that we specified it correctly.  Again, this isn't a big issue there is enough room to solder everything down.
     }
-
+vv
   \item{ %I should include a picture of this.
     The negative FB pin on the op amp feeds back to the negative input pin.  This was an unfortunate oversight, it was assumed that the negative output should feedback to the negative input, without carefully looking at the schematic in the datasheet.  This assumption caused a lot of grief when working with the SPICE model.  The problem was realized and fixed in SPICE, but forgot to make the change to the PCB as well.  This was a fairly serious problem since it is a surface mount device.  The workaround was to use through hole feedback resistors and solder them to the pads of the board and overtop of the op amp IC to make the proper connection.
   }
 
 \end{enumerate}
-
 
 \subsection{FPGA Mezzanine Card Connector - VITA57.1}
 

@@ -54,7 +54,8 @@ def modulate_fm(x, fsBB, fsIF, del_f = 75000, BB_BW = 15000,
   #Perform the modulation, as well as upsampling to fsIF
   T = len(BB)/fsBB #The period of time x exists for
   N = fsIF*T #The number of samples for the RF modulation
-  BB = resample(BB, N)
+  if not fsBB == fsIF:
+    BB = resample(BB, N)
   mp = max(BB)
   kf = (2.*pi*del_f)/mp
   if progress:

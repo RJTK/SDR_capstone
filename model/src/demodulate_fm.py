@@ -8,14 +8,14 @@ from scipy.signal import remez, lfilter
 from spec_plot import spec_plot
 from bandpass_limiter import bandpass_limiter
 
-
-def demodulate_fm(fm_mod, fs, BW = 200000,
+#-------------------------------------------------------------------------------
+def iqdemodulate_fm(fm_mod, fs, BW = 200000,
                   debug = False, deemph = True, fc = 0,
                   BPL = True, progress = False):
   '''
   '''
   if progress:
-    bar = Bar('Demodulating FM...', max = 5)
+    bar = Bar('IQ Demodulating FM...', max = 5)
     bar.next()
 
   fs = float(fs)

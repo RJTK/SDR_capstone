@@ -9,22 +9,10 @@ from numpy import sqrt
 from modulate_fm import modulate_fm
 from channel_models import (AWGN_channel, distortion_channel, multipath_channel,
                             nonlinearphase_channel)
-from demodulate_fm import demodulate_fm
+from IQ_demodulate_fm import iqdemodulate_fm
+from ZX_demodulate import zxdemodulate_fm
 
-
-#-------------------------------------------------------------------------------
-def get_pzero_crossings(x):
-  '''
-  Returns a vector of boolean values at every positive going zero crossing 
-  of the vector x.
-  
-  x: The input vector
-  Returns: A vector of zero crossings...
-  '''
-  x_pos = x > 0
-  x_zx = (x_pos[:-1] & ~x_pos[1:])
-  x_zx = np.append(x_zx, 0)
-  return x_zx
+from matplotlib import pyplot as plt
 
 #-------------------------------------------------------------------------------
 def main():
@@ -56,52 +44,61 @@ def main():
   fm_mod, kf = modulate_fm(musicRL, fsBB, fsIF, debug = False, 
                            preemph = predeemph, fc = fc, progress = show_progress)
 
-  #fm_mod = AWGN_channel(fm_mod, 5, debug = False, progress = show_progress)
-  #fm_mod = distortion_channel(fm_mod, taps = 50, progress = show_progress)
+  T = len(fm_mod)/fsIF
+  t = np.linspace(0, T, T*fsIF)
+  plt.plot(t[0:10000], fm_mod[0:10000])
+  plt.show()
+  return
+#  fm_mod = AWGN_channel(fm_mod, 10, debug = False, progress = show_progress)
+#  fm_mod = distortion_channel(fm_mod, taps = 10, progress = show_progress)
 
-  fm_mod = multipath_channel(fm_mod, [1e-7],
-                               [1], fsIF, debug = False)
-  #fm_mod = nonlinearphase_channel(fm_mod, taps = 12, debug = True)
-  #fm_mod = AWGN_channel(fm_mod, 5, debug = False, progress = show_progress)
+#  fm_mod = multipath_channel(fm_mod, [1e-7],
+#                               [1], fsIF, debug = False)
+#  fm_mod = nonlinearphase_channel(fm_mod, taps = 12, debug = True)
+  fm_mod = AWGN_channel(fm_mod, 0, debug = False, progress = show_progress)
 
   #The analog_to_digital function is only really useful for generating an
   #output file, since the following arithmetic is still done with float64.
   #To model the effects of quantization just add gaussian noise...
   #fm_mod =  analog_to_digital(fm_mod, bits = 4, rnge = [-1,1], file_out = None, 
   #                            progress = show_progress)
-  BB = demodulate_fm(fm_mod, fsIF, debug = False, deemph = predeemph, fc = fc,
-                     BPL = BPL, progress = show_progress)
+  BB_IQ = iqdemodulate_fm(fm_mod, fsIF, debug = False, deemph = predeemph, fc = fc,
+                          BPL = BPL, progress = show_progress)
+  BB_ZX = zxdemodulate_fm(fm_mod, fsIF, debug = False, deemph = predeemph, fc = fc,
+                          BPL = BPL, progress = show_progress)
 
-  T = len(BB)/fsIF
+  play(BB_IQ, fsIF, fsBB, norm = 'inf', debug = False,
+       msg = 'Playing IQ, inf norm')
+  play(BB_ZX, fsIF, fsBB, norm = 'inf', debug = False,
+       msg = 'Playing ZX, inf norm')
+  return
+
+def play(x, fsIF, fsBB, norm = 'inf', debug = False, msg = False):
+  '''
+  '''
+  norm = 'inf' #Only available
+  if msg:
+    print msg
+
+  int16_max = float(2**15 - 1)
+  T = len(x)/fsIF
   N = fsBB*T
-  BB = resample(BB, N)
-
-  #  G = sqrt(E_music/E_demod)
-  #  print 'Gain: %f' % G
-  #How to make volume the same?
-  #equating the maximum values does not work
-  #Nor does equating the signal energy.
-  #The value of G is determined experimentally
-  #Also, where in the signal chain is the loss of amplitude even comming from?
-  #As far as I can tell, resampling does not effect amplitude.
-
-  E_music = sum(abs(musicRL)**2)
-  E_demod = sum(abs(BB)**2)
-
-  G = sqrt(E_music/E_demod)
-  BB = G*BB
-
-  musicRL = np.array(musicRL*int16_max, dtype = 'int16')
-  BB = np.array(BB*int16_max, dtype = 'int16')
+  x = resample(x, N)
   
-#  musicRL = np.array(musicRL, dtype = 'int16')
-#  BB = np.array(BB, dtype = 'int16')
+  norm_inf = max(max(x), abs(min(x)))
 
-  wav.write('radio_broadcast.wav', fsBB, musicRL)
-  wav.write('radio_received.wav', fsBB, BB)
+  if norm == 'inf':
+    x = x/norm_inf
+  else:
+    raise ValueError('norm must be \'inf\'')
 
-#  os.system('aplay radio_broadcast.wav')
-  os.system('aplay radio_received.wav')
+  if debug:
+    print 'The pre norm max value of x is %f' % norm_inf
+    print 'The post norm max value of x is %f' % max(max(x), abs(min(x)))
+
+  x = np.array(x*int16_max, dtype = 'int16')
+  wav.write('play_me.wav', fsBB, x)
+  os.system('aplay play_me.wav')
 
   return
 

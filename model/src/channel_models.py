@@ -99,7 +99,8 @@ def distortion_channel(x, tap_magnitude = 1, taps = 5, debug = False,
   return distorted
 
 #-------------------------------------------------------------------------------
-def multipath_channel(x, delay_time, G, fs, debug = False, warn = 0):
+def multipath_channel(x, delay_time, G, fs, debug = False, warn = 0, 
+                      progress = False):
   '''
   *DOESN'T REALLY WORK*
 
@@ -168,8 +169,9 @@ def multipath_channel(x, delay_time, G, fs, debug = False, warn = 0):
     x = resample(x, len(x)*rate_gain)
     dt_sample = 1./(fs*rate_gain)
 
-  bar = Bar('Multipath channel...', max = 2 + len(G))
-  bar.next()
+  if progress:
+    bar = Bar('Multipath channel...', max = 2 + len(G))
+    bar.next()
   Err = []
   y = x
   for T, g in zip(delay_time, G):
@@ -185,7 +187,8 @@ def multipath_channel(x, delay_time, G, fs, debug = False, warn = 0):
     multipath = append(zeros(n_samples), multipath)
     multipath = multipath*g
     y = y + multipath
-    bar.next()
+    if progress:
+      bar.next()
 
   if debug == True:
     #We plot x if debug is true
@@ -195,7 +198,8 @@ def multipath_channel(x, delay_time, G, fs, debug = False, warn = 0):
     
   mx = max(max(y), -1*min(y))
   y = y/mx #normalize to 1
-  bar.next()
+  if progress:
+    bar.next()
 
   if debug == True:
     print "The errors:",
@@ -205,7 +209,8 @@ def multipath_channel(x, delay_time, G, fs, debug = False, warn = 0):
     spec_plot(y, fs, fig, sub_plot = (1,2,2), plt_title = 'Multipath')
     fig.show()
 
-  bar.finish()
+  if progress:
+    bar.finish()
   return y
 
 #-------------------------------------------------------------------------------

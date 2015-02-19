@@ -300,6 +300,8 @@ RgN inN op_inN 500
 **FEEDBACK RESISTORS**
 RfN outN op_inP 500
 RfP outP op_inN 500
+CfN outN op_inP 1p
+CfP outP op_inN 1p
 
 **POWER SUPPLY**
 Vpsup PSUP 0 dc 5
@@ -319,28 +321,29 @@ Cpkg in 0 .65p
 Rpkg in N1 .04
 Lpkg N1 out .65n
 Cin out 0 7p
+Rin out 0 7K
 
 .ENDS
 
 ************************MAIN CIRCUIT****************************
 
 Xamp inP inN amp_outP amp_outN Vocm unity_gain_amp
-RL amp_outP amp_outN 3
-RLP amp_outP load_outP 25
-RLN amp_outN load_outN 25
+*RL amp_outP amp_outN 100
+RLP amp_outP load_outP 0
+RLN amp_outN load_outN 0
 
 ** GOOD RESISTOR VALUES **
 * no filters: RL = 100, RLP & RLN = 120
 * lpf only: RL = 3, RLP & RLN = 25
-* both filters: RL = 3, RLP & RLN = 25
-*  Using both filters is significantly worse
+* Both filters: RL = 3, RLP & RLN = 25
+* Using both filters is significantly worse
 ** 
 
-Xbsf load_outP load_outN filt1_outP filt1_outN bandstop_filter3
-Xlpf filt1_outP filt1_outN filt_outP filt_outN lowpass_filter3
+*Xbsf load_outP load_outN filt1_outP filt1_outN bandstop_filter3
+*Xlpf filt1_outP filt1_outN filt_outP filt_outN lowpass_filter3
 
-XpinP filt_outP outP ADC_pin
-XpinN filt_outN outN ADC_pin
+XpinP load_outP outP ADC_pin
+XpinN load_outN outN ADC_pin
 
 ************************INPUTS****************************
 Vocm Vocm 0 dc 1.5
