@@ -1,0 +1,35 @@
+NET "FMC_LA02_P" LOC = "C15"; ## D11 (MSB)
+NET "FMC_LA02_N" LOC = "A15"; ## D10
+NET "FMC_LA04_P" LOC = "A16"; ## D9
+NET "FMC_LA07_P" LOC = "E7";  ## D8
+NET "FMC_LA11_P" LOC = "B12"; ## D7
+NET "FMC_LA19_P" LOC = "N6";  ## D6
+NET "FMC_LA21_P" LOC = "T4";  ## D5
+NET "FMC_LA24_P" LOC = "U8";  ## D4
+NET "FMC_LA28_P" LOC = "M8";  ## D3
+NET "FMC_LA28_N" LOC = "V11"; ## D2
+NET "FMC_LA30_P" LOC = "T12"; ## D1
+NET "FMC_LA30_N" LOC = "V12"; ## D0 (LSB)
+NET "FMC_LA32_P" LOC = "U15"; ## CLK (to ADC)
+
+NET "GPIO_HDR4" LOC = "F15"; ## J2 (Farthest from GND)
+#NET "GPIO_HDR5" LOC = "B4";  ## J4
+#NET "GPIO_HDR6" LOC = "F13"; ## J6		
+#NET "GPIO_HDR7" LOC = "P12"; ## J8 (Closest to GND)
+
+NET "USER_CLK" LOC = "V10"; ## CLK 27MHz
+
+NET "PB[0]" LOC = "P4"; ## Push buttons
+NET "PB[1]" LOC = "F6";
+NET "PB[2]" LOC = "E4";
+NET "PB[3]" LOC = "F5";
+
+#NET "DIPSW[0]" LOC = "D14"; ## Dip switches
+#NET "DIPSW[1]" LOC = "E12";
+#NET "DIPSW[2]" LOC = "F12";
+#NET "DIPSW[3]" LOC = "V13";
+
+NET "LED[0]" LOC = "E13"; ## LEDs
+NET "LED[1]" LOC = "C14";
+NET "LED[2]" LOC = "C4";
+NET "LED[3]" LOC = "A4";

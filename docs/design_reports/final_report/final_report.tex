@@ -182,8 +182,9 @@ In practice, it is important to keep $n$ low.  There are practical problems asso
 The ultimate reason that undersampling is often used in software defined radio is that it reduces the data rate to a level that digital hardware can deal with it.
 
 \subsection{A Note on Oversampling}
+\label{sec:oversampling}
 %Oversampling doesn't actually help that much.
-Why oversample when undersampling can do the job\cite{why_oversample}?  This is a good question.  There are some advantages of oversampling.  For example, if a signal is sampled $4n$ times it's bandwidth, and the samples are averaged \footnote{4 samples are averaged together to produce a single sample.  An example of downsampling, section \ref{sec:downsampling}}, the effective resolution of the conversion will be increased by $n$ bits \cite{oversample_extra_bits}.  So, to gain 1 extra bit of resolution (which would provide a theoretical maximum increase in SNR by about 6dB) the bit rate must increase by 400\%, 4 floating point operations need to be performed to produce 1 data sample (3 adds and a divide), the power consumption increases, and digital signal integrity issues get more complex.
+Why oversample when undersampling can do the job\cite{why_oversample}?  This is a good question.  There are some advantages of oversampling.  For example, if a signal is sampled $4n$ times it's bandwidth, and the samples are averaged \footnote{4 samples are averaged together to produce a single sample.  An example of downsampling, section \ref{sec:downsampling}}, the effective resolution of the conversion will be increased by $n$ bits \cite{oversample_extra_bits}.  So, to gain 1 extra bit of resolution (which would provide a theoretical maximum increase in SNR by about 6dB) the bit rate must increase by 400\%, 4 arithmetic operations need to be performed to produce 1 data sample (3 adds and a divide), the power consumption increases, and digital signal integrity issues get more complex.  And, if downsampling is not immediatly performed then the processing rate needs to increase enormously.
 
 The other main advantage of oversampling is that it can reduce the requirements on the anti-aliasing filter.  However in RF systems, a Surface Accoustic Wave (SAW) filter is often used for filtering, and these filters have extremely sharp cutoffs.
 
@@ -422,15 +423,35 @@ This method of frequency discrimination involves detecting the signal's zero cro
 
 The downside of this method is that it is not very robust against noise.  
 
+\subsection{I/Q Demodulation}
+IQ demodulation is a frequency discrimination method involving I/Q sampling of the signal, then performing differentiation on the phase of the signal.  Recall from section \ref{sec:quadrature_sampling} the I/Q representation of a signal.  This representation is obtained by splitting the signal up into two different channels, multiplying by a sine and cosine wave, and then applying a low pass filter (figure \ref{fig:iq_sampling}).
+
+\begin{figure} [ht]
+  \centering
+  \caption{IQ Sampling}
+  \label{fig:iq_sampling}
+  \includegraphics[width=0.8\textwidth]{images/IQ_sampling.eps}
+\end{figure}
+
+The $I$ and $Q$ signals here are the quadrature signals.  The derivation of the demodulator is shown below.
+
+\begin{equation}
+\begin{aligned}
+  & \frac{d}{dt}\phi(t) \\
+  & = \frac{d}{dt}tan^{-1}\frac{Q(t)}{I(t)} \\
+  & = \frac{\dot{Q(t)}I(t) + Q(t)\dot{I(t)}}{I^2(t) + Q^2(t)}
+\end{aligned}
+\end{equation}
+
+Where we have used the identity for the derivative of $tan^{-1} x$, the chain rule, and the quotient rule.  The block diagram of this demodulator can be found in the section \ref{sec:fpga_system}, and this is the demodulator we have implemented in hardware.
+
 \section{Computer Modeling}
 \label{sec:model}
-In the early stages of the design we built a simple model in Python.  Python is a powerful general purpose scripting language that is well suited for a variety of tasks.  A number of Python packages exist which give Python similar capabilities to MatLab, namely numpy, matplotlib, scipy.  These packages all fall under the ecosystem called SciPy \cite{scipy}.  In fact, these packages interface with the exact same FORTRAN code that MatLab is based on, LAPACK\cite{lapack}, and BLAS\cite{blas}.  The main advantage of using Python over MatLab is that Python is completely free software.  Moreover, Python is still well suited for \textit{general purpose} tasks, whereas MatLab is designed only for number crunching.
+In the early stages of the design we built a simple model in Python.  Python is a powerful general purpose scripting language that is well suited for a variety of tasks.  A number of Python packages exist which give Python similar capabilities to MatLab, namely numpy, matplotlib and scipy.  These packages all fall under the ecosystem called SciPy \cite{scipy}.  In fact, these packages interface with the exact same FORTRAN code that MatLab is based on, LAPACK\cite{lapack}, and BLAS\cite{blas}.  The main advantage of using Python over MatLab is that Python is completely free software.  Moreover, Python is still well suited for \textit{general purpose} tasks, whereas MatLab is designed only for number crunching.
 
 The source code for the Python model can be found in the Github repository (see section \ref{sec:git}).  The goal of this model is two fold.  Firstly, it was meant as a way to test the feasibility of different demodulation schemes.  Second, to get a feel for whether or not our system would work when the realities of noise, interferance, and distortion are present.
 
-Even though this model was at the start meant to test different demodulation schemes, we only really tested one method and eliminated others based on other criteria.
-
-Noise in our Python model is simulated by simply generating gaussian distributed random variables with a known variance and adding it to the radio signal.  We model distortion by generating an FIR filter with random taps.  With this model we were able to conclude that even under extremely heavy noise and distortion, the demodulation algorithm should still be capable of reproducing a recognizable signal.
+Noise in our Python model is simulated by simply generating gaussian distributed random variables with a known variance and adding it to the radio signal.  We model distortion by generating an FIR filter with random taps.  With this model we were able to conclude that even under extremely heavy noise and distortion, the demodulation algorithm should still be capable of reproducing a recognizable signal.  Unfortunately we did not anticipate how big of an issue finite precision arithmetic would be, and did not attempt to model these effects in Python.
 
 \section{System Design}
 Figure \ref{fig:analog_block_diagram} is a block diagram of the analog front end component of the project.  Different blocks have been labeled with numbers (in red) for easy reference.  The dotted outline shows the conceptual boundary of the custom printed circuit board (PCB).  Everything in this figure has been the responsibility of Ryan.  On a higher level, this diagram is an implementation of the superheterodyne radio architecture described in section \ref{sec:analog_frontend}.  All the aspects of this design are described in greater detail in the following sections.
@@ -439,7 +460,7 @@ Figure \ref{fig:analog_block_diagram} is a block diagram of the analog front end
   \centering
   \caption{Analog Front End Block Diagram}
   \label{fig:analog_block_diagram}
-  \includegraphics[width=.8\textwidth]{images/system_diagram.eps}
+  \includegraphics[width=.5\textwidth]{images/system_diagram_frontend.eps}
 \end{figure}
 
 \subsection{RF Front end - MAX3543}
@@ -451,16 +472,19 @@ The MAX3543 integrated circuit \cite{max3543} (label (3)) is a highly integrated
   \label{fig:max3543_freq_resp}
 \end{wrapfigure}
 
-This IC is the ``core'' component of our project.  Implementing a radio front end from less integrated components would have been a substantial undertaking we viewed as being far beyond our scope.  However in hindsight, it may have been fairly doable - there are a lot of integrated circuits that implement mixers, tunable oscillators, etc...
+This IC is the ``core'' component of our project.  Implementing a radio front end from less integrated components would have been a substantial undertaking we viewed as being far beyond our scope.  However in hindsight, it may have been fairly doable - there are a lot of integrated circuits that implement mixers, tunable oscillators, etc...  
 
 \subsection{Input - Antenna and Low Pass Filter}
 Labels (1) and (2) of the block diagram in figure \ref{fig:analog_block_diagram} is the first input section of the receiver.  The antenna is any standard television antenna matched to $75\Omega$.  The lowpass filter that the antenna feeds into is a simple discrete LC filter.  The MAX3543 has one RF input for high frequency ($>$300 MHz) and one RF input for low frequency ($<$300MHz).  Normally, a diplexing filter would split the RF spectrum on 300MHz, however we have implemented only the low frequency portion of this diplex filter.
 
+\subsection{Analog to Digital Converter - AD9235}
+The AD9235 is a 12 bit analog to digital converter capable of operating up to a 40MHz sample rate.  This 40MHz sample rate is not fast enough to directly sample the IF signal from the MAX3543.  An alternative ADC operating at over 100MHz was considered, however there are almost no benefits to oversampling, see section \ref{sec:oversampling}.  The only reason we spent a lot of time considering oversampling is that we didn't fully understand undersampling.
 
-\section{Analog to Digital Converter - AD9235}
-\subsection{Line Drivers - 74VHC541FT}
+The sample rate needs to be carefully chosen when applying undersampling.  If the sample rate is not chosen properly, then the signal will straddle two nyquist zones and be destroyed through the aliasing process.  The sample rate must be chosen such that the whole signal fits nicely into a single nyquist band.  Another requirement is that it has to be possible to generate the sample clock on the FPGA, integer sample rates are thus necessary.  For our system, we chose a sample rate of 29MSPs (Mega Samples Per Second).  At this sample rate, the signal falls perfectly into the 3rd Nyquist zone.
 
-\section{ADC Driver - AD8138}
+The output of the ADC is designed for 3.0V logic, and the FPGA expects 2.5V logic.  Moreover, the driver stength of the ADC logic outputs are in the range of 0.5mA to 1.5mA.  For these reasons, the ADC connects to a pair of 74VHC541FT chips.  These are made for creating a tristate bus, however I am just using them as line drivers (higher current output) and to convert from 3.0V logic to 2.5V logic.  The 2.5V logic supply comes directly from the FPGA board through the FMC connector.
+
+\subsection{ADC Driver - AD8138}
 Because the AD9235 (and most ADCs) require a common mode offset, some sort of interface between the MAX3543 and the AD9235 is necessary.  This interface can be passive (a transformer) or active (a differential op-amp).  An active op-amp solution was chosen for this design because it is simpler design-wise, and gives us the freedom to add some analog amplification.  Moreover, it's hard to know whether or not the MAX3543 would have been capable of driving a filter or the pins on the ADC, so the op-amp simply seemed like the safest choice.  See figure \ref{fig:ad8138_circuit} for the circuit design.
 
 \begin{figure}[ht]
@@ -472,7 +496,6 @@ Because the AD9235 (and most ADCs) require a common mode offset, some sort of in
 
 Specifically, the output of the op-amp was designed to be centered about 1.5V, with a $2V_{p-p}$ swing.  So, the output would swing between 0.5V and 2.5V.  The output swing is to be controlled by the gain in the MAX3543, however it would be possible to add some analog gain to the AD8183.
 
-\subsection{SPICE Modeling}
 A major concern with driving the ADC was impedance matching.  We were unsure whether or not some kind of matching network was needed.  In order to get a better sense of what was going on, a SPICE model was constructed and simulated using Ngspice \cite{ngspice}.
 
 The datasheet for the AD8138 seemed to suggest that +5V and 0V power supplies would be satisfactory for our application.  However, the first thing we found with the spice model was that this was not the case.  The AD8138 is not capable of swinging within about 1.3V of the supplies, see figure \ref{fig:ad8138_swing_bad}.  So, it was determined that a -5V supply would need to be included.  This is quite unfortunate, it was hoped there would be no switching supply on the board to cause extra noise.  If necessary, power can be supplied by the bench top supply by simply soldering wires into the PCB and connecting them to the supply.  This is obviously a crude hack, but designing in connection points for this purpose just raises cost, design time, and complexity.  We have only included ``real'' test points where we are almost certain they will be needed.
@@ -532,6 +555,8 @@ Figure \ref{fig:ad8138_bw_lowpass} shows the response of the system if a lowpass
 \label{fig:ad8138_bw_filters}
 \end{figure}
 
+After building the circuit we found that this stage had extremely high losses at higher frequencies.  The problem was with the resistors at the output.  In hindsight it was quite naive to use these, adding capacitors in the feedback path has the same effect with no losses.  Removing the resistors that were loading the output of the OP-AMP fixed the problem.
+
 \subsection{Results}
 After fixing a minor issue with the PCB (see section \ref{sec:pcb_errata}) the spectrum analyzer, oscilloscope, and function generators were used to verify that it worked as intended.  There was no test points designed into the PCB for this purpose.  The first test setup involved two oscilloscopes and two function generators.  Two function generators were required since the AD8138 (as configured) only accepts a differential input.  The problem with this setup is that the function generators frequency outputs are not perfectly synchronized.  The first of the two oscilloscopes was used to view the input from the function generators to ensure the correct phase and frequency while the second scope measured the output of the amplifier.  The result of this test can be seen in figure \ref{fig:ad8138_test1}.  The conclusion from this test was simply that it at least did about what was expected.
 
@@ -553,6 +578,12 @@ After fixing a minor issue with the PCB (see section \ref{sec:pcb_errata}) the s
 \caption{AD8138 Verification}
 \label{fig:ad8138_test1}
 \end{figure}
+
+%MAX3543
+\textbf{Result:} The MAX3543 is a QFN40 package which is 6mm x 6mm and has 40 pins on the bottom of it.  We did not anticipate how difficult it would really be to use this device.  Ultimately, we failed to get this portion of the project to work, the MAX3543 is too complex, and almost impossible to solder by hand.  In the future, fabricating additional test boards would have been helpful so that we could figure out the best method for soldering this device.
+
+% ADC
+\textbf{Result:} The ADC works very well.  The clock from the FPGA effectively drives the converter, and the 74VHC541FT drivers effectively transfer data to the FPGA.  We have been able to verify correct operation of the ADC by passing a sinusoid from the ADC, through the FPGA and into a PWM module, and then verifying that the correct frequency is output from the FPGA.
 
 \section{Power Supplies}
 The power supply design for the board was a fairly complex endeavour.  Originally the plan was to use as few voltage regulators as possible in order to minimize the complexity.  However, as the design went on the need for more and more voltage levels arose.  There are overall 5 different voltage levels present on the board: 5V, -5V, 3.3V, 3.0V, and 2.5V.  The 3.3V level is required for the MAX3543.  The 3.0V level is required for the analog to digital converter.  The +5V and -5V levels are required for the AD8138 (performance is maximized with these supplies), and the 2.5V level is required for driving the line to the FPGA.  The 2.5V source does not have it's own on board regulator, it is supplied directly from the FPGA board through the FMC connector.  A schematic of the power supply design can be seen in figure \ref{fig:power_supply}.
@@ -604,6 +635,9 @@ From the figure, it seems clear that the minimum number of filter taps is around
 
 The reader may find it odd that a DSP, a device designed specifically for doing high speed digital signal processing is incapable of demodulating FM radio.  It is important to realize that our requirements are far greater than FM radio demodulation.  The bandwidth of FM radio is only 200KHz, which would require at least 400KS/s to digitally sample.  A DSP could easily handle this data rate.  The difference with our system is that our bandwidth is roughly 8MHz, 40 times greater than the bandwidth of FM radio.  The digital demodulator needs to digitally pick out a 200KHz channel from in the 8MHz band.  After this is done, downsampling (section \ref{sec:downsampling}) could be performed to lower the data rate to closer to 400KS/s.  This is a good illustration of the usefulness of FPGAs.
 
+
+\subsection{FPGA Design}
+\label{sec:fpga_system}
 
 \section{PCB Design and Layout}
 \label{sec:pcb_errata}
